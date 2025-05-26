@@ -1,7 +1,7 @@
 ---
 title: "Overcoming the Thermal-Noise Limit of Microwave Measurements by Precooling with an Active Cold Load"
 collection: publications
-category: journals
+category: manuscripts
 permalink: /publication/2024-12-23-active-precooling-microwave-noise
 excerpt: 'This work introduces active pre-cooling (APC), a method that significantly reduces thermal noise in microwave cavities by coupling to an active cold load.'
 date: 2024-12-23
