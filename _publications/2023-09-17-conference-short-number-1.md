@@ -7,7 +7,7 @@ excerpt: 'Depth-reduced circuit designs and error-mitigation strategies boost GH
 date: 2023-09-17
 venue: '2023 IEEE International Conference on Quantum Computing and Engineering (QCE)'
 paperurl: 'https://ieeexplore.ieee.org/document/10313907'
-citation: 'Chen, Kuan-Cheng. (2023). &quot;Short-depth circuits and error mitigation for large-scale GHZ-state preparation, and benchmarking on IBM\'s 127-qubit system.&quot; <i>Proceedings of the 2023 IEEE International Conference on Quantum Computing and Engineering (QCE)</i>, 2, 207-210.'
+citation: 'Chen, Kuan-Cheng. (2023). &quot;Short-depth circuits and error mitigation for large-scale GHZ-state preparation, and benchmarking on IBM&#39;s 127-qubit system.&quot; <i>Proceedings of the 2023 IEEE International Conference on Quantum Computing and Engineering (QCE)</i>, 2, 207-210.'
 ---
 
 This paper evaluates two IBM quantum devices—**Eagle r3 (Sherbrooke, 127 qubits)** and **Falcon r8 (Peekskill, 27 qubits)**—focusing on their ability to generate high-fidelity Greenberger–Horne–Zeilinger (GHZ) states. By introducing **tree-based** and **centered-tree-based** shallow-depth circuit constructions, the study significantly improves entanglement fidelity while mitigating hardware errors.
