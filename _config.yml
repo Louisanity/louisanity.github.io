@@ -16,7 +16,7 @@ repository     : "Louisanity/academicpages.github.io" # your fork of the templat
 # --------------------------------------------
 author:
   # Biographic information
-  avatar     : "profile.png"                          # place photo in /images/
+  avatar     : "person_pic.jpg"                          # place photo in /images/
   name       : *name
   pronouns   :                                        # e.g. "he/him"
   bio        : "Postdoctoral Research Associate in Imperial QuEST, focusing on scalable distributed quantum algorithms, architectures & error correction."
@@ -26,7 +26,7 @@ author:
   email      : "kuan-cheng.chen17@imperial.ac.uk"
 
   # Academic profiles
-  academia         : "https://profiles.imperial.ac.uk/kuan-cheng.chen17/about"
+  academia         : 
   arxiv            : 
   googlescholar    : "https://scholar.google.com/citations?user=KoUPm0MAAAAJ&hl=en"
   impactstory      :
