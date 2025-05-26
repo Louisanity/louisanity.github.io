@@ -140,13 +140,13 @@
       "description": ""
     }
   ],
-  "portfolio": [
+  "Research": [
     {
-      "name": "Portfolio item number 1",
-      "category": "portfolio",
+      "name": "Research item number 1",
+      "category": "Research",
       "date": "",
       "url": "",
-      "description": "Short description of portfolio item number 1<br/><img src='/images/500x300.png'>"
+      "description": "Short description of Research item number 1<br/><img src='/images/500x300.png'>"
     }
   ]
 }
