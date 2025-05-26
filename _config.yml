@@ -1,33 +1,33 @@
 # --------------------------------------------
 # Basic Site Settings
 # --------------------------------------------
-locale                   : "en-GB"
-site_theme               : "default"
-title                    : "Kuan-Cheng (Louis) Chen"
-title_separator          : "-"
-name                     : &name "Kuan-Cheng (Louis) Chen"
-description              : &description "Ph.D. candidate in Quantum Engineering at Imperial College London; research in distributed quantum-computing architectures, quantum ML & circuit optimisation."
-url                      : https://louisanity.github.io          # ← GitHub Pages root
-baseurl                  : ""                                   # "" means the site is served from the repo root
-repository               : "Louisanity/academicpages.github.io" # ← your fork of the template
+locale         : "en-GB"
+site_theme     : "default"
+title          : "Dr Louis Chen"
+title_separator: "-"
+name           : &name "Dr Louis Chen"
+description    : &description "Postdoctoral Research Associate (Distributed Quantum Computing), Department of Electrical & Electronic Engineering, Imperial College London."
+url            : https://louisanity.github.io          # GitHub Pages root
+baseurl        : ""                                   # "" → site served from repo root
+repository     : "Louisanity/academicpages.github.io" # your fork of the template
 
 # --------------------------------------------
-# Author profile (left-hand sidebar on the site)
+# Author profile (left sidebar)
 # --------------------------------------------
 author:
   # Biographic information
-  avatar           : "profile.png"
-  name             : "Louis Chen"
-  pronouns         :            # add if you wish (e.g. "he/him")
-  bio              : "Ph.D. candidate · Quantum Engineering · Imperial College London"
-  location         : "London, UK"
-  employer         : "Imperial College London"
-  uri              : "https://profiles.imperial.ac.uk/kuan-cheng.chen17/about"
-  email            : "kc2816@ic.ac.uk"
+  avatar     : "profile.png"                          # place photo in /images/
+  name       : *name
+  pronouns   :                                        # e.g. "he/him"
+  bio        : "Postdoctoral Research Associate in Imperial QuEST, focusing on scalable distributed quantum algorithms, architectures & error correction."
+  location   : "South Kensington Campus, London, UK"
+  employer   : "Imperial College London"
+  uri        : "https://www.imperial.ac.uk/people/kuan-cheng.chen17"
+  email      : "kuan-cheng.chen17@imperial.ac.uk"
 
   # Academic profiles
-  academia         :
-  arxiv            :
+  academia         : "https://profiles.imperial.ac.uk/kuan-cheng.chen17/about"
+  arxiv            : 
   googlescholar    :
   impactstory      :
   orcid            :
@@ -36,25 +36,24 @@ author:
   researchgate     :
   scopus           :
 
-  # Repositories & dev platforms
-  github           : "Louisanity"
-  bitbucket        :
-  codepen          :
-  dribbble         :
-  kaggle           :
-  stackoverflow    :
+  # Repositories / dev platforms
+  github     : "Louisanity"
+  bitbucket  :
+  codepen    :
+  dribbble   :
+  kaggle     :
+  stackoverflow:
 
   # Social media
-  bluesky          :
-  linkedin         : "louis-chen-801214109"
-  mastodon         :
-  medium           :
-  twitter          :
-  youtube          :
-  # leave any others blank
+  linkedin   : "louis-chen-801214109"
+  bluesky    :
+  mastodon   :
+  medium     :
+  twitter    :
+  youtube    :
 
 # --------------------------------------------
-# Publication category headings (feel free to edit)
+# Publication category headings
 # --------------------------------------------
 publication_category:
   books:
@@ -65,63 +64,63 @@ publication_category:
     title: "Conference Papers"
 
 # --------------------------------------------
-# Site-wide options (mostly left as defaults)
+# Site-wide options (mostly default)
 # --------------------------------------------
-teaser                   :
-breadcrumbs              : false
-words_per_minute         : 160
-future                   : true
-read_more                : "disabled"
-talkmap_link             : false
+teaser         :
+breadcrumbs    : false
+words_per_minute: 160
+future         : true
+read_more      : "disabled"
+talkmap_link   : false
 
 comments:
-  provider               :
-  disqus:      { shortname: "" }
-  discourse:    { server: "" }
-  facebook:     { appid: "", num_posts: "", colorscheme: "" }
+  provider :                                # leave blank to disable comments
+  disqus  : { shortname: "" }
+  discourse: { server: "" }
+  facebook: { appid: "", num_posts: "", colorscheme: "" }
 
 staticman:
-  allowedFields          : ['name','email','url','message']
-  branch                 : "gh-pages"
-  commitMessage          : "New comment."
-  filename               : comment-{@timestamp}
-  format                 : "yml"
-  moderation             : true
-  path                   : "_data/comments/{options.slug}"
-  requiredFields         : ['name','email','message']
-  transforms:            { email: "md5" }
+  allowedFields  : ['name','email','url','message']
+  branch         : "gh-pages"
+  commitMessage  : "New comment."
+  filename       : comment-{@timestamp}
+  format         : "yml"
+  moderation     : true
+  path           : "_data/comments/{options.slug}"
+  requiredFields : ['name','email','message']
+  transforms     : { email: "md5" }
   generatedFields:
     date:
-      type               : "date"
-      options:           { format: "iso8601" }
+      type     : "date"
+      options  : { format: "iso8601" }
 
 atom_feed:
-  hide                   : false
-  path                   :
+  hide : false
+  path :
 
 # --------------------------------------------
-# SEO / social-sharing / analytics (update later)
+# SEO / social / analytics (fill in later)
 # --------------------------------------------
 google_site_verification :
 bing_site_verification   :
 alexa_site_verification  :
 yandex_site_verification :
 
-twitter:   { username: &twitter }
-facebook:  { username: "", app_id: "", publisher: "" }
-og_image                 :
+twitter  : { username: &twitter }
+facebook : { username: "", app_id: "", publisher: "" }
+og_image :
 
 social:
-  type                   : "Person"
-  name                   : *name
-  links:                 []   # e.g. ["https://github.com/Louisanity"]
+  type  : "Person"
+  name  : *name
+  links : []       # e.g. ["https://github.com/Louisanity"]
 
 analytics:
-  provider               : "false"
-  google:     { tracking_id: "" }
+  provider : "false"      # set to "google" etc. if you add tracking
+  google   : { tracking_id: "" }
 
 # --------------------------------------------
-# Jekyll build - files to include / exclude
+# Jekyll build – include / exclude lists
 # --------------------------------------------
 include: [".htaccess", "_pages", "files"]
 exclude:
@@ -153,31 +152,36 @@ exclude:
   - vendor
 keep_files: [".git", ".svn"]
 
-encoding: "utf-8"
-markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+encoding      : "utf-8"
+markdown_ext  : "markdown,mkdown,mkdn,mkd,md"
 
 # --------------------------------------------
 # Conversion / Markdown / Sass
 # --------------------------------------------
-markdown: kramdown
-highlighter: rouge
+markdown      : kramdown
+highlighter   : rouge
 excerpt_separator: "\n\n"
 kramdown:
-  input: GFM
-  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  input        : GFM
+  hard_wrap    : false
+  auto_ids     : true
+  footnote_nr  : 1
+  entity_output: as_char
+  toc_levels   : 1..6
+  smart_quotes : lsquo,rsquo,ldquo,rdquo
 
 sass:
-  sass_dir: _sass
-  style: compressed
+  sass_dir : _sass
+  style    : compressed
 
 # --------------------------------------------
 # Collections, defaults, permalink, timezone
 # --------------------------------------------
 collections:
-  teaching:     { output: true, permalink: /:collection/:path/ }
+  teaching    : { output: true, permalink: /:collection/:path/ }
   publications: { output: true, permalink: /:collection/:path/ }
-  portfolio:    { output: true, permalink: /:collection/:path/ }
-  talks:        { output: true, permalink: /:collection/:path/ }
+  portfolio   : { output: true, permalink: /:collection/:path/ }
+  talks       : { output: true, permalink: /:collection/:path/ }
 
 defaults:
   - scope:  { path: "", type: posts }
@@ -194,7 +198,7 @@ defaults:
     values: { layout: talk, author_profile: true, share: true }
 
 permalink: /:categories/:title/
-timezone : Europe/London     # you are based in London
+timezone : Europe/London
 
 # --------------------------------------------
 # Plugins & whitelist (GitHub Pages-compatible)
@@ -210,11 +214,11 @@ plugins:
 whitelist: *plugins
 
 # --------------------------------------------
-# Archives, compression, etc. (unchanged)
+# Archives & HTML compression
 # --------------------------------------------
 category_archive: { type: liquid, path: /categories/ }
-tag_archive:      { type: liquid, path: /tags/ }
+tag_archive     : { type: liquid, path: /tags/ }
 
 compress_html:
   clippings: all
-  ignore: { envs: development }
+  ignore  : { envs: development }
