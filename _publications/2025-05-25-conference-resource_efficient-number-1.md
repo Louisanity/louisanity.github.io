@@ -17,3 +17,5 @@ This paper presents a **resource-efficient compilation framework** for **distrib
 * Demonstrated **energy savings and scalability** over classical algorithms, supporting efficient WSN operation in complex deployments.
 
 This work showcases the **practical potential of quantum computing** in wireless communications, offering scalable, low-energy solutions for next-generation network optimization challenges.
+
+![Resource-Efficient Distributed Quantum Compilation for WSN Routing](https://louisanity.github.io/images/dis-qaoa_wireless.jpeg)
