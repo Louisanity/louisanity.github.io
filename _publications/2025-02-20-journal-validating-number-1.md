@@ -17,3 +17,6 @@ Traditional state-vector simulations become infeasible beyond ~50 qubits. In con
 We validate our framework using MNIST and Fashion-MNIST datasets, achieving robust multiclass classification. This study highlights the potential of QSVMs for high-dimensional data analysis and demonstrates the feasibility of large-qubit simulations within the Quantum-HPC ecosystem.
 
 ![Efficient Simulation of QSVMs using cuTensorNet](https://louisanity.github.io/images/cutn-qsvm.jpeg)
+
+**News Mentioned:**  
+🔗 [NVIDIA Blog: Taiwan Researchers Build World-Class Supercomputer for AI, Quantum Computing](https://blogs.nvidia.com/blog/taiwan-research-supercomputer/)
