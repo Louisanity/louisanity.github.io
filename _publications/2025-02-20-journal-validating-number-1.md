@@ -15,3 +15,5 @@ We present an efficient tensor-network-based approach for simulating large-scale
 Traditional state-vector simulations become infeasible beyond ~50 qubits. In contrast, our simulator handles QSVMs with up to 784 qubits, completing simulations within seconds on a single high-performance GPU. Using MPI in multi-GPU settings, we achieve strong linear scalability, further accelerating computation time with increasing dataset sizes.
 
 We validate our framework using MNIST and Fashion-MNIST datasets, achieving robust multiclass classification. This study highlights the potential of QSVMs for high-dimensional data analysis and demonstrates the feasibility of large-qubit simulations within the Quantum-HPC ecosystem.
+
+![Efficient Simulation of QSVMs using cuTensorNet](https://louisanity.github.io/images/cutn-qsvm.jpeg)
