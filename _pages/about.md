@@ -39,7 +39,7 @@ He received his MSc and PhD in Quantum Engineering from Imperial College London,
 
 ### Education
 
-| Degree | Institution | Year |
+| Degree | Institution | Award Year |
 |--------|-------------|------|
 | PhD, Quantum Engineering | Imperial College London | 2024 |
 | MSc, Quantum Engineering | Imperial College London | 2018 |
