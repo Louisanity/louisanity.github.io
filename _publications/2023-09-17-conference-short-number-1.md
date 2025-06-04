@@ -19,3 +19,5 @@ Key contributions include:
 * Demonstration that higher qubit counts enable richer applications in quantum cryptography, measurement-based quantum computing, and quantum simulation.  
 
 These results establish a practical pathway for preparing entangled states on today’s NISQ hardware, laying the groundwork for more efficient and versatile future quantum systems.
+
+![Figure: Benchmarking different GHZ-state preparation approaches.](https://louisanity.github.io/images/short_depth.jpg)
