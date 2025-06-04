@@ -15,3 +15,5 @@ Future quantum memory and quantum networking technologies require reliable inter
 We demonstrate millisecond-scale spin-lattice relaxation and microsecond-scale phase memory times at ambient conditions. Additionally, this system is capable of producing an oscillating spin-polarized state via a co-dissolved photo-activated tetraphenylporphyrin moiety, enabled through a viscous liquid matrix that stabilizes the spin dynamics.
 
 The work advances the field by combining high-performance molecular media, photoexcited triplet-radical spin polarization, and dynamical decoupling strategies. These insights pave the way toward scalable, room-temperature quantum spin systems that could be integrated into next-generation quantum devices.
+
+![Room-Temperature Quantum Information Processing with Photoexcited Spins](https://louisanity.github.io/images/unlocking_rt_qip.jpeg)
