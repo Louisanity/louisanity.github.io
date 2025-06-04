@@ -14,7 +14,7 @@ Department of Electrical and Electronic Engineering
 Imperial College London, South Kensington Campus, London, UK  
 Email: kuan-cheng.chen17@imperial.ac.uk
 
-Affiliations: Quantum Engineering, Science and Technology · Imperial X · Communications and Signal Processing
+Affiliations: [Imperial QuEST](https://www.imperial.ac.uk/quantum-engineering-science-technology/) · [Imperial X](https://ix.imperial.ac.uk/)
 
 ---
 
