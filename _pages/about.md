@@ -43,7 +43,6 @@ He received his MSc and PhD in Quantum Engineering from Imperial College London,
 |--------|-------------|------|
 | PhD, Quantum Engineering | Imperial College London | 2024 |
 | MSc, Quantum Engineering | Imperial College London | 2018 |
-| MSc, Quantum Computing | Universidad Politécnica de Madrid | 2017 |
 | BSc, Chemistry (Minor in Financial Engineering) | National Sun Yat-Sen University | 2017 |
 
 ---
