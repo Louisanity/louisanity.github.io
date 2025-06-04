@@ -1,7 +1,8 @@
 ---
-title: "CIVE70122 Data Engineering Module"
+title: "Data Engineering and Machine Learning"
 collection: teaching
 type: "Undergraduate course"
+code: CIVE70122 
 permalink: /teaching/2025-spring-cive70122
 venue: "Imperial College London, Department of Civil and Environmental Engineering"
 date: 2025-01-04
