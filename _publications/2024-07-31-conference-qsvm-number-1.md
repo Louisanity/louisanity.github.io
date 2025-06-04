@@ -17,3 +17,5 @@ This paper presents a **Quantum-enhanced Support Vector Machine (QSVM)** tailore
 * Significant gains in **accuracy and computational efficiency**, showcasing the strength of quantum machine learning in astrophysics.
 
 The proposed QSVM model sets a new benchmark for stellar classification and demonstrates the growing role of quantum algorithms in scientific data analysis at scale.
+
+![Figure: QSVM pipeline and stellar classification results (binary and multi-label). Powered by NVIDIA.](https://louisanity.github.io/images/multi_classification.jpg)
