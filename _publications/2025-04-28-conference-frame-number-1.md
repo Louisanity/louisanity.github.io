@@ -17,3 +17,5 @@ This paper presents **Generative Interpolation (GI)**, a novel method to reduce 
 * Enhanced fine-tuning performance for **large language models (LLMs)**, demonstrating practical advantages for QPA under hardware constraints.
 
 The proposed GI framework establishes a connection between **deep generative learning** and **quantum measurement reconstruction**, offering a scalable path forward for variational quantum algorithms.
+
+![Figure: Frame-wise generative interpolation model for quantum measurement completion in QPA tasks.](https://louisanity.github.io/images/frame_generation.jpg)
