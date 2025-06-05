@@ -17,3 +17,5 @@ This paper introduces a **Quantum-Enhanced Parameter-Efficient Learning** framew
 * Demonstrated **accuracy and efficiency** on large-scale atmospheric datasets, with strong potential for scalable and **energy-efficient climate modeling**.
 
 The framework showcases how QML can drive breakthroughs in **disaster forecasting** while improving accessibility and sustainability in high-performance computing.
+
+![Figure: Third-place project at Pasqal Climate & Biodiversity Challenge 2024—QPA model for storm trajectory prediction.](https://louisanity.github.io/images/typhon_trajectory.jpeg)
