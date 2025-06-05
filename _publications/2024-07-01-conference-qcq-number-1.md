@@ -17,3 +17,5 @@ This paper presents a **Quantum-Classical-Quantum (QCQ)** middleware framework t
 * Integration of **NVIDIA cuQuantum SDK** and **PennyLane’s Lightning plugin**, achieving up to 10× computational speedup over CPU-based methods.
 
 The QCQ architecture demonstrates 99.5% accuracy in classifying quantum phase transitions in Ising and XXZ models, offering a powerful hybrid paradigm for simulating and understanding complex quantum phenomena at scale.
+
+![Figure: QCQ workflow integrating VQE, CNNs, and quantum layers for phase transition classification.](https://louisanity.github.io/images/qcq.jpeg)
