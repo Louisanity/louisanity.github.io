@@ -17,3 +17,5 @@ We examine how quantum principles can be integrated with classical neural networ
 A major challenge in optical QNNs lies in achieving the necessary non-linear gates. We discuss emerging strategies, including measurement-induced nonlinearities, as promising routes to overcome this hurdle. Additionally, we highlight the role of non-Gaussian operations in unifying disparate QNN architectures, an insight that may guide the scalable design of more complex QNN systems.
 
 Our analysis suggests that continued advancements in quantum optics and photonic control are key to realizing scalable QNN circuits capable of addressing high-dimensional quantum learning tasks.
+
+![Figure: Optical architectures for quantum neural networks, including photonic chips and time-bin loop implementations.](https://louisanity.github.io/images/shedding.jpeg)
