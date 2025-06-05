@@ -17,3 +17,5 @@ citation: 'Chen, Kuan-Cheng; Li, Yi-Tien; Li, Tai-Yu; Liu, Chen-Yu; Lee, Po-Heng
 * Application to real-world datasets (e.g., **ADNI** and **NIFD**), demonstrating higher accuracy than classical-only methods.
 
 Despite limitations in qubit availability under NISQ constraints, CompressedMediQ validates the potential of quantum-enhanced diagnostics in healthcare, advancing the future of signal processing and neuroimaging analysis.
+
+![Figure: CompressedMediQ pipeline integrating classical pre-processing, QSVM classification, and neuroimaging data from hospital MRI.](https://louisanity.github.io/images/compressmediq.jpeg)
