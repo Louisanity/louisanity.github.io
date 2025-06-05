@@ -17,3 +17,5 @@ citation: 'Xu, Xiaotian; Chen, Kuan-Cheng; &amp; Wille, Robert. (2024). &quot;Ha
 * Validation across multiple IBM quantum devices, demonstrating robustness and practicality in real-world settings.  
 
 By standardizing benchmarking practices and focusing on the Quantum Approximate Optimization Algorithm (QAOA), HamilToniQ advances the precision and clarity of QPU performance evaluation.
+
+![Figure: HamilToniQ benchmarking pipeline and QPU topology fidelity comparison.](https://louisanity.github.io/images/hamiltoniq.jpeg)
