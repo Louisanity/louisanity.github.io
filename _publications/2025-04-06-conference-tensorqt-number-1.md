@@ -17,3 +17,5 @@ This paper enhances the **Quantum-Train (QT)** framework by integrating a **tens
 * Maintaining **low parameter complexity** and ensuring **quantum-free inference**, critical for practical deployment.
 
 Experimental benchmarks demonstrate improved performance and compactness, positioning this framework as a robust solution for scalable quantum-classical model training.
+
+![Figure: Quantum-Train pipeline using distributed QNN modules and tensor networks for CNN weight generation.](https://louisanity.github.io/images/qt_with_tensor.jpeg)
