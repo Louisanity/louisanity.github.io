@@ -17,3 +17,5 @@ Quantum Phase Estimation (QPE) traditionally depends on an inverse Quantum Fouri
 * Integrates as an intermediate **compiler pass**, promising depth savings for algorithms whose complexity is dominated by QPE.
 
 The results show that adaptive, trainable circuits can improve near-term quantum algorithm performance and remain compatible with future, larger-scale devices.
+
+![Figure: VQC approximation of QPE with training results and cost convergence on IBM simulators.](https://louisanity.github.io/images/learning.jpg)
