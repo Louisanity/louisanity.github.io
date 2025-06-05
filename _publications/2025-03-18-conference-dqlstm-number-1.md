@@ -17,3 +17,5 @@ This paper presents a **Distributed Quantum Long Short-Term Memory (QLSTM)** fra
 * Validation on challenging sequence tasks, such as **damped harmonic oscillators** and **NARMA sequences**, demonstrating **stable convergence** and enhanced training efficiency.
 
 This approach lays the groundwork for integrating **distributed quantum learning** into future **hybrid quantum-classical HPC systems**, supporting large-scale AI applications in dynamic environments.
+
+![Figure: Modular QPU architecture and benchmark results for Distributed QLSTM applied to temporal sequence modeling.](https://louisanity.github.io/images/distqlstm.jpg)
