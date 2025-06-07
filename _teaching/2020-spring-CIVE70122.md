@@ -9,9 +9,7 @@ date: 2025-01-04
 location: "London, United Kingdom"
 ---
 
-## CIVE70122 Data Engineering Module: Practical Applications of Machine Learning  
-
-
+## Data Engineering Module: Practical Applications of Machine Learning  
 From **04 January 2025 to 21 March 2025**, during the official Spring Term at Imperial College London, I served as a **guest lecturer** for the undergraduate module **CIVE70122: Data Engineering**, hosted by the Department of Civil and Environmental Engineering. This module focused on the **practical application of data engineering and machine learning techniques** for solving real-world analytical problems.
 
 The course was designed to provide students with a hands-on, end-to-end understanding of modern data workflows — including data preprocessing, modelling, evaluation, and visual communication — through weekly applied sessions.
