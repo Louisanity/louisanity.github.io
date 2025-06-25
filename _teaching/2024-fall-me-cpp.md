@@ -1,12 +1,12 @@
 ---
 title: "An Introduction to the Imperative Part of C++"
 collection: teaching
-type: "Undergraduate course"
-code: CIVE70122 
-permalink: /teaching/2025-spring-cive70122
-venue: "Imperial College London, Department of Civil and Environmental Engineering"
-date: 2025-01-04
-location: "London, United Kingdom"
+type: "Postgraduate course"
+code: ME-GR-CPP2024 
+permalink: teaching/2024-fall-me-cpp
+venue: "Taipei Medical University, Department of Medical Engineering"
+date: 2024-09-30
+location: "Taipei, Taiwan"
 ---
 
 ## Teaching Overview
