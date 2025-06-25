@@ -1,7 +1,7 @@
 ---
-title: "Research item number 1"
-excerpt: "Short description of Research item number 1<br/><img src='/images/500x300.png'>"
+title: "Distributed Quantum Computing & Networking"
+excerpt: "Architectures, protocols, and benchmarking for large-scale, modular, and resource-efficient quantum networks.<br/><img src='/images/research_dqc.png'>"
 collection: Research
 ---
 
-This is an item in your Research. It can be have images or nice text. If you name the file .md, it will be parsed as markdown. If you name the file .html, it will be parsed as HTML. 
+My work designs and evaluates distributed quantum computing (DQC) frameworks—covering entanglement distribution, quantum-as-a-service (QaaS) models, and Byzantine-robust quantum consensus—to unlock scalable cloud-based quantum processing. :contentReference[oaicite:0]{index=0}
