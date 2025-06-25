@@ -9,7 +9,7 @@ redirect_from:
 
 ## Contact
 
-Research Associate  
+Research Associate in Distributed Quantum Computing
 Department of Electrical and Electronic Engineering  
 Imperial College London, South Kensington Campus, London, UK  
 Email: kuan-cheng.chen17@imperial.ac.uk
