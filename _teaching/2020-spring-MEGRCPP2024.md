@@ -10,7 +10,6 @@ location: "Taipei, Taiwan"
 ---
 
 ## Teaching Overview
-
 This course provides a comprehensive introduction to programming through the imperative core of the C++ language. It is designed specifically for postgraduate students in the Department of Medical Engineering at Taipei Medical University, many of whom come from non-computing backgrounds. The course content is adapted from an established version taught at Imperial College London, with an emphasis on practical problem-solving using ANSI/ISO standard C++ and the GNU g++ compiler.
 
 Students engage in a structured sequence of lectures and lab-based exercises, using a UNIX-like development environment. By the end of the course, they gain hands-on experience in core programming constructs, procedural abstraction, debugging, and file I/O — essential skills for computational biomedical applications.
