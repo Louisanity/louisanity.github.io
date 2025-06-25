@@ -9,49 +9,65 @@ date: 2025-01-04
 location: "London, United Kingdom"
 ---
 
-## Data Engineering Module: Practical Applications of Machine Learning  
-During the official Spring Term at Imperial College London, I served as a guest lecturer for the undergraduate module CIVE70122: Data Engineering, hosted by the Department of Civil and Environmental Engineering. This module focused on the practical application of data engineering and machine learning techniques for solving real-world analytical problems.
+## Teaching Overview
+This course provides a comprehensive introduction to programming through the imperative core of the C++ language. It is designed specifically for postgraduate students in the Department of Medical Engineering at Taipei Medical University, many of whom come from non-computing backgrounds. The course content is adapted from a long-established version taught at Imperial College London, with a strong emphasis on practical problem-solving using ANSI/ISO standard C++ and the GNU g++ compiler.
 
-The course was designed to provide students with a hands-on, end-to-end understanding of modern data workflows — including data preprocessing, modelling, evaluation, and visual communication — through weekly applied sessions.
+Students engage in a structured sequence of lectures and lab-based exercises using a UNIX-like development environment. By the end of the course, they gain hands-on experience in core programming constructs, procedural abstraction, debugging, and file I/O — essential skills for computational biomedical applications.
 
-## Teaching Contributions  
+## Teaching Contributions
+As the lecturer, I delivered all lectures and supervised the associated practical sessions, covering the following topics:
 
-As a guest lecturer, I led the following instructional sessions:
+- **Lecture 1: Introduction to Programming with C++**  
+  History of C++, program structure, compilation, and first program walkthrough.
 
-- **Session 1: Introduction and Lab Setup**  
-  Introduced core concepts of data engineering, including structured/unstructured data types, ML pipelines, and infrastructure setup using Python, Jupyter Notebooks, and essential libraries (pandas, NumPy, scikit-learn).
+- **Lecture 2: Data Types and Variables**  
+  Primitive types, identifiers, constants, type casting, and enumerations.
 
-- **Session 2: Data Processing, Dashboard Development, and Visualisation**  
-  Covered advanced data wrangling and feature engineering techniques. Demonstrated the use of interactive dashboard tools (e.g. Plotly Dash, Streamlit) for visualising multidimensional data.
+- **Lecture 3: Expressions and Input/Output**  
+  Arithmetic expressions, shorthand operators, and standard I/O handling.
 
-- **Session 3: Implementing Regression Models**  
-  Taught fundamental regression algorithms including linear, ridge, and polynomial regression. Emphasised pipeline integration, error metrics (RMSE, MAE), and diagnostic plotting.
+- **Lecture 4: Control Structures I – Branching**  
+  Conditional logic using `if`, `else`, and `switch` statements.
 
-- **Session 4: Neural Network Implementation**  
-  Delivered practical instruction on implementing feedforward neural networks using TensorFlow/Keras. Topics included architecture definition, training/validation loops, and tuning hyperparameters.
+- **Lecture 5: Control Structures II – Looping**  
+  Iterative constructs: `for`, `while`, `do-while`, nested loops, and scope.
 
-- **Session 5: Clustering Applications**  
-  Introduced unsupervised learning methods such as K-Means, DBSCAN, and Agglomerative Clustering. Covered cluster validity metrics (e.g., silhouette score) and visual interpretation techniques.
+- **Lecture 6: Functions and Modular Design**  
+  Function definitions, parameter passing (by value and reference), and overloading.
 
-- **Session 6: Reinforcement Learning Applications**  
-  Explored the fundamentals of reinforcement learning, including Q-learning and reward-based optimisation. Illustrated basic implementations using OpenAI Gym for interactive learning.
+- **Lecture 7: Arrays and Strings**  
+  One- and two-dimensional arrays, string handling, and manipulation.
 
-- **Session 7: Statistical Comparison of Machine Learning Models & Retrieval-Augmented Generation**  
-  Provided techniques for statistically comparing machine learning models (paired t-tests, non-parametric tests). Introduced Retrieval-Augmented Generation (RAG) as an emerging paradigm for combining information retrieval with generative AI.
+- **Lecture 8: Pointers and Dynamic Memory**  
+  Pointer syntax, dynamic memory management, and pointer arithmetic.
 
-- **Session 8: Comparative Visualisation of ML Techniques & Transformers (NLP)**  
-  Explained comparative analysis strategies using parallel visualisations and confusion matrices. Covered the foundations of transformer architectures (e.g., BERT, GPT) and their relevance to structured and semi-structured data.
+- **Lecture 9: File Handling and Streams**  
+  File I/O using streams, input/output formatting, and error checking.
 
-- **Session 9: Group Project Presentations**  
-  Supervised and evaluated final group projects involving full-stack data pipelines, ML model deployment, and live dashboard demonstrations. Provided feedback on modelling decisions, presentation clarity, and reproducibility.
+- **Lecture 10: Introduction to Object-Oriented Concepts**  
+  Basic classes and objects, constructors, and encapsulation.
 
-Assessment Framework  
----------------------
+- **Lecture 11: Recursion and Linked Structures**  
+  Recursive functions, the call stack, and linked list construction.
 
-- **35% Coursework**  
-  Weekly applied tasks, where students iteratively implemented and tested components of a unified data engineering pipeline.
+- **Lecture 12: Debugging and Development Tools**  
+  Use of `g++`, Emacs, and GDB; debugging practices using `assert`, test stubs, and drivers.
 
-- **65% Group Project**  
-  Capstone project involving dataset analysis, ML model selection, visualisation development, and oral presentation. Assessment focused on technical rigour, teamwork, and communication.
+## Learning Materials
 
-This teaching engagement demonstrated my commitment to equipping students with industry-relevant, transferable skills in data science, machine learning, and applied engineering analytics.
+- **Lecture Notes and Code Examples**  
+  All exercises and examples are written in ANSI/ISO standard C++ and tested using the GNU g++ compiler.
+
+- **Recommended Textbooks**  
+  - *Walter Savitch*, *Problem Solving with C++* (10th Edition), Pearson, 2018.  
+  - *Bjarne Stroustrup*, *Programming Principles and Practice Using C++* (3rd Edition), Pearson, 2024.
+
+## Assessment Framework
+
+- **60% Final Written Examination**  
+  Tests theoretical understanding, code reasoning, and C++ syntax proficiency.
+
+- **40% Programming Project**  
+  A modular software project involving implementation, documentation, and evaluation of a C++ application relevant to biomedical or scientific computation.
+
+This course equips students with foundational programming skills, enabling them to engage with computational methods and develop technical fluency for research or industry applications in medical engineering.
