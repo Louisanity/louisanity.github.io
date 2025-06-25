@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-### Contact
+## Contact
 
 Research Associate  
 Department of Electrical and Electronic Engineering  
@@ -18,9 +18,9 @@ Affiliations: [Imperial QuEST](https://www.imperial.ac.uk/quantum-engineering-sc
 
 ---
 
-### Biography
+## Biography
 
-Louis Chen is a postdoctoral Research Associate at Imperial College London, working in the group of Professor Kin K. Leung. His position is supported by the EPSRC-funded project *Distributed Quantum Computing and Applications* (EP/W032643/1).
+Louis Chen is a postdoctoral Research Associate at Imperial College London, working in the group of Professor Kin K. Leung. His position is supported by the EPSRC-funded project *Distributed Quantum Computing and Applications* ([EP/W032643/1](https://gtr.ukri.org/projects?ref=EP%2FW032643%2F1)).
 
 His research addresses scalable approaches to distributed quantum computing, focusing on the design of quantum algorithms, distributed architectures, and novel quantum error correction protocols. Louis is particularly interested in how heterogeneous quantum networks can be leveraged to solve large-scale problems in optimisation, machine learning, and quantum materials simulation.
 
@@ -28,7 +28,7 @@ He received his MSc and PhD in Quantum Engineering from Imperial College London,
 
 ---
 
-### Research Interests
+## Research Interests
 
 - Distributed quantum computing and network architectures  
 - Quantum error correction and fault-tolerant protocol design  
@@ -37,7 +37,7 @@ He received his MSc and PhD in Quantum Engineering from Imperial College London,
 
 ---
 
-### Education
+## Education
 
 | Degree | Institution | Award Year |
 |--------|-------------|------|
@@ -47,17 +47,18 @@ He received his MSc and PhD in Quantum Engineering from Imperial College London,
 
 ---
 
-### Selected Awards and Honours
+## Selected Awards and Honours
 
 - John Matthey PhD Prize, 2025  
 - Imperial Global Fellow, 2023  
 - TSMC Research Prize, 2022  
-- National PhD Scholarship – Taiwan, 2021–2023  
+- National PhD Scholarship – Taiwan, 2021–2023
+- Third Prize, The Blaise Pascal Quantum Challenge, 2025
 - First Prize, Deloitte Quantum Climate Challenge, 2024
 
 ---
 
-### Recent Highlights
+## Recent Highlights
 
 - Published over 25 peer-reviewed articles in venues such as *Physical Review Applied*, *Advanced Quantum Technologies*, and *Optics Express*  
 - First-author publication on resource-efficient compilation of distributed quantum circuits accepted at *IEEE ICCAD 2025*  
@@ -67,11 +68,11 @@ See [Publications](/publications/) and [CV](/cv/) for more.
 
 ---
 
-### Professional Service
+## Professional Service
 
-- Reviewer for journals including *Quantum Machine Intelligence*, *Quantum Information Processing*, and *Advanced Quantum Technologies*  
-- Programme Committee Member for IEEE QCE 2026 and ICASSP 2025  
-- Co-organiser of the INFOCOM QuNAP Workshop 2025 and the ISCAS Quantum AI Session 2025
+- Reviewer for journals including *Quantum Machine Intelligence*, *Quantum Information Processing*, *IEEE Transactions on Communications*, *Neurocomputing * and *Advanced Quantum Technologies*  
+- Programme Committee Member for IEEE QCE 2025 and ICASSP 2025  
+- Co-organiser of the INFOCOM QuNAP Workshop 2025 and the Globecom QC-CL Workshop 2025
 
 ---
 
