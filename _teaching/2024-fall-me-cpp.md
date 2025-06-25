@@ -1,5 +1,5 @@
 ---
-title: "Data Engineering and Machine Learning"
+title: "An Introduction to the Imperative Part of C++"
 collection: teaching
 type: "Undergraduate course"
 code: CIVE70122 
