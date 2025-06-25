@@ -36,7 +36,7 @@ He received his MSc and PhD in Quantum Engineering from Imperial College London,
 - Quantum device engineering and readout instrumentation
 
 <p align="center">
-  <img src="images/research_outline.jpg" alt="Research Outline" width="600">
+  <img src="https://louisanity.github.io/images/research_outline.jpg" alt="Research outline showing QaaS model, distributed entanglement, tensor network simulation, and modular compilation strategies." width="800">
 </p>
 
 ---
