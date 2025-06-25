@@ -35,7 +35,10 @@ He received his MSc and PhD in Quantum Engineering from Imperial College London,
 - Hybrid quantum-classical optimisation and machine learning  
 - Quantum device engineering and readout instrumentation
 
-![Research Outline](images/research_outline.jpg)
+<p align="center">
+  <img src="images/research_outline.jpg" alt="Research Outline" width="600">
+</p>
+
 ---
 
 ## Education
