@@ -54,9 +54,9 @@ He received his MSc and PhD in Quantum Engineering from Imperial College London,
 ## Selected Awards and Honours
 
 - John Matthey PhD Prize, 2025  
-- Imperial Global Fellow, 2023  
+- Imperial Global Fellow, 2024  
 - TSMC Research Prize, 2022  
-- National PhD Scholarship – Taiwan, 2021–2023
+- National PhD Scholarship – Taiwan, 2021–2024
 - Third Prize, The Blaise Pascal Quantum Challenge, 2025
 - First Prize, Deloitte Quantum Climate Challenge, 2024
 
