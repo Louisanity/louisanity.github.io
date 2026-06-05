@@ -9,8 +9,8 @@ site_theme      : "default"
 
 title           : "Dr Louis Chen"
 title_separator : "-"
-name            : &name "Dr Louis Chen"
-description     : &description "Postdoctoral Research Associate at Imperial College London working on distributed quantum computing, scalable quantum architectures, quantum algorithms, and quantum error correction."
+name            : "Dr Louis Chen"
+description     : "Postdoctoral Research Associate at Imperial College London working on distributed quantum computing, scalable quantum architectures, quantum algorithms, and quantum error correction."
 
 url             : "https://louisanity.github.io"
 baseurl         : ""
@@ -30,7 +30,7 @@ og_image        : "/images/site-card.jpg"
 
 author:
 avatar      : "person_pic.jpg"
-name        : *name
+name        : "Dr Louis Chen"
 pronouns    :
 bio         : "Postdoctoral Research Associate at Imperial QuEST, focusing on scalable distributed quantum computing, quantum architectures, quantum algorithms, and quantum error correction."
 location    : "London, UK"
@@ -159,7 +159,7 @@ publisher: ""
 
 social:
 type: "Person"
-name: *name
+name: "Dr Louis Chen"
 links:
 - "https://github.com/Louisanity"
 - "https://scholar.google.com/citations?user=KoUPm0MAAAAJ&hl=en"
@@ -338,7 +338,7 @@ timezone  : Europe/London
 
 # --------------------------------------------
 
-plugins: &plugins
+plugins:
 
 * jekyll-feed
 * jekyll-gist
@@ -347,7 +347,14 @@ plugins: &plugins
 * jekyll-redirect-from
 * jemoji
 
-whitelist: *plugins
+whitelist:
+
+* jekyll-feed
+* jekyll-gist
+* jekyll-paginate
+* jekyll-sitemap
+* jekyll-redirect-from
+* jemoji
 
 # --------------------------------------------
 
