@@ -53,13 +53,44 @@ classes: wide lc-interior-shell
       </div>
     </div>
 
-    <div class="lc-talk-map-card lc-talk-map-card-premium">
-      <div class="lc-talk-map-toolbar">
-        <div class="lc-talk-map-toolbar__left">
-          <span class="lc-talk-map-badge">Global activity</span>
-          <span class="lc-talk-map-toolbar__text">Hover a node to inspect the presentation details.</span>
+    <div class="lc-talk-map-card lc-talk-map-card-premium lc-talk-map-card-filtered">
+      <div class="lc-talk-map-topbar">
+        <div class="lc-talk-map-toolbar">
+          <div class="lc-talk-map-toolbar__left">
+            <span class="lc-talk-map-badge">Global activity</span>
+            <span class="lc-talk-map-toolbar__text">Hover a node to inspect the presentation details.</span>
+          </div>
+          <button id="lc-talk-map-reset" class="lc-talk-map-reset" type="button">Reset view</button>
         </div>
-        <button id="lc-talk-map-reset" class="lc-talk-map-reset" type="button">Reset view</button>
+
+        <div class="lc-talk-filter-panel" aria-label="Filter talks by year">
+          <span class="lc-talk-filter-panel__label">Year</span>
+          <div class="lc-talk-filter-pills" role="tablist" aria-label="Talk year filter">
+            <button class="lc-talk-filter-pill is-active" data-year="all" type="button" aria-pressed="true">All</button>
+            <button class="lc-talk-filter-pill" data-year="2025" type="button" aria-pressed="false">2025</button>
+            <button class="lc-talk-filter-pill" data-year="2024" type="button" aria-pressed="false">2024</button>
+            <button class="lc-talk-filter-pill" data-year="2023" type="button" aria-pressed="false">2023</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="lc-talk-mini-stats" id="lc-talk-mini-stats">
+        <article class="lc-talk-mini-stat">
+          <span class="lc-talk-mini-stat__label">Talks in view</span>
+          <strong id="lc-stat-talks">—</strong>
+        </article>
+        <article class="lc-talk-mini-stat">
+          <span class="lc-talk-mini-stat__label">Locations</span>
+          <strong id="lc-stat-locations">—</strong>
+        </article>
+        <article class="lc-talk-mini-stat">
+          <span class="lc-talk-mini-stat__label">Countries / regions</span>
+          <strong id="lc-stat-countries">—</strong>
+        </article>
+        <article class="lc-talk-mini-stat lc-talk-mini-stat-emphasis">
+          <span class="lc-talk-mini-stat__label">Current scope</span>
+          <strong id="lc-stat-scope">All years</strong>
+        </article>
       </div>
 
       <div class="lc-talk-map-stage">
@@ -69,7 +100,7 @@ classes: wide lc-interior-shell
 
       <div class="lc-talk-map-caption">
         <span class="lc-talk-map-dot"></span>
-        <span>Circle size reflects the number of presentations associated with each visited venue or city.</span>
+        <span>Circle size reflects the number of presentations associated with each visited venue or city in the current year view.</span>
       </div>
     </div>
   </section>
@@ -117,50 +148,54 @@ classes: wide lc-interior-shell
   const mapEl = document.getElementById('lc-talk-map');
   const hoverEl = document.getElementById('lc-talk-map-hovercard');
   const resetBtn = document.getElementById('lc-talk-map-reset');
+  const filterButtons = Array.from(document.querySelectorAll('.lc-talk-filter-pill'));
   if (!dataEl || !mapEl || typeof L === 'undefined') return;
 
   const rawData = JSON.parse(dataEl.textContent || '[]');
   if (!Array.isArray(rawData) || rawData.length === 0) return;
 
-  const uniqueLocationsMap = new Map();
-  rawData.forEach((talk) => {
-    const key = `${talk.location}__${talk.latitude}__${talk.longitude}`;
-    if (!uniqueLocationsMap.has(key)) {
-      uniqueLocationsMap.set(key, {
-        key,
-        location: talk.location,
-        venue_name: talk.venue_name,
-        latitude: Number(talk.latitude),
-        longitude: Number(talk.longitude),
-        talks: []
-      });
-    }
-    uniqueLocationsMap.get(key).talks.push(talk);
-  });
+  const globalStats = {
+    total: rawData.length,
+    years: Array.from(new Set(rawData.map(t => String(t.date).slice(0, 4)))).sort()
+  };
 
-  const locations = Array.from(uniqueLocationsMap.values()).map((item) => ({
-    ...item,
-    talks: item.talks.sort((a, b) => new Date(a.date) - new Date(b.date)),
-    count: item.talks.length
-  }));
+  function getScopeLabel(year) {
+    return year === 'all' ? 'All years' : year;
+  }
 
-  const countries = new Set(
-    locations.map((item) => {
-      const chunks = (item.location || '').split(',');
-      return chunks[chunks.length - 1].trim();
-    }).filter(Boolean)
-  );
+  function aggregateTalks(data) {
+    const uniqueLocationsMap = new Map();
+    data.forEach((talk) => {
+      const key = `${talk.location}__${talk.latitude}__${talk.longitude}`;
+      if (!uniqueLocationsMap.has(key)) {
+        uniqueLocationsMap.set(key, {
+          key,
+          location: talk.location,
+          venue_name: talk.venue_name,
+          latitude: Number(talk.latitude),
+          longitude: Number(talk.longitude),
+          talks: []
+        });
+      }
+      uniqueLocationsMap.get(key).talks.push(talk);
+    });
+    return Array.from(uniqueLocationsMap.values()).map((item) => ({
+      ...item,
+      talks: item.talks.sort((a, b) => new Date(a.date) - new Date(b.date)),
+      count: item.talks.length
+    }));
+  }
 
-  document.getElementById('lc-talk-metric-total').textContent = String(rawData.length);
-  document.getElementById('lc-talk-metric-cities').textContent = String(locations.length);
-  document.getElementById('lc-talk-metric-countries').textContent = String(countries.size);
+  let currentYear = 'all';
+  let currentLocations = [];
 
   const htmlRoot = document.documentElement;
   const isDark = () => htmlRoot.getAttribute('data-theme') === 'dark';
   const colors = () => ({
-    stroke: isDark() ? '#d6ddff' : '#0000CD',
-    fill: isDark() ? 'rgba(184,199,255,0.22)' : 'rgba(0,0,205,0.14)',
-    halo: isDark() ? 'rgba(184,199,255,0.14)' : 'rgba(0,0,205,0.10)'
+    stroke: isDark() ? '#dbe2ff' : '#0000CD',
+    fill: isDark() ? 'rgba(184,199,255,0.18)' : 'rgba(0,0,205,0.10)',
+    fillStrong: isDark() ? 'rgba(184,199,255,0.30)' : 'rgba(0,0,205,0.18)',
+    halo: isDark() ? 'rgba(184,199,255,0.10)' : 'rgba(0,0,205,0.08)'
   });
 
   const tileLight = 'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png';
@@ -190,14 +225,26 @@ classes: wide lc-interior-shell
       maxZoom: 6,
       minZoom: 1,
       noWrap: true,
-      opacity: isDark() ? 0.95 : 0.98
+      opacity: isDark() ? 0.58 : 0.52
     }).addTo(map);
   }
   applyBaseLayer();
 
-  const allBounds = L.latLngBounds(locations.map((item) => [item.latitude, item.longitude]));
-
   const markerGroup = L.layerGroup().addTo(map);
+
+  function computeBounds(locations) {
+    if (!locations || !locations.length) return null;
+    return L.latLngBounds(locations.map((item) => [item.latitude, item.longitude]));
+  }
+
+  function fitVisible(locations) {
+    const bounds = computeBounds(locations);
+    if (!bounds) return;
+    map.fitBounds(bounds.pad(0.34), { animate: false });
+    if (map.getZoom() > 2) map.setZoom(2);
+    if (map.getZoom() < 1.2) map.setZoom(1.2);
+  }
+
   function buildHoverHTML(item) {
     const first = item.talks[0];
     const last = item.talks[item.talks.length - 1];
@@ -225,8 +272,9 @@ classes: wide lc-interior-shell
   function positionHover(point) {
     if (!hoverEl || !point) return;
     const stageRect = mapEl.getBoundingClientRect();
-    const x = Math.min(Math.max(point.x + 18, 16), stageRect.width - 300);
-    const y = Math.min(Math.max(point.y - 24, 16), stageRect.height - 190);
+    const cardWidth = Math.min(300, stageRect.width - 24);
+    const x = Math.min(Math.max(point.x + 18, 12), Math.max(12, stageRect.width - cardWidth - 12));
+    const y = Math.min(Math.max(point.y - 22, 12), Math.max(12, stageRect.height - 190));
     hoverEl.style.transform = `translate(${x}px, ${y}px)`;
   }
 
@@ -244,18 +292,37 @@ classes: wide lc-interior-shell
     hoverEl.setAttribute('aria-hidden', 'true');
   }
 
-  function drawMarkers() {
+  function updateMiniStats(year, filteredTalks, locations) {
+    const countries = new Set(
+      locations.map((item) => {
+        const chunks = (item.location || '').split(',');
+        return chunks[chunks.length - 1].trim();
+      }).filter(Boolean)
+    );
+
+    document.getElementById('lc-talk-metric-total').textContent = String(globalStats.total);
+    document.getElementById('lc-talk-metric-cities').textContent = String(locations.length);
+    document.getElementById('lc-talk-metric-countries').textContent = String(countries.size);
+
+    document.getElementById('lc-stat-talks').textContent = String(filteredTalks.length);
+    document.getElementById('lc-stat-locations').textContent = String(locations.length);
+    document.getElementById('lc-stat-countries').textContent = String(countries.size);
+    document.getElementById('lc-stat-scope').textContent = getScopeLabel(year);
+  }
+
+  function drawMarkers(locations) {
     markerGroup.clearLayers();
     const c = colors();
+
     locations.forEach((item) => {
       const haloRadius = 10 + Math.min(item.count, 5) * 4;
       const coreRadius = 5 + Math.min(item.count, 5) * 2;
 
-      const halo = L.circleMarker([item.latitude, item.longitude], {
+      L.circleMarker([item.latitude, item.longitude], {
         radius: haloRadius,
         stroke: false,
         fillColor: c.halo,
-        fillOpacity: 0.8,
+        fillOpacity: 0.88,
         interactive: false,
         pane: 'shadowPane'
       }).addTo(markerGroup);
@@ -271,29 +338,56 @@ classes: wide lc-interior-shell
       }).addTo(markerGroup);
 
       marker.on('mouseover', (e) => {
-        marker.setStyle({ radius: coreRadius + 1.5, weight: 2.3, fillOpacity: 1 });
+        marker.setStyle({ radius: coreRadius + 1.8, weight: 2.4, fillColor: c.fillStrong, fillOpacity: 1 });
         showHover(item, e);
       });
       marker.on('mousemove', (e) => positionHover(e.containerPoint));
       marker.on('mouseout', () => {
-        marker.setStyle({ radius: coreRadius, weight: 2, fillOpacity: 0.98 });
+        marker.setStyle({ radius: coreRadius, weight: 2, fillColor: c.fill, fillOpacity: 0.98 });
         hideHover();
       });
       marker.on('click', () => {
-        map.flyTo([item.latitude, item.longitude], Math.max(map.getZoom(), 2.5), { duration: 0.55 });
+        map.flyTo([item.latitude, item.longitude], Math.max(map.getZoom(), 2.4), { duration: 0.55 });
       });
     });
   }
 
-  drawMarkers();
-
-  function fitAll() {
-    map.fitBounds(allBounds.pad(0.34), { animate: false });
-    if (map.getZoom() > 2) map.setZoom(2);
+  function getFilteredTalks(year) {
+    if (year === 'all') return rawData.slice();
+    return rawData.filter((talk) => String(talk.date).slice(0, 4) === year);
   }
-  fitAll();
 
-  if (resetBtn) resetBtn.addEventListener('click', fitAll);
+  function render(year, preserveView) {
+    currentYear = year;
+    const filteredTalks = getFilteredTalks(year);
+    currentLocations = aggregateTalks(filteredTalks);
+    updateMiniStats(year, filteredTalks, currentLocations);
+    drawMarkers(currentLocations);
+    if (!preserveView) fitVisible(currentLocations);
+  }
+
+  render('all', false);
+
+  filterButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const year = button.dataset.year || 'all';
+      filterButtons.forEach((btn) => {
+        const active = btn === button;
+        btn.classList.toggle('is-active', active);
+        btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+      hideHover();
+      render(year, false);
+    });
+  });
+
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      fitVisible(currentLocations);
+      hideHover();
+    });
+  }
+
   map.on('zoomstart movestart', hideHover);
 
   function resizeMap() { map.invalidateSize(); }
@@ -302,7 +396,7 @@ classes: wide lc-interior-shell
 
   const observer = new MutationObserver(() => {
     applyBaseLayer();
-    drawMarkers();
+    drawMarkers(currentLocations);
   });
   observer.observe(htmlRoot, { attributes: true, attributeFilter: ['data-theme'] });
 })();
