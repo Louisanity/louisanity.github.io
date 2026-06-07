@@ -1,7 +1,17 @@
 ---
-title: "Distributed Quantum Computing & Networking"
-excerpt: "Architectures, protocols, and benchmarking for large-scale, modular, and resource-efficient quantum networks.<br/><img src='/images/research_dqc.png'>"
+title: "Distributed Quantum Computing & Quantum Networks"
 collection: Research
+excerpt: "Architectures, orchestration protocols, and compilers for modular quantum processors connected through entanglement resources."
+permalink: /research/distributed-quantum-computing/
 ---
 
-My work designs and evaluates distributed quantum computing (DQC) frameworks—covering entanglement distribution, quantum-as-a-service (QaaS) models, and Byzantine-robust quantum consensus—to unlock scalable cloud-based quantum processing. :contentReference[oaicite:0]{index=0}
+I develop distributed quantum computing frameworks that treat entanglement, memory, interconnect topology, and classical orchestration as first-class resources. This includes quantum-as-a-service models, entanglement-aware scheduling, Byzantine-robust consensus, and resource orchestration for heterogeneous QPU networks.
+
+Representative directions include:
+
+- modular entanglement-hub architectures for scalable quantum–HPC systems;
+- scheduling policies for non-local gates and distributed quantum neural networks;
+- fault-aware consensus and detectable Byzantine agreement for quantum networks;
+- application-level partitioning strategies for distributed QAOA and quantum machine learning.
+
+Selected outputs: <em>IEEE Internet Computing</em> 2026, QCNC 2026, IEEE QCE 2025, QCNC 2025.
