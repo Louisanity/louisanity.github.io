@@ -7,201 +7,149 @@ redirect_from:
   - /about.html
 ---
 
-<style>
-:root {
-  --lc-accent: #0000CD;
-  --lc-accent-strong: #0000CD;
-  --lc-accent-soft: rgba(0, 0, 205, 0.08);
-  --lc-card-bg: #ffffff;
-  --lc-card-bg-soft: #f7f9ff;
-  --lc-border: #dfe4f2;
-  --lc-text: var(--global-text-color);
-  --lc-muted: var(--global-text-color-light);
-  --lc-pill-bg: #ffffff;
-  --lc-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-}
+<link rel="stylesheet" href="{{ '/assets/css/louis-modern.css' | relative_url }}">
 
-html[data-theme="dark"] {
-  --lc-accent: #aebcff;
-  --lc-accent-strong: #c9d3ff;
-  --lc-accent-soft: rgba(174, 188, 255, 0.14);
-  --lc-card-bg: #505050;
-  --lc-card-bg-soft: #4b4b4b;
-  --lc-border: #747b86;
-  --lc-text: var(--global-text-color);
-  --lc-muted: #d2d6dc;
-  --lc-pill-bg: #4b4b4b;
-  --lc-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
-}
+<div class="lc-modern-home">
+  <section class="lc-hero" aria-label="Homepage introduction">
+    <div class="lc-hero-grid">
+      <div>
+        <div class="lc-eyebrow"><span class="lc-status-dot"></span> Imperial College London · JIJ Europe</div>
+        <h1 class="lc-display-title">Quantum algorithms for <span class="lc-accent">networked</span> quantum systems.</h1>
+        <p class="lc-lede">
+          I am a Research Associate and Guest Lecturer in Electrical and Electronic Engineering at Imperial College London, and Global R&amp;D Manager at JIJ Europe. My work develops scalable quantum algorithms, distributed quantum computing architectures, quantum machine learning methods, and hardware-aware compilation workflows for near-term, photonic, and early fault-tolerant quantum platforms.
+        </p>
+        <div class="lc-cta-row">
+          <a class="lc-button" href="{{ '/research/' | relative_url }}">Explore research</a>
+          <a class="lc-button-secondary" href="{{ '/publications/' | relative_url }}">View publications</a>
+          <a class="lc-button-secondary" href="#contact">Contact</a>
+        </div>
+      </div>
+      <aside class="lc-side-panel" aria-label="Research summary">
+        <div class="lc-role-card">
+          <strong>Research focus</strong>
+          <p>Distributed quantum computing, photonic quantum processors, quantum–HPC benchmarking, and practical quantum sensing technologies.</p>
+        </div>
+        <div class="lc-mini-grid">
+          <div class="lc-mini-card"><span>40+</span><small>publications and preprints</small></div>
+          <div class="lc-mini-card"><span>2026</span><small>Nature Photonics accepted</small></div>
+          <div class="lc-mini-card"><span>QCE</span><small>Best Paper recognition</small></div>
+          <div class="lc-mini-card"><span>R&amp;D</span><small>quantum algorithms for industry</small></div>
+        </div>
+      </aside>
+    </div>
+  </section>
 
-.home-hero {
-  border: 1px solid var(--lc-border);
-  border-radius: 18px;
-  padding: 1.2rem 1.4rem;
-  background: linear-gradient(135deg, var(--lc-accent-soft) 0%, var(--lc-card-bg) 72%);
-  color: var(--lc-text);
-  box-shadow: var(--lc-shadow);
-  margin-bottom: 1.25rem;
-}
-.home-hero h2 {
-  margin-top: 0;
-  color: var(--lc-accent-strong);
-}
-.home-tagline {
-  font-size: 1.05rem;
-  line-height: 1.55;
-  color: var(--lc-text);
-}
-.pill-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .45rem;
-  margin-top: .75rem;
-}
-.pill {
-  border: 1px solid var(--lc-border);
-  border-radius: 999px;
-  padding: .22rem .62rem;
-  font-size: .82rem;
-  background: var(--lc-pill-bg);
-  color: var(--lc-accent-strong);
-}
-.news-list {
-  border-left: 3px solid var(--lc-accent-strong);
-  padding-left: .9rem;
-}
-.news-item {
-  margin-bottom: .72rem;
-  color: var(--lc-text);
-}
-.news-date {
-  font-weight: 700;
-  color: var(--lc-accent-strong);
-}
-.grid-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
-  gap: .75rem;
-  margin: 1rem 0;
-}
-.card {
-  border: 1px solid var(--lc-border);
-  border-radius: 14px;
-  padding: .85rem .95rem;
-  background: var(--lc-card-bg);
-  color: var(--lc-text);
-  box-shadow: var(--lc-shadow);
-}
-.card h3 {
-  margin-top: 0;
-  font-size: 1rem;
-  color: var(--lc-accent-strong);
-}
-.card p {
-  margin-bottom: 0;
-  font-size: .92rem;
-  line-height: 1.45;
-  color: var(--lc-text);
-}
-.metric-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: .65rem;
-  margin: 1rem 0;
-}
-.metric {
-  border: 1px solid var(--lc-border);
-  border-radius: 14px;
-  padding: .75rem .85rem;
-  background: var(--lc-card-bg-soft);
-  color: var(--lc-text);
-}
-.metric strong {
-  display: block;
-  font-size: 1.1rem;
-  color: var(--lc-accent-strong);
-}
-.small-note {
-  color: var(--lc-muted);
-  font-size: .88rem;
-}
-</style>
+  <section class="lc-section" aria-labelledby="latest-news">
+    <div class="lc-section-head">
+      <div>
+        <span class="lc-section-kicker">Latest</span>
+        <h2 id="latest-news">News</h2>
+      </div>
+    </div>
+    <div class="lc-news-grid">
+      <article class="lc-news-card">
+        <time>2026</time>
+        <h3>Nature Photonics accepted</h3>
+        <p><em>Extensible universal photonic quantum computing with nonlinearity</em> accepted in <em>Nature Photonics</em>.</p>
+      </article>
+      <article class="lc-news-card">
+        <time>2026</time>
+        <h3>Communications Physics accepted</h3>
+        <p><em>Heterogeneous Optically-Detected Spin-Acoustic Resonance in Solid-State Molecular Thin Film</em> accepted in <em>Communications Physics</em>.</p>
+      </article>
+      <article class="lc-news-card">
+        <time>2026</time>
+        <h3>Distributed quantum systems</h3>
+        <p>Published work in <em>IEEE Internet Computing</em> on adaptive resource orchestration for distributed quantum computing systems.</p>
+      </article>
+      <article class="lc-news-card">
+        <time>2026</time>
+        <h3>Quantum finance and QCNC papers</h3>
+        <p>Published <em>npj Unconventional Computing</em> work on quantum stochastic walks for portfolio optimization, with new QCNC papers on entanglement-aware scheduling, Byzantine agreement, and applied QML.</p>
+      </article>
+    </div>
+  </section>
 
-<div class="home-hero">
-  <h2>Quantum algorithms, distributed quantum computing, and quantum–HPC systems</h2>
-  <p class="home-tagline">
-    I am a Research Associate and Guest Lecturer in the Department of Electrical and Electronic Engineering at Imperial College London, and Global R&amp;D Manager at JIJ Europe. My work develops scalable quantum algorithms, distributed quantum computing architectures, quantum machine learning methods, and hardware-aware compilation workflows bridging near-term devices, photonic quantum processors, and early fault-tolerant quantum computing.
-  </p>
-  <div class="pill-row">
-    <span class="pill">Distributed quantum computing</span>
-    <span class="pill">Quantum machine learning</span>
-    <span class="pill">Quantum–HPC</span>
-    <span class="pill">Photonic quantum computing</span>
-    <span class="pill">Quantum benchmarking</span>
-    <span class="pill">Practical quantum sensing technologies</span>
-  </div>
+  <section class="lc-section" aria-labelledby="research-profile">
+    <span class="lc-section-kicker">Research profile</span>
+    <h2 id="research-profile">Algorithmic design meets quantum hardware reality.</h2>
+    <p class="lc-section-intro">
+      My research sits at the interface of quantum information science, theoretical computer science, quantum engineering, and high-performance computing. I focus on practical paths from present-day processors toward networked and early fault-tolerant systems: how to distribute quantum workloads, benchmark quantum–HPC workflows, compile across heterogeneous devices, and identify quantum learning and optimization primitives with meaningful scientific or industrial utility.
+    </p>
+    <div class="lc-research-grid">
+      <article class="lc-research-card">
+        <span class="lc-index">01</span>
+        <h3>Distributed quantum computing</h3>
+        <p>Architectures, compilers, entanglement scheduling, consensus protocols, and resource orchestration for modular quantum processors and quantum networks.</p>
+      </article>
+      <article class="lc-research-card">
+        <span class="lc-index">02</span>
+        <h3>Photonic quantum computing</h3>
+        <p>Photonic processors, optical quantum neural networks, quantum-enhanced knowledge distillation, and distributed learning workflows over programmable optical hardware.</p>
+      </article>
+      <article class="lc-research-card">
+        <span class="lc-index">03</span>
+        <h3>Quantum–HPC benchmarking</h3>
+        <p>Tensor-network simulation, large-qubit QML validation, compiler-aware metrics, resource estimation, and application-driven benchmarks.</p>
+      </article>
+      <article class="lc-research-card">
+        <span class="lc-index">04</span>
+        <h3>Practical quantum sensing technologies</h3>
+        <p>Molecular spin systems, microwave readout, optically detected spin–acoustic resonance, and hybrid spin–photon–phonon interfaces for deployable sensing-oriented quantum technologies.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="lc-section lc-highlight-strip" aria-label="Selected highlights">
+    <div class="lc-highlight-grid">
+      <div class="lc-highlight"><strong>Nature Photonics</strong><span>Accepted work on extensible universal photonic quantum computing.</span></div>
+      <div class="lc-highlight"><strong>QCE Best Paper</strong><span>Recognition for quantum-enhanced and distributed quantum computing research.</span></div>
+      <div class="lc-highlight"><strong>Global R&amp;D</strong><span>Industrial quantum algorithm development and benchmarking at JIJ Europe.</span></div>
+      <div class="lc-highlight"><strong>Quantum policy</strong><span>Contributor to UK quantum technology regulation and community-building activities.</span></div>
+    </div>
+  </section>
+
+  <section class="lc-section" aria-labelledby="selected-publications">
+    <span class="lc-section-kicker">Selected outputs</span>
+    <h2 id="selected-publications">Recent publications</h2>
+    <div class="lc-pub-grid">
+      <article class="lc-pub-card">
+        <span class="lc-venue">Nature Photonics · 2026</span>
+        <h3>Extensible universal photonic quantum computing with nonlinearity</h3>
+        <p>S. Yu, J. Sun, K.-C. Chen, et al. Accepted.</p>
+      </article>
+      <article class="lc-pub-card">
+        <span class="lc-venue">IEEE Internet Computing · 2026</span>
+        <h3>Adaptive Resource Orchestration for Distributed Quantum Computing Systems</h3>
+        <p>K.-C. Chen, F. Burt, N. K. Panigrahy, and K. K. Leung.</p>
+      </article>
+      <article class="lc-pub-card">
+        <span class="lc-venue">npj Unconventional Computing · 2026</span>
+        <h3>Quantum Stochastic Walks for Portfolio Optimization</h3>
+        <p>Y.-J. Chang, W.-T. Wang, Y.-Y. Wang, C.-Y. Liu, K.-C. Chen, and C.-R. Chang.</p>
+      </article>
+      <article class="lc-pub-card">
+        <span class="lc-venue">Communications Physics · 2026</span>
+        <h3>Heterogeneous Optically-Detected Spin-Acoustic Resonance in Solid-State Molecular Thin Film</h3>
+        <p>K.-C. Chen, Y. Wen, X. Xu, M. Attwood, J. Xu, C. Fu, S. Ramadan, S. Yu, S. Heutz, and M. Oxborrow. Accepted.</p>
+      </article>
+    </div>
+    <p class="lc-updated">See the full <a href="{{ '/publications/' | relative_url }}">publications list</a> and <a href="{{ '/cv/' | relative_url }}">CV</a>.</p>
+  </section>
+
+  <section class="lc-section" id="contact" aria-labelledby="contact-heading">
+    <div class="lc-contact-panel">
+      <span class="lc-section-kicker">Contact</span>
+      <h2 id="contact-heading">Dr Kuan-Cheng (Louis) Chen</h2>
+      <p>Department of Electrical and Electronic Engineering, Imperial College London · Imperial QuEST — Centre for Quantum Engineering, Science and Technology.</p>
+      <div class="lc-contact-links">
+        <a href="mailto:kc2816@ic.ac.uk">Email</a>
+        <a href="https://profiles.imperial.ac.uk/">Imperial profile</a>
+        <a href="https://scholar.google.com/citations?user=KoUPm0MAAAAJ&amp;hl=en">Google Scholar</a>
+        <a href="https://github.com/Louisanity">GitHub</a>
+        <a href="https://www.linkedin.com/in/louis-chen-801214109/">LinkedIn</a>
+      </div>
+      <p class="lc-updated"><em>Last updated: {{ site.time | date: "%B %Y" }}</em></p>
+    </div>
+  </section>
 </div>
-
-## Latest news
-
-<div class="news-list">
-  <div class="news-item"><span class="news-date">2026</span> — Accepted paper in <em>Nature Photonics</em>: <strong>Extensible universal photonic quantum computing with nonlinearity</strong>.</div>
-  <div class="news-item"><span class="news-date">2026</span> — Accepted paper in <em>Communications Physics</em>: <strong>Heterogeneous Optically-Detected Spin-Acoustic Resonance in Solid-State Molecular Thin Film</strong>.</div>
-  <div class="news-item"><span class="news-date">2026</span> — Published work in <em>IEEE Internet Computing</em> on adaptive resource orchestration for distributed quantum computing systems.</div>
-  <div class="news-item"><span class="news-date">2026</span> — Published <em>npj Unconventional Computing</em> article on quantum stochastic walks for portfolio optimization on financial networks.</div>
-  <div class="news-item"><span class="news-date">2026</span> — New QCNC papers on entanglement-aware scheduling, photonic quantum detectable Byzantine agreement, and applied QML for PCB defect detection.</div>
-  <div class="news-item"><span class="news-date">2025</span> — Received the QTC Distinguished Paper Award / Best Paper recognition at IEEE QCE 2025.</div>
-</div>
-
-## Research profile
-
-My research sits at the interface of quantum information science, theoretical computer science, quantum engineering, and high-performance computing. I focus on practical paths from current quantum processors toward networked and early fault-tolerant systems: how to distribute quantum workloads, how to benchmark quantum–HPC workflows, how to compile circuits across heterogeneous devices, and how to identify useful quantum machine learning and optimization primitives for scientific and industrial applications.
-
-<div class="grid-cards">
-  <div class="card">
-    <h3>Distributed quantum computing</h3>
-    <p>Architectures, compilers, entanglement scheduling, consensus protocols, and resource orchestration for modular quantum processors and quantum networks.</p>
-  </div>
-  <div class="card">
-    <h3>Quantum machine learning</h3>
-    <p>Quantum kernels, quantum neural networks, photonic QML, parameter-efficient learning, and quantum-enhanced models for climate, finance, sensing, and scientific data.</p>
-  </div>
-  <div class="card">
-    <h3>Quantum–HPC and benchmarking</h3>
-    <p>Tensor-network simulation, large-qubit QML validation, compiler-aware metrics, application-driven benchmarks, and performance evaluation across quantum and classical resources.</p>
-  </div>
-  <div class="card">
-    <h3>Practical quantum sensing technologies</h3>
-    <p>Molecular spin systems, microwave readout, optically detected spin–acoustic resonance, and hybrid spin–photon–phonon interfaces for deployable sensing-oriented quantum technologies.</p>
-  </div>
-</div>
-
-## Selected highlights
-
-<div class="metric-row">
-  <div class="metric"><strong>40+ publications</strong><span>Quantum computing, QML, networks, devices, and quantum–HPC.</span></div>
-  <div class="metric"><strong>Nature Photonics</strong><span>Accepted work on extensible universal photonic quantum computing.</span></div>
-  <div class="metric"><strong>QCE Best Paper</strong><span>Recognised for quantum-enhanced and distributed quantum computing research.</span></div>
-  <div class="metric"><strong>Global R&amp;D</strong><span>Industrial quantum algorithm development and benchmarking at JIJ Europe.</span></div>
-</div>
-
-## Selected publications
-
-- S. Yu, J. Sun, K.-C. Chen, et al., “Extensible universal photonic quantum computing with nonlinearity,” <em>Nature Photonics</em>, 2026 (accepted).
-- K.-C. Chen, C.-Y. Liu, Y. Shang, F. Burt, and K. K. Leung, “Distributed Quantum Neural Networks on Distributed Photonic Quantum Computing,” <em>IEEE QCE</em>, 2025.
-- K.-C. Chen, F. Burt, N. K. Panigrahy, and K. K. Leung, “Adaptive Resource Orchestration for Distributed Quantum Computing Systems,” <em>IEEE Internet Computing</em>, 2026.
-- Y.-J. Chang, W.-T. Wang, Y.-Y. Wang, C.-Y. Liu, K.-C. Chen, and C.-R. Chang, “Quantum Stochastic Walks for Portfolio Optimization,” <em>npj Unconventional Computing</em>, 2026.
-- K.-C. Chen, Y. Wen, X. Xu, M. Attwood, J. Xu, C. Fu, S. Ramadan, S. Yu, S. Heutz, and M. Oxborrow, “Heterogeneous Optically-Detected Spin-Acoustic Resonance in Solid-State Molecular Thin Film,” <em>Communications Physics</em>, 2026 (accepted).
-- K.-C. Chen and M. Oxborrow, “Overcoming the Thermal-Noise Limit of Microwave Measurements by Precooling with an Active Cold Load,” <em>Physical Review Applied</em>, 2025.
-
-See the full [publications list](/publications/) and [CV](/cv/).
-
-## Contact {#contact}
-
-**Dr Kuan-Cheng (Louis) Chen**  
-Department of Electrical and Electronic Engineering, Imperial College London  
-Imperial QuEST — Centre for Quantum Engineering, Science and Technology  
-Email: `kc2816@ic.ac.uk`  
-Profiles: [Imperial College London](https://profiles.imperial.ac.uk/) · [Google Scholar](https://scholar.google.com/citations?user=KoUPm0MAAAAJ&hl=en) · [GitHub](https://github.com/Louisanity) · [LinkedIn](https://www.linkedin.com/in/louis-chen-801214109/)
-
-<p class="small-note"><em>Last updated: {{ site.time | date: "%B %Y" }}</em></p>
