@@ -1,22 +1,26 @@
 ---
 layout: archive
-title: "Talks and presentations"
+title: "Talks"
 permalink: /talks/
 author_profile: false
-classes: wide
+classes: wide lc-interior-shell
 ---
 
 {% include base_path %}
 
-<div class="lc-modern-page lc-talks-page">
-  <section class="lc-page-hero" aria-label="Talks introduction">
+<style>
+  .page__title, .archive__subtitle { display: none !important; }
+</style>
+
+<div class="lc-modern-page lc-talks-page lc-interior-page">
+  <section class="lc-page-hero lc-page-hero-compact" aria-label="Talks introduction">
     <div class="lc-page-hero-copy">
       <div class="lc-eyebrow"><span class="lc-status-dot"></span> Invited talks · seminars · workshops</div>
-      <h1>Talks and presentations</h1>
+      <h1>Talks &amp; presentations</h1>
       <p>
-        Research talks, conference presentations, invited seminars, and community events covering quantum algorithms, distributed quantum computing, quantum machine learning, photonic quantum technologies, and quantum-HPC benchmarking.
+        Selected research talks, invited seminars, conference presentations, and community events on quantum algorithms, distributed quantum computing, quantum machine learning, photonic quantum technologies, and quantum-HPC benchmarking.
       </p>
-      <div class="lc-cta-row">
+      <div class="lc-cta-row lc-cta-row-compact">
         <a class="lc-button" href="{{ '/research/' | relative_url }}">Research themes</a>
         <a class="lc-button-secondary" href="{{ '/publications/' | relative_url }}">Publications</a>
         {% if site.talkmap_link == true %}
@@ -24,20 +28,19 @@ classes: wide
         {% endif %}
       </div>
     </div>
-    <div class="lc-page-hero-panel" aria-label="Talk themes">
-      <div class="lc-panel-stat"><strong>Quantum</strong><span>algorithms and software</span></div>
-      <div class="lc-panel-stat"><strong>Q-HPC</strong><span>benchmarks and simulation</span></div>
-      <div class="lc-panel-stat"><strong>Policy</strong><span>regulation and community building</span></div>
+    <div class="lc-page-metrics" aria-label="Talk themes">
+      <div><strong>Quantum</strong><span>Algorithms and software</span></div>
+      <div><strong>Q-HPC</strong><span>Benchmarks and simulation</span></div>
+      <div><strong>Policy</strong><span>Regulation and community building</span></div>
     </div>
   </section>
 
-  <section class="lc-section">
-    <div class="lc-section-head">
+  <section class="lc-section lc-archive-section">
+    <div class="lc-section-head lc-section-head-compact">
       <div>
         <span class="lc-section-kicker">Archive</span>
-        <h2>Selected talks</h2>
+        <h2>Selected presentations</h2>
       </div>
-      <p class="lc-section-note">Automatically rendered from the Jekyll talks collection.</p>
     </div>
 
     <div class="lc-archive-list lc-talk-list">
