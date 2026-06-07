@@ -254,27 +254,55 @@ classes: wide lc-interior-shell
 
     const talkLines = item.talks.slice(0, 3).map((talk) => {
       const award = talk.award ? `<span class="lc-talk-hover-award">${talk.award}</span>` : '';
-      return `<li><strong>${talk.conference}</strong><span>${talk.title}</span>${award}</li>`;
+      return `
+        <li>
+          <div class="lc-talk-hover-talkhead">
+            <strong>${talk.conference}</strong>
+            <time>${talk.date}</time>
+          </div>
+          <span class="lc-talk-hover-title">${talk.title}</span>
+          ${award}
+        </li>`;
     }).join('');
 
     const extraCount = item.talks.length > 3 ? `<div class="lc-talk-hover-more">+ ${item.talks.length - 3} more presentation${item.talks.length - 3 > 1 ? 's' : ''}</div>` : '';
 
     return `
-      <div class="lc-talk-hover-eyebrow">${item.count} presentation${item.count > 1 ? 's' : ''}</div>
-      <h3>${item.location}</h3>
-      <p>${item.venue_name || 'Conference location'}</p>
-      <div class="lc-talk-hover-range">${range}</div>
-      <ul>${talkLines}</ul>
-      ${extraCount}
+      <div class="lc-talk-hovercard-inner">
+        <div class="lc-talk-hover-head">
+          <div class="lc-talk-hover-eyebrow">${item.count} presentation${item.count > 1 ? 's' : ''}</div>
+          <h3>${item.location}</h3>
+          <p>${item.venue_name || 'Conference location'}</p>
+        </div>
+        <div class="lc-talk-hover-meta">
+          <span>${range}</span>
+        </div>
+        <ul>${talkLines}</ul>
+        ${extraCount}
+      </div>
     `;
   }
 
   function positionHover(point) {
     if (!hoverEl || !point) return;
     const stageRect = mapEl.getBoundingClientRect();
-    const cardWidth = Math.min(300, stageRect.width - 24);
-    const x = Math.min(Math.max(point.x + 18, 12), Math.max(12, stageRect.width - cardWidth - 12));
-    const y = Math.min(Math.max(point.y - 22, 12), Math.max(12, stageRect.height - 190));
+    const cardWidth = hoverEl.offsetWidth || Math.min(320, stageRect.width - 24);
+    const cardHeight = hoverEl.offsetHeight || 220;
+    const margin = 14;
+
+    let x = point.x + 18;
+    let y = point.y - 18;
+
+    if (x + cardWidth + margin > stageRect.width) {
+      x = point.x - cardWidth - 18;
+    }
+    if (x < margin) x = margin;
+
+    if (y + cardHeight + margin > stageRect.height) {
+      y = stageRect.height - cardHeight - margin;
+    }
+    if (y < margin) y = margin;
+
     hoverEl.style.transform = `translate(${x}px, ${y}px)`;
   }
 
@@ -283,7 +311,7 @@ classes: wide lc-interior-shell
     hoverEl.innerHTML = buildHoverHTML(item);
     hoverEl.classList.add('is-visible');
     hoverEl.setAttribute('aria-hidden', 'false');
-    positionHover(e.containerPoint);
+    requestAnimationFrame(() => positionHover(e.containerPoint));
   }
 
   function hideHover() {
