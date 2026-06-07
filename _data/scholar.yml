@@ -1,6 +1,8 @@
+# Google Scholar metrics displayed on /publications/.
+# Values can be updated automatically by .github/workflows/update-scholar.yml.
 profile_url: "https://scholar.google.com/citations?user=KoUPm0MAAAAJ&hl=en"
+author_id: "KoUPm0MAAAAJ"
 last_updated: "2026-06-07"
-
 metrics:
   citations:
     all: 793
@@ -11,10 +13,21 @@ metrics:
   i10_index:
     all: 25
     since_2021: 25
-
+chart_max: 500
 yearly_citations:
   "2022": 0
   "2023": 2
   "2024": 72
   "2025": 476
   "2026": 243
+yearly:
+  - year: 2022
+    citations: 0
+  - year: 2023
+    citations: 2
+  - year: 2024
+    citations: 72
+  - year: 2025
+    citations: 476
+  - year: 2026
+    citations: 243
