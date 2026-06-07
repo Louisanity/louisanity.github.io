@@ -189,7 +189,7 @@ redirect_from:
 
     <div class="lc-mini-grid" aria-label="Research summary">
       <div class="lc-mini-card"><span>Quantum AI</span><small>quantum learning, kernels, and scientific AI workflows</small></div>
-      <div class="lc-mini-card"><span>DQC</span><small>networked architectures, compilation, and orchestration</small></div>
+      <div class="lc-mini-card"><span>Distributed QC</span><small>networked architectures, compilation, and orchestration</small></div>
       <div class="lc-mini-card"><span>Q-HPC</span><small>benchmarking, simulation, and resource analysis</small></div>
       <div class="lc-mini-card"><span>Photonic QC</span><small>photonic learning and nonlinear quantum resources</small></div>
     </div>
