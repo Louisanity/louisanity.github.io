@@ -3,7 +3,7 @@ name: Update Google Scholar metrics
 on:
   workflow_dispatch:
   schedule:
-    # Weekly refresh. Increase only if you really need it; Scholar metrics do not need minute-level updates.
+    # Weekly refresh. Scholar metrics do not need minute-level updates.
     - cron: "0 7 * * 1"
 
 permissions:
