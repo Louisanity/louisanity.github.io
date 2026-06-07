@@ -319,7 +319,7 @@ html[data-theme="dark"] .lc-button { color: #10131a !important; box-shadow: 0 12
 }
 
 .lc-identity-card::before {
-  content: "Quantum R&D Â· Imperial Â· JIJ Europe";
+  content: "Quantum R&D · Imperial · JIJ Europe";
   position: absolute;
   left: 1.65rem;
   top: 1.65rem;
@@ -1257,7 +1257,7 @@ html[data-theme="dark"] .lc-page-metrics > div {
 }
 
 /* -------------------------------------------------------------------------
-   Premium talks page map refinement.
+   Talks page: refined filtered 2D map.
 ------------------------------------------------------------------------- */
 .lc-talks-page-premium {
   width: min(1080px, calc(100vw - 2rem));
@@ -1267,20 +1267,29 @@ html[data-theme="dark"] .lc-page-metrics > div {
   font-size: clamp(1.08rem, 1.65vw, 1.38rem);
 }
 
-.lc-talk-map-card-premium {
+.lc-talk-map-card-filtered {
   position: relative;
   overflow: hidden;
   border: 1px solid var(--lc-border);
   border-radius: 30px;
   background:
-    radial-gradient(circle at 14% 16%, var(--lc-blue-soft), transparent 26%),
-    radial-gradient(circle at 88% 82%, var(--lc-blue-softer), transparent 24%),
-    linear-gradient(180deg, var(--lc-bg-elevated), var(--lc-surface));
+    radial-gradient(circle at 12% 14%, rgba(0, 0, 205, 0.07), transparent 24%),
+    radial-gradient(circle at 88% 84%, rgba(0, 0, 205, 0.05), transparent 22%),
+    linear-gradient(180deg, rgba(255,255,255,0.64), rgba(255,255,255,0.84));
   box-shadow: var(--lc-shadow-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   padding: 1rem;
 }
 
-.lc-talk-map-card-premium::before {
+html[data-theme="dark"] .lc-talk-map-card-filtered {
+  background:
+    radial-gradient(circle at 12% 14%, rgba(125, 125, 255, 0.10), transparent 24%),
+    radial-gradient(circle at 88% 84%, rgba(125, 125, 255, 0.08), transparent 22%),
+    linear-gradient(180deg, rgba(24,27,34,0.78), rgba(28,30,36,0.90));
+}
+
+.lc-talk-map-card-filtered::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -1288,22 +1297,28 @@ html[data-theme="dark"] .lc-page-metrics > div {
   background-image:
     linear-gradient(var(--lc-border) 1px, transparent 1px),
     linear-gradient(90deg, var(--lc-border) 1px, transparent 1px);
-  background-size: 62px 62px;
+  background-size: 58px 58px;
   -webkit-mask-image: radial-gradient(circle at 50% 50%, black, transparent 88%);
   mask-image: radial-gradient(circle at 50% 50%, black, transparent 88%);
-  opacity: 0.16;
+  opacity: 0.14;
 }
 
-.lc-talk-map-toolbar,
+.lc-talk-map-topbar,
+.lc-talk-mini-stats,
 .lc-talk-map-stage,
 .lc-talk-map-caption { position: relative; z-index: 1; }
+
+.lc-talk-map-topbar {
+  display: grid;
+  gap: 0.9rem;
+  margin-bottom: 0.8rem;
+}
 
 .lc-talk-map-toolbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 0.8rem;
 }
 
 .lc-talk-map-toolbar__left {
@@ -1339,7 +1354,7 @@ html[data-theme="dark"] .lc-page-metrics > div {
   justify-content: center;
   border: 1px solid var(--lc-border-strong);
   border-radius: 999px;
-  background: var(--lc-surface);
+  background: rgba(255,255,255,0.68);
   color: var(--lc-blue);
   padding: 0.62rem 0.92rem;
   font-size: 0.88rem;
@@ -1347,6 +1362,10 @@ html[data-theme="dark"] .lc-page-metrics > div {
   font-weight: 900;
   cursor: pointer;
   transition: transform 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+}
+
+html[data-theme="dark"] .lc-talk-map-reset {
+  background: rgba(31,33,37,0.74);
 }
 
 .lc-talk-map-reset:hover {
@@ -1359,6 +1378,111 @@ html[data-theme="dark"] .lc-talk-map-reset:hover {
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.20);
 }
 
+.lc-talk-filter-panel {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.lc-talk-filter-panel__label {
+  color: var(--lc-muted);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.lc-talk-filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.lc-talk-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--lc-border);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.56);
+  color: var(--lc-muted);
+  padding: 0.52rem 0.82rem;
+  min-width: 64px;
+  font-size: 0.84rem;
+  font-weight: 860;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease, color 150ms ease, background-color 150ms ease;
+}
+
+html[data-theme="dark"] .lc-talk-filter-pill {
+  background: rgba(31,33,37,0.68);
+}
+
+.lc-talk-filter-pill:hover,
+.lc-talk-filter-pill.is-active {
+  transform: translateY(-1px);
+  border-color: var(--lc-border-strong);
+  color: var(--lc-blue);
+  background: rgba(255,255,255,0.84);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+}
+
+html[data-theme="dark"] .lc-talk-filter-pill:hover,
+html[data-theme="dark"] .lc-talk-filter-pill.is-active {
+  background: rgba(31,33,37,0.92);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.20);
+}
+
+.lc-talk-mini-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 0.9rem;
+}
+
+.lc-talk-mini-stat {
+  border: 1px solid var(--lc-border);
+  border-radius: 20px;
+  background: rgba(255,255,255,0.56);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 0.82rem 0.88rem;
+}
+
+html[data-theme="dark"] .lc-talk-mini-stat {
+  background: rgba(31,33,37,0.62);
+}
+
+.lc-talk-mini-stat__label {
+  display: block;
+  color: var(--lc-muted);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+
+.lc-talk-mini-stat strong {
+  display: block;
+  color: var(--lc-heading);
+  font-size: clamp(1rem, 1.25vw, 1.3rem);
+  line-height: 1.1;
+  font-weight: 950;
+  letter-spacing: -0.03em;
+}
+
+.lc-talk-mini-stat-emphasis {
+  background: linear-gradient(180deg, rgba(0,0,205,0.08), rgba(0,0,205,0.03));
+}
+
+html[data-theme="dark"] .lc-talk-mini-stat-emphasis {
+  background: linear-gradient(180deg, rgba(125,125,255,0.14), rgba(125,125,255,0.05));
+}
+
 .lc-talk-map-stage {
   position: relative;
 }
@@ -1369,12 +1493,11 @@ html[data-theme="dark"] .lc-talk-map-reset:hover {
   border-radius: 24px;
   overflow: hidden;
   border: 1px solid var(--lc-border);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.52), rgba(255,255,255,0.88));
+  background: linear-gradient(180deg, rgba(255,255,255,0.44), rgba(255,255,255,0.66));
 }
 
 html[data-theme="dark"] .lc-talk-map-canvas {
-  background: linear-gradient(180deg, rgba(29,31,37,0.72), rgba(33,35,41,0.94));
+  background: linear-gradient(180deg, rgba(29,31,37,0.56), rgba(33,35,41,0.72));
 }
 
 .lc-talk-map-caption {
@@ -1408,7 +1531,7 @@ html[data-theme="dark"] .lc-talk-map-canvas {
   transition: opacity 140ms ease, transform 140ms ease;
   border: 1px solid var(--lc-border);
   border-radius: 20px;
-  background: rgba(255,255,255,0.94);
+  background: rgba(255,255,255,0.90);
   box-shadow: 0 18px 44px rgba(15, 23, 42, 0.14);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -1416,7 +1539,7 @@ html[data-theme="dark"] .lc-talk-map-canvas {
 }
 
 html[data-theme="dark"] .lc-talk-map-hovercard {
-  background: rgba(30,33,40,0.92);
+  background: rgba(30,33,40,0.88);
   box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
 }
 
@@ -1541,14 +1664,14 @@ html[data-theme="dark"] .lc-talks-page-premium .leaflet-control-zoom {
   height: 38px;
   line-height: 36px;
   border: 0 !important;
-  background: rgba(255,255,255,0.94);
+  background: rgba(255,255,255,0.82);
   color: var(--lc-heading);
   font-size: 1.15rem;
   font-weight: 900;
 }
 
 html[data-theme="dark"] .lc-talks-page-premium .leaflet-control-zoom a {
-  background: rgba(31,33,37,0.96);
+  background: rgba(31,33,37,0.88);
   color: var(--lc-heading);
 }
 
@@ -1558,11 +1681,13 @@ html[data-theme="dark"] .lc-talks-page-premium .leaflet-control-zoom a {
 }
 
 .lc-talks-page-premium .leaflet-tile-pane {
-  filter: saturate(0.9) contrast(1.03);
+  opacity: 0.82;
+  filter: saturate(0.74) contrast(1.02) brightness(1.02);
 }
 
 html[data-theme="dark"] .lc-talks-page-premium .leaflet-tile-pane {
-  filter: saturate(0.84) contrast(1.04) brightness(0.96);
+  opacity: 0.82;
+  filter: saturate(0.72) contrast(1.05) brightness(0.94);
 }
 
 @media (max-width: 980px) {
@@ -1574,12 +1699,26 @@ html[data-theme="dark"] .lc-talks-page-premium .leaflet-tile-pane {
     flex-direction: column;
     align-items: flex-start;
   }
+
+  .lc-talk-mini-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 640px) {
-  .lc-talk-map-card-premium {
+  .lc-talk-map-card-filtered {
     border-radius: 24px;
     padding: 0.82rem;
+  }
+
+  .lc-talk-filter-panel {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .lc-talk-mini-stats {
+    grid-template-columns: 1fr;
   }
 
   .lc-talk-map-canvas {
