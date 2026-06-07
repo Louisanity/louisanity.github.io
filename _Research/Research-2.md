@@ -5,7 +5,7 @@ excerpt: "Photonic quantum processors, optical quantum neural networks, and dist
 permalink: /research/photonic-quantum-computing/
 ---
 
-I study photonic quantum processors as a route toward scalable and room-temperature quantum information processing. My work links programmable linear optics, photon counting, tensor-network mappings, and distributed quantum neural-network training.
+I study photonic quantum processors as a route toward scalable, room-ambient quantum information processing. My work links programmable linear optics, photon counting, tensor-network mappings, and distributed quantum neural-network training.
 
 Current themes include:
 
