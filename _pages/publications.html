@@ -2,35 +2,67 @@
 layout: archive
 title: "Publications"
 permalink: /publications/
-author_profile: true
+author_profile: false
+classes: wide
 ---
-
-{% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
-{% endif %}
 
 {% include base_path %}
 
-<!-- New style rendering if publication categories are defined -->
-{% if site.publication_category %}
-  {% for category in site.publication_category  %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
+<div class="lc-modern-page lc-publications-page">
+  <section class="lc-page-hero" aria-label="Publications introduction">
+    <div class="lc-page-hero-copy">
+      <div class="lc-eyebrow"><span class="lc-status-dot"></span> Research outputs</div>
+      <h1>Publications</h1>
+      <p>
+        Selected journal articles, conference papers, preprints, and applied research outputs across distributed quantum computing, quantum machine learning, photonic quantum computing, quantum-HPC benchmarking, and practical quantum sensing technologies.
+      </p>
+      <div class="lc-cta-row">
+        {% if site.author.googlescholar %}
+          <a class="lc-button" href="{{ site.author.googlescholar }}">Google Scholar</a>
+        {% endif %}
+        <a class="lc-button-secondary" href="{{ '/research/' | relative_url }}">Research themes</a>
+        <a class="lc-button-secondary" href="{{ '/cv/' | relative_url }}">CV</a>
+      </div>
+    </div>
+    <div class="lc-page-hero-panel" aria-label="Publication highlights">
+      <div class="lc-panel-stat"><strong>2026</strong><span>accepted and in-press work</span></div>
+      <div class="lc-panel-stat"><strong>QCE</strong><span>best / distinguished paper activity</span></div>
+      <div class="lc-panel-stat"><strong>40+</strong><span>papers, preprints, and conference outputs</span></div>
+    </div>
+  </section>
+
+  <section class="lc-section">
+    <div class="lc-section-head">
+      <div>
+        <span class="lc-section-kicker">Complete list</span>
+        <h2>Publication archive</h2>
+      </div>
+      <p class="lc-section-note">Automatically rendered from the Jekyll publications collection.</p>
+    </div>
+
+    <div class="lc-archive-list lc-publication-list">
+      {% if site.publication_category %}
+        {% for category in site.publication_category %}
+          {% assign title_shown = false %}
+          {% for post in site.publications reversed %}
+            {% if post.category != category[0] %}
+              {% continue %}
+            {% endif %}
+            {% unless title_shown %}
+              <div class="lc-archive-group-title">
+                <span class="lc-section-kicker">Category</span>
+                <h3>{{ category[1].title }}</h3>
+              </div>
+              {% assign title_shown = true %}
+            {% endunless %}
+            {% include archive-single.html %}
+          {% endfor %}
+        {% endfor %}
+      {% else %}
+        {% for post in site.publications reversed %}
+          {% include archive-single.html %}
+        {% endfor %}
       {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
-    {% endfor %}
-  {% endfor %}
-{% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
-  {% endfor %}
-{% endif %}
-
-
-
+    </div>
+  </section>
+</div>
