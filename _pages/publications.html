@@ -7,13 +7,14 @@ classes: wide lc-interior-shell
 ---
 
 {% include base_path %}
+{% assign scholar = site.data.scholar %}
 
 <style>
   .page__title, .archive__subtitle { display: none !important; }
 </style>
 
 <div class="lc-modern-page lc-publications-page lc-interior-page">
-  <section class="lc-page-hero lc-page-hero-compact" aria-label="Publications introduction">
+  <section class="lc-page-hero lc-page-hero-compact lc-scholar-hero" aria-label="Publications introduction">
     <div class="lc-page-hero-copy">
       <div class="lc-eyebrow"><span class="lc-status-dot"></span> Research outputs</div>
       <h1>Publications &amp; selected outputs</h1>
@@ -21,18 +22,53 @@ classes: wide lc-interior-shell
         Journal articles, conference papers, preprints, and applied research outputs spanning distributed quantum computing, quantum machine learning, photonic quantum computing, quantum-HPC benchmarking, and practical quantum sensing technologies.
       </p>
       <div class="lc-cta-row lc-cta-row-compact">
-        {% if site.author.googlescholar %}
-          <a class="lc-button" href="{{ site.author.googlescholar }}">Google Scholar</a>
-        {% endif %}
+        <a class="lc-button" href="{{ scholar.profile_url | default: site.author.googlescholar }}">Google Scholar</a>
         <a class="lc-button-secondary" href="{{ '/research/' | relative_url }}">Research themes</a>
         <a class="lc-button-secondary" href="{{ '/cv/' | relative_url }}">CV</a>
       </div>
     </div>
-    <div class="lc-page-metrics" aria-label="Publication highlights">
-      <div><strong>2026</strong><span>Accepted and in-press work</span></div>
-      <div><strong>QCE</strong><span>Best / distinguished paper activity</span></div>
-      <div><strong>40+</strong><span>Papers, preprints, and conference outputs</span></div>
-    </div>
+
+    <aside class="lc-scholar-panel" aria-label="Google Scholar citation metrics">
+      <div class="lc-scholar-panel-head">
+        <span>Google Scholar</span>
+        <a href="{{ scholar.profile_url }}">Live profile</a>
+      </div>
+
+      <div class="lc-scholar-primary">
+        <strong>{{ scholar.metrics.citations.all }}</strong>
+        <span>Citations</span>
+      </div>
+
+      <div class="lc-scholar-stat-row">
+        <div>
+          <strong>{{ scholar.metrics.h_index.all }}</strong>
+          <span>h-index</span>
+        </div>
+        <div>
+          <strong>{{ scholar.metrics.i10_index.all }}</strong>
+          <span>i10-index</span>
+        </div>
+      </div>
+
+      {% assign max_cites = scholar.chart_max | default: 500 %}
+      <div class="lc-scholar-chart" role="img" aria-label="Google Scholar citations by year">
+        {% for point in scholar.yearly %}
+          {% assign bar_height = point.citations | times: 100 | divided_by: max_cites %}
+          {% if point.citations > 0 and bar_height < 3 %}
+            {% assign bar_height = 3 %}
+          {% endif %}
+          <div class="lc-scholar-bar-wrap">
+            <div class="lc-scholar-bar" style="height: {{ bar_height }}%;" title="{{ point.year }}: {{ point.citations }} citations"></div>
+            <span>{{ point.year }}</span>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="lc-scholar-foot">
+        <span>Since 2021: {{ scholar.metrics.citations.since_2021 }} citations</span>
+        <span>Updated {{ scholar.last_updated }}</span>
+      </div>
+    </aside>
   </section>
 
   <section class="lc-section lc-archive-section">
