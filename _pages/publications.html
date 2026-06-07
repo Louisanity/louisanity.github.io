@@ -71,6 +71,266 @@ classes: wide lc-interior-shell
   .archive__subtitle {
     display: none !important;
   }
+
+  /* Publications-page Scholar chart hotfix.
+     Use a unique pc-* namespace to avoid conflicts with older lc-scholar styles. */
+  .pc-scholar-card {
+    width: min(100%, 430px);
+    border: 1px solid var(--lc-border);
+    border-radius: 28px;
+    background:
+      radial-gradient(circle at 12% 8%, var(--lc-blue-soft), transparent 34%),
+      linear-gradient(180deg, rgba(255,255,255,0.78), rgba(255,255,255,0.96));
+    box-shadow: 0 18px 48px rgba(15, 23, 42, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 1.12rem;
+  }
+
+  html[data-theme="dark"] .pc-scholar-card {
+    background:
+      radial-gradient(circle at 12% 8%, rgba(184,199,255,0.14), transparent 34%),
+      linear-gradient(180deg, rgba(31,33,37,0.80), rgba(31,33,37,0.96));
+    box-shadow: 0 18px 48px rgba(0,0,0,0.28);
+  }
+
+  .pc-scholar-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.92rem;
+  }
+
+  .pc-scholar-kicker {
+    display: block;
+    color: var(--lc-muted);
+    font-size: 0.72rem;
+    font-weight: 950;
+    letter-spacing: 0.09em;
+    line-height: 1;
+    text-transform: uppercase;
+    margin-bottom: 0.34rem;
+  }
+
+  .pc-scholar-title {
+    margin: 0;
+    color: var(--lc-heading);
+    font-size: clamp(1.22rem, 2.2vw, 1.55rem);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    font-weight: 950;
+  }
+
+  .pc-scholar-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--lc-blue) !important;
+    border: 1px solid var(--lc-border);
+    border-radius: 999px;
+    background: var(--lc-surface);
+    padding: 0.42rem 0.62rem;
+    font-size: 0.78rem;
+    font-weight: 900;
+    line-height: 1;
+    white-space: nowrap;
+    text-decoration: none !important;
+  }
+
+  .pc-scholar-link:hover {
+    border-color: var(--lc-border-strong);
+    background: var(--lc-blue-soft);
+  }
+
+  .pc-scholar-metrics {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 0.62rem;
+    margin-bottom: 1rem;
+  }
+
+  .pc-scholar-metric {
+    border: 1px solid var(--lc-border);
+    border-radius: 18px;
+    background: rgba(255,255,255,0.66);
+    padding: 0.74rem 0.72rem;
+  }
+
+  html[data-theme="dark"] .pc-scholar-metric {
+    background: rgba(255,255,255,0.035);
+  }
+
+  .pc-scholar-metric strong {
+    display: block;
+    color: var(--lc-blue);
+    font-size: clamp(1.06rem, 1.6vw, 1.42rem);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    font-weight: 950;
+    margin-bottom: 0.22rem;
+  }
+
+  .pc-scholar-metric span {
+    display: block;
+    color: var(--lc-muted);
+    font-size: 0.76rem;
+    line-height: 1.25;
+    font-weight: 800;
+  }
+
+  .pc-scholar-chart-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0.15rem 0 0.7rem;
+  }
+
+  .pc-scholar-chart-head span {
+    color: var(--lc-heading);
+    font-size: 0.9rem;
+    font-weight: 900;
+    line-height: 1.2;
+  }
+
+  .pc-scholar-chart-head small {
+    color: var(--lc-muted);
+    font-size: 0.76rem;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+
+  .pc-scholar-bars {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.62rem;
+    align-items: end;
+    min-height: 174px;
+    padding: 0.7rem 0.35rem 0.2rem;
+    border-radius: 20px;
+    border: 1px solid var(--lc-border);
+    background:
+      linear-gradient(to top, var(--lc-blue-softer) 1px, transparent 1px),
+      linear-gradient(to right, var(--lc-blue-softer) 1px, transparent 1px),
+      rgba(255,255,255,0.42);
+    background-size: 100% 34px, 25% 100%, auto;
+  }
+
+  html[data-theme="dark"] .pc-scholar-bars {
+    background:
+      linear-gradient(to top, rgba(184,199,255,0.10) 1px, transparent 1px),
+      linear-gradient(to right, rgba(184,199,255,0.08) 1px, transparent 1px),
+      rgba(255,255,255,0.025);
+    background-size: 100% 34px, 25% 100%, auto;
+  }
+
+  .pc-scholar-bar-group {
+    display: grid;
+    grid-template-rows: 1.1rem 118px 1.05rem;
+    justify-items: center;
+    align-items: end;
+    gap: 0.34rem;
+    min-width: 0;
+  }
+
+  .pc-scholar-value {
+    color: var(--lc-muted);
+    font-size: 0.76rem;
+    line-height: 1;
+    font-weight: 900;
+  }
+
+  .pc-scholar-track {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: min(100%, 38px);
+    height: 118px;
+    padding: 4px;
+    border: 1px solid var(--lc-border);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.70);
+    overflow: hidden;
+  }
+
+  html[data-theme="dark"] .pc-scholar-track {
+    background: rgba(255,255,255,0.04);
+  }
+
+  .pc-scholar-fill {
+    width: 100%;
+    min-height: 0;
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--lc-blue-2), var(--lc-blue));
+    box-shadow: 0 10px 22px var(--lc-blue-soft);
+  }
+
+  .pc-scholar-year {
+    color: var(--lc-muted);
+    font-size: 0.74rem;
+    line-height: 1;
+    font-weight: 900;
+  }
+
+  .pc-scholar-foot {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin-top: 0.82rem;
+    padding-top: 0.78rem;
+    border-top: 1px solid var(--lc-border);
+    color: var(--lc-muted);
+    font-size: 0.74rem;
+    line-height: 1.35;
+    font-weight: 780;
+  }
+
+  .pc-scholar-foot span:last-child {
+    text-align: right;
+  }
+
+  @media (max-width: 980px) {
+    .pc-scholar-card {
+      width: 100%;
+      max-width: 560px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .pc-scholar-card {
+      padding: 0.95rem;
+      border-radius: 22px;
+    }
+
+    .pc-scholar-top,
+    .pc-scholar-foot {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .pc-scholar-foot span:last-child {
+      text-align: left;
+    }
+
+    .pc-scholar-metrics {
+      grid-template-columns: 1fr;
+    }
+
+    .pc-scholar-bars {
+      gap: 0.42rem;
+      min-height: 150px;
+    }
+
+    .pc-scholar-bar-group {
+      grid-template-rows: 1rem 96px 1rem;
+    }
+
+    .pc-scholar-track {
+      height: 96px;
+      width: min(100%, 32px);
+    }
+  }
 </style>
 
 <div class="lc-modern-page lc-publications-page lc-interior-page">
@@ -95,80 +355,78 @@ classes: wide lc-interior-shell
       </div>
     </div>
 
-    <aside class="lc-scholar-panel lc-scholar-panel-charted" aria-label="Google Scholar citation metrics">
-      <div class="lc-scholar-panel-head">
+    <aside class="pc-scholar-card" aria-label="Google Scholar citation metrics">
+      <div class="pc-scholar-top">
         <div>
-          <span class="lc-scholar-kicker">Google Scholar</span>
-          <h2>Citation metrics</h2>
+          <span class="pc-scholar-kicker">Google Scholar</span>
+          <h2 class="pc-scholar-title">Citation metrics</h2>
         </div>
-        <a href="{{ scholar_profile }}" target="_blank" rel="noopener">Live profile</a>
+        <a class="pc-scholar-link" href="{{ scholar_profile }}" target="_blank" rel="noopener">Live profile</a>
       </div>
 
-      <div class="lc-scholar-metrics-grid">
-        <div class="lc-scholar-metric lc-scholar-metric-primary">
+      <div class="pc-scholar-metrics">
+        <div class="pc-scholar-metric">
           <strong>{{ total_cites }}</strong>
           <span>Citations</span>
         </div>
-
-        <div class="lc-scholar-metric">
+        <div class="pc-scholar-metric">
           <strong>{{ h_index }}</strong>
           <span>h-index</span>
         </div>
-
-        <div class="lc-scholar-metric">
+        <div class="pc-scholar-metric">
           <strong>{{ i10_index }}</strong>
           <span>i10-index</span>
         </div>
       </div>
 
-      <div class="lc-scholar-chart-head">
+      <div class="pc-scholar-chart-head">
         <span>Citations by year</span>
         <small>2022–2026</small>
       </div>
 
-      <div class="lc-scholar-chart" role="img" aria-label="Google Scholar citations by year from 2022 to 2026">
-        <div class="lc-scholar-bar-wrap">
-          <span class="lc-scholar-bar-value">{{ y2022 }}</span>
-          <div class="lc-scholar-bar-track">
-            <div class="lc-scholar-bar" style="height: {{ h2022 }}%;" title="2022: {{ y2022 }} citations"></div>
+      <div class="pc-scholar-bars" role="img" aria-label="Google Scholar citations by year from 2022 to 2026">
+        <div class="pc-scholar-bar-group">
+          <span class="pc-scholar-value">{{ y2022 }}</span>
+          <div class="pc-scholar-track">
+            <div class="pc-scholar-fill" style="height: {{ h2022 }}%;" title="2022: {{ y2022 }} citations"></div>
           </div>
-          <span class="lc-scholar-bar-year">2022</span>
+          <span class="pc-scholar-year">2022</span>
         </div>
 
-        <div class="lc-scholar-bar-wrap">
-          <span class="lc-scholar-bar-value">{{ y2023 }}</span>
-          <div class="lc-scholar-bar-track">
-            <div class="lc-scholar-bar" style="height: {{ h2023 }}%;" title="2023: {{ y2023 }} citations"></div>
+        <div class="pc-scholar-bar-group">
+          <span class="pc-scholar-value">{{ y2023 }}</span>
+          <div class="pc-scholar-track">
+            <div class="pc-scholar-fill" style="height: {{ h2023 }}%;" title="2023: {{ y2023 }} citations"></div>
           </div>
-          <span class="lc-scholar-bar-year">2023</span>
+          <span class="pc-scholar-year">2023</span>
         </div>
 
-        <div class="lc-scholar-bar-wrap">
-          <span class="lc-scholar-bar-value">{{ y2024 }}</span>
-          <div class="lc-scholar-bar-track">
-            <div class="lc-scholar-bar" style="height: {{ h2024 }}%;" title="2024: {{ y2024 }} citations"></div>
+        <div class="pc-scholar-bar-group">
+          <span class="pc-scholar-value">{{ y2024 }}</span>
+          <div class="pc-scholar-track">
+            <div class="pc-scholar-fill" style="height: {{ h2024 }}%;" title="2024: {{ y2024 }} citations"></div>
           </div>
-          <span class="lc-scholar-bar-year">2024</span>
+          <span class="pc-scholar-year">2024</span>
         </div>
 
-        <div class="lc-scholar-bar-wrap">
-          <span class="lc-scholar-bar-value">{{ y2025 }}</span>
-          <div class="lc-scholar-bar-track">
-            <div class="lc-scholar-bar" style="height: {{ h2025 }}%;" title="2025: {{ y2025 }} citations"></div>
+        <div class="pc-scholar-bar-group">
+          <span class="pc-scholar-value">{{ y2025 }}</span>
+          <div class="pc-scholar-track">
+            <div class="pc-scholar-fill" style="height: {{ h2025 }}%;" title="2025: {{ y2025 }} citations"></div>
           </div>
-          <span class="lc-scholar-bar-year">2025</span>
+          <span class="pc-scholar-year">2025</span>
         </div>
 
-        <div class="lc-scholar-bar-wrap">
-          <span class="lc-scholar-bar-value">{{ y2026 }}</span>
-          <div class="lc-scholar-bar-track">
-            <div class="lc-scholar-bar" style="height: {{ h2026 }}%;" title="2026: {{ y2026 }} citations"></div>
+        <div class="pc-scholar-bar-group">
+          <span class="pc-scholar-value">{{ y2026 }}</span>
+          <div class="pc-scholar-track">
+            <div class="pc-scholar-fill" style="height: {{ h2026 }}%;" title="2026: {{ y2026 }} citations"></div>
           </div>
-          <span class="lc-scholar-bar-year">2026</span>
+          <span class="pc-scholar-year">2026</span>
         </div>
       </div>
 
-      <div class="lc-scholar-foot">
+      <div class="pc-scholar-foot">
         <span>Since 2021: {{ since_cites }} citations</span>
         <span>Updated {{ last_updated }}</span>
       </div>
