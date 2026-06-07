@@ -1,18 +1,17 @@
 ---
 permalink: /
 title: "Dr Kuan-Cheng (Louis) Chen"
-author_profile: true
+author_profile: false
+classes: wide
 redirect_from:
   - /about/
   - /about.html
 ---
 
-<link rel="stylesheet" href="{{ '/assets/css/louis-modern.css' | relative_url }}">
-
 <div class="lc-modern-home">
   <section class="lc-hero" aria-label="Homepage introduction">
     <div class="lc-hero-grid">
-      <div>
+      <div class="lc-hero-copy">
         <div class="lc-eyebrow"><span class="lc-status-dot"></span> Imperial College London · JIJ Europe</div>
         <h1 class="lc-display-title">Quantum algorithms for <span class="lc-accent">networked</span> quantum systems.</h1>
         <p class="lc-lede">
@@ -24,18 +23,28 @@ redirect_from:
           <a class="lc-button-secondary" href="#contact">Contact</a>
         </div>
       </div>
-      <aside class="lc-side-panel" aria-label="Research summary">
-        <div class="lc-role-card">
-          <strong>Research focus</strong>
-          <p>Distributed quantum computing, photonic quantum processors, quantum–HPC benchmarking, and practical quantum sensing technologies.</p>
+
+      <aside class="lc-identity-card" aria-label="Researcher profile">
+        <div class="lc-portrait-wrap">
+          <img class="lc-portrait" src="{{ site.author.avatar | relative_url }}" alt="Portrait of Dr Kuan-Cheng Louis Chen">
         </div>
-        <div class="lc-mini-grid">
-          <div class="lc-mini-card"><span>40+</span><small>publications and preprints</small></div>
-          <div class="lc-mini-card"><span>2026</span><small>Nature Photonics accepted</small></div>
-          <div class="lc-mini-card"><span>QCE</span><small>Best Paper recognition</small></div>
-          <div class="lc-mini-card"><span>R&amp;D</span><small>quantum algorithms for industry</small></div>
+        <h2 class="lc-identity-name">Dr Kuan-Cheng (Louis) Chen</h2>
+        <p>Research Associate · Guest Lecturer · Global R&amp;D Manager</p>
+        <p>Imperial QuEST · Department of Electrical and Electronic Engineering · JIJ Europe</p>
+        <div class="lc-identity-links">
+          <a href="mailto:kuan-cheng.chen17@imperial.ac.uk">Email</a>
+          <a href="{{ '/cv/' | relative_url }}">CV</a>
+          <a href="https://scholar.google.com/citations?user=KoUPm0MAAAAJ&amp;hl=en">Scholar</a>
+          <a href="https://github.com/Louisanity">GitHub</a>
         </div>
       </aside>
+    </div>
+
+    <div class="lc-mini-grid" aria-label="Profile highlights">
+      <div class="lc-mini-card"><span>40+</span><small>publications and preprints</small></div>
+      <div class="lc-mini-card"><span>2026</span><small>Nature Photonics accepted</small></div>
+      <div class="lc-mini-card"><span>QCE</span><small>Best Paper recognition</small></div>
+      <div class="lc-mini-card"><span>R&amp;D</span><small>quantum algorithms for industry</small></div>
     </div>
   </section>
 
@@ -143,8 +152,8 @@ redirect_from:
       <h2 id="contact-heading">Dr Kuan-Cheng (Louis) Chen</h2>
       <p>Department of Electrical and Electronic Engineering, Imperial College London · Imperial QuEST — Centre for Quantum Engineering, Science and Technology.</p>
       <div class="lc-contact-links">
-        <a href="mailto:kc2816@ic.ac.uk">Email</a>
-        <a href="https://profiles.imperial.ac.uk/">Imperial profile</a>
+        <a href="mailto:kuan-cheng.chen17@imperial.ac.uk">Email</a>
+        <a href="https://www.imperial.ac.uk/people/kuan-cheng.chen17">Imperial profile</a>
         <a href="https://scholar.google.com/citations?user=KoUPm0MAAAAJ&amp;hl=en">Google Scholar</a>
         <a href="https://github.com/Louisanity">GitHub</a>
         <a href="https://www.linkedin.com/in/louis-chen-801214109/">LinkedIn</a>
