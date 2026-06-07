@@ -8,11 +8,21 @@ redirect_from:
 ---
 
 {% include base_path %}
+<link rel="stylesheet" href="{{ '/assets/css/louis-modern.css' | relative_url }}">
 
-My research develops scalable methods for quantum computation beyond isolated devices. The central theme is <strong>hardware-aware quantum algorithms for networked and heterogeneous quantum systems</strong>: distributed quantum computing, photonic quantum machine learning, quantum–HPC benchmarking, compiler/runtime co-design, and practical quantum sensing technologies and spin–acoustic interfaces.
+<div class="lc-modern-page">
+  <section class="lc-research-hero" aria-label="Research overview">
+    <span class="lc-section-kicker">Research</span>
+    <h1>Hardware-aware quantum algorithms for networked and heterogeneous systems.</h1>
+    <p>
+      My research develops scalable methods for quantum computation beyond isolated devices. The central theme is <strong>hardware-aware quantum algorithms for networked quantum systems</strong>: distributed quantum computing, photonic quantum machine learning, quantum–HPC benchmarking, compiler/runtime co-design, and practical quantum sensing technologies with spin–acoustic interfaces.
+    </p>
+    <p>
+      The areas below connect algorithmic design with implementation constraints such as connectivity, noise, entanglement generation, qumode/qubit capacity, classical orchestration overhead, and benchmark reproducibility.
+    </p>
+  </section>
 
-The areas below summarise the main research directions. Each topic connects algorithmic design with implementation constraints such as connectivity, noise, entanglement generation, qumode/qubit capacity, classical orchestration overhead, and benchmark reproducibility.
-
-{% for post in site.Research %}
-  {% include archive-single.html %}
-{% endfor %}
+  {% for post in site.Research %}
+    {% include archive-single.html %}
+  {% endfor %}
+</div>
