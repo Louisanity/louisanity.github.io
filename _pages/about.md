@@ -1,83 +1,112 @@
 ---
 permalink: /
-title: "Dr Louis Chen"
+title: "Dr Kuan-Cheng (Louis) Chen"
 author_profile: true
 redirect_from:
   - /about/
   - /about.html
 ---
 
+<style>
+.home-hero {
+  border: 1px solid #e6e8ef;
+  border-radius: 18px;
+  padding: 1.2rem 1.4rem;
+  background: linear-gradient(135deg, #f8fbff 0%, #ffffff 64%);
+  margin-bottom: 1.25rem;
+}
+.home-hero h2 { margin-top: 0; }
+.home-tagline { font-size: 1.05rem; line-height: 1.55; color: #24324b; }
+.pill-row { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .75rem; }
+.pill { border: 1px solid #cfd8ea; border-radius: 999px; padding: .22rem .62rem; font-size: .82rem; background: #fff; color: #274060; }
+.news-list { border-left: 3px solid #1f4e79; padding-left: .9rem; }
+.news-item { margin-bottom: .72rem; }
+.news-date { font-weight: 700; color: #1f4e79; }
+.grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(225px, 1fr)); gap: .75rem; margin: 1rem 0; }
+.card { border: 1px solid #e6e8ef; border-radius: 14px; padding: .85rem .95rem; background: #fff; }
+.card h3 { margin-top: 0; font-size: 1rem; }
+.card p { margin-bottom: 0; font-size: .92rem; line-height: 1.45; }
+.metric-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .65rem; margin: 1rem 0; }
+.metric { border: 1px solid #e6e8ef; border-radius: 14px; padding: .75rem .85rem; background: #fbfcff; }
+.metric strong { display: block; font-size: 1.1rem; color: #1f4e79; }
+.small-note { color: #6b7280; font-size: .88rem; }
+</style>
+
+<div class="home-hero">
+  <h2>Quantum algorithms, distributed quantum computing, and quantum–HPC systems</h2>
+  <p class="home-tagline">
+    I am a Research Associate and Guest Lecturer in the Department of Electrical and Electronic Engineering at Imperial College London, and Global R&amp;D Manager at JIJ Europe. My work develops scalable quantum algorithms, distributed quantum computing architectures, quantum machine learning methods, and hardware-aware compilation workflows bridging near-term devices, photonic quantum processors, and early fault-tolerant quantum computing.
+  </p>
+  <div class="pill-row">
+    <span class="pill">Distributed quantum computing</span>
+    <span class="pill">Quantum machine learning</span>
+    <span class="pill">Quantum–HPC</span>
+    <span class="pill">Photonic quantum computing</span>
+    <span class="pill">Quantum benchmarking</span>
+    <span class="pill">Room-temperature quantum devices</span>
+  </div>
+</div>
+
+## Latest news
+
+<div class="news-list">
+  <div class="news-item"><span class="news-date">2026</span> — Accepted paper in <em>Nature Photonics</em>: <strong>Extensible universal photonic quantum computing with nonlinearity</strong>.</div>
+  <div class="news-item"><span class="news-date">2026</span> — Accepted paper in <em>Communications Physics</em>: <strong>Heterogeneous Optically-Detected Spin-Acoustic Resonance in Solid-State Molecular Thin Film</strong>.</div>
+  <div class="news-item"><span class="news-date">2026</span> — Published work in <em>IEEE Internet Computing</em> on adaptive resource orchestration for distributed quantum computing systems.</div>
+  <div class="news-item"><span class="news-date">2026</span> — Published <em>npj Unconventional Computing</em> article on quantum stochastic walks for portfolio optimization on financial networks.</div>
+  <div class="news-item"><span class="news-date">2026</span> — New QCNC papers on entanglement-aware scheduling, photonic quantum detectable Byzantine agreement, and applied QML for PCB defect detection.</div>
+  <div class="news-item"><span class="news-date">2025</span> — Received the QTC Distinguished Paper Award / Best Paper recognition at IEEE QCE 2025.</div>
+</div>
+
+## Research profile
+
+My research sits at the interface of quantum information science, theoretical computer science, quantum engineering, and high-performance computing. I focus on practical paths from current quantum processors toward networked and early fault-tolerant systems: how to distribute quantum workloads, how to benchmark quantum–HPC workflows, how to compile circuits across heterogeneous devices, and how to identify useful quantum machine learning and optimization primitives for scientific and industrial applications.
+
+<div class="grid-cards">
+  <div class="card">
+    <h3>Distributed quantum computing</h3>
+    <p>Architectures, compilers, entanglement scheduling, consensus protocols, and resource orchestration for modular quantum processors and quantum networks.</p>
+  </div>
+  <div class="card">
+    <h3>Quantum machine learning</h3>
+    <p>Quantum kernels, quantum neural networks, photonic QML, parameter-efficient learning, and quantum-enhanced models for climate, finance, sensing, and scientific data.</p>
+  </div>
+  <div class="card">
+    <h3>Quantum–HPC and benchmarking</h3>
+    <p>Tensor-network simulation, large-qubit QML validation, compiler-aware metrics, application-driven benchmarks, and performance evaluation across quantum and classical resources.</p>
+  </div>
+  <div class="card">
+    <h3>Quantum devices and interfaces</h3>
+    <p>Room-temperature molecular spin systems, microwave readout, spin–acoustic resonance, and hybrid spin–photon–phonon platforms for quantum sensing and information processing.</p>
+  </div>
+</div>
+
+## Selected highlights
+
+<div class="metric-row">
+  <div class="metric"><strong>40+ publications</strong><span>Quantum computing, QML, networks, devices, and quantum–HPC.</span></div>
+  <div class="metric"><strong>Nature Photonics</strong><span>Accepted work on extensible universal photonic quantum computing.</span></div>
+  <div class="metric"><strong>QCE Best Paper</strong><span>Recognised for quantum-enhanced and distributed quantum computing research.</span></div>
+  <div class="metric"><strong>Global R&amp;D</strong><span>Industrial quantum algorithm development and benchmarking at JIJ Europe.</span></div>
+</div>
+
+## Selected publications
+
+- S. Yu, J. Sun, K.-C. Chen, et al., “Extensible universal photonic quantum computing with nonlinearity,” <em>Nature Photonics</em>, 2026 (accepted).
+- K.-C. Chen, C.-Y. Liu, Y. Shang, F. Burt, and K. K. Leung, “Distributed Quantum Neural Networks on Distributed Photonic Quantum Computing,” <em>IEEE QCE</em>, 2025.
+- K.-C. Chen, F. Burt, N. K. Panigrahy, and K. K. Leung, “Adaptive Resource Orchestration for Distributed Quantum Computing Systems,” <em>IEEE Internet Computing</em>, 2026.
+- Y.-J. Chang, W.-T. Wang, Y.-Y. Wang, C.-Y. Liu, K.-C. Chen, and C.-R. Chang, “Quantum Stochastic Walks for Portfolio Optimization,” <em>npj Unconventional Computing</em>, 2026.
+- K.-C. Chen, Y. Wen, X. Xu, M. Attwood, J. Xu, C. Fu, S. Ramadan, S. Yu, S. Heutz, and M. Oxborrow, “Heterogeneous Optically-Detected Spin-Acoustic Resonance in Solid-State Molecular Thin Film,” <em>Communications Physics</em>, 2026 (accepted).
+- K.-C. Chen and M. Oxborrow, “Overcoming the Thermal-Noise Limit of Microwave Measurements by Precooling with an Active Cold Load,” <em>Physical Review Applied</em>, 2025.
+
+See the full [publications list](/publications/) and [CV](/cv/).
+
 ## Contact
 
-Research Associate in Distributed Quantum Computing
-Department of Electrical and Electronic Engineering  
-Imperial College London, South Kensington Campus, London, UK  
-Email: kuan-cheng.chen17@imperial.ac.uk
+**Dr Kuan-Cheng (Louis) Chen**  
+Department of Electrical and Electronic Engineering, Imperial College London  
+Imperial QuEST — Centre for Quantum Engineering, Science and Technology  
+Email: `kc2816@ic.ac.uk`  
+Profiles: [Imperial College London](https://profiles.imperial.ac.uk/) · [Google Scholar](https://scholar.google.com/citations?user=KoUPm0MAAAAJ&hl=en) · [GitHub](https://github.com/Louisanity) · [LinkedIn](https://www.linkedin.com/in/louis-chen-801214109/)
 
-Affiliations: [Imperial QuEST](https://www.imperial.ac.uk/quantum-engineering-science-technology/) · [Imperial X](https://ix.imperial.ac.uk/)
-
----
-
-## Biography
-
-Louis Chen is a postdoctoral Research Associate at Imperial College London, working in the group of Professor Kin K. Leung. His position is supported by the EPSRC-funded project *Distributed Quantum Computing and Applications* ([EP/W032643/1](https://gtr.ukri.org/projects?ref=EP%2FW032643%2F1)).
-
-His research addresses scalable approaches to distributed quantum computing, focusing on the design of quantum algorithms, distributed architectures, and novel quantum error correction protocols. Louis is particularly interested in how heterogeneous quantum networks can be leveraged to solve large-scale problems in optimisation, machine learning, and quantum materials simulation.
-
-He received his MSc and PhD in Quantum Engineering from Imperial College London, where he specialised in device-level quantum information processing. His doctoral work included the development of microwave-based quantum readout systems and hybrid quantum-classical interface protocols. Prior to academia, he was an R&D Device Engineer at TSMC.
-
----
-
-## Research Interests
-
-- Distributed quantum computing and network architectures  
-- Quantum error correction and fault-tolerant protocol design  
-- Hybrid quantum-classical optimisation and machine learning  
-- Quantum device engineering and readout instrumentation
-
-<p align="center">
-  <img src="https://louisanity.github.io/images/research_outline.jpg" alt="Research outline showing QaaS model, distributed entanglement, tensor network simulation, and modular compilation strategies." width="800">
-</p>
-
----
-
-## Education
-
-| Degree | Institution | Award Year |
-|--------|-------------|------|
-| PhD, Quantum Engineering | Imperial College London | 2024 |
-| MSc, Quantum Engineering | Imperial College London | 2018 |
-| BSc, Chemistry (Minor in Financial Engineering) | National Sun Yat-Sen University | 2017 |
-
----
-
-## Selected Awards and Honours
-
-- John Matthey PhD Prize, 2025  
-- Imperial Global Fellow, 2024  
-- TSMC Research Prize, 2022  
-- National PhD Scholarship – Taiwan, 2021–2024
-- Third Prize, The Blaise Pascal Quantum Challenge, 2025
-- First Prize, Deloitte Quantum Climate Challenge, 2024
-
----
-
-## Recent Highlights
-
-- Published over 25 peer-reviewed articles in venues such as *Physical Review Applied*, *Advanced Quantum Technologies*, and *Optics Express*  
-- First-author publication on resource-efficient compilation of distributed quantum circuits accepted at *IEEE ICCAD 2025*  
-- Contributed to the winning team in the *Deloitte Quantum Climate Challenge 2024*, representing Imperial Quantum Society
-
-See [Publications](/publications/) and [CV](/cv/) for more.
-
----
-
-## Professional Service
-
-- Reviewer for journals including *Quantum Machine Intelligence*, *Quantum Information Processing*, *IEEE Transactions on Communications*, *Neurocomputing * and *Advanced Quantum Technologies*  
-- Programme Committee Member for IEEE QCE 2025 and ICASSP 2025  
-- Co-organiser of the INFOCOM QuNAP Workshop 2025 and the Globecom QC-CL Workshop 2025
-
----
-
-_Last updated: {{ site.time | date: "%B %Y" }}_
+<p class="small-note"><em>Last updated: {{ site.time | date: "%B %Y" }}</em></p>
