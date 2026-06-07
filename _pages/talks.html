@@ -13,7 +13,7 @@ classes: wide lc-interior-shell
   .page__title, .archive__subtitle { display: none !important; }
 </style>
 
-<div class="lc-modern-page lc-interior-page lc-talks-page">
+<div class="lc-modern-page lc-interior-page lc-talks-page lc-talks-page-premium">
   <section class="lc-page-hero lc-page-hero-compact" aria-label="Talks introduction">
     <div class="lc-page-hero-copy">
       <div class="lc-eyebrow"><span class="lc-status-dot"></span> Speaking & presentations</div>
@@ -53,11 +53,23 @@ classes: wide lc-interior-shell
       </div>
     </div>
 
-    <div class="lc-talk-map-card">
-      <div id="lc-talk-map" class="lc-talk-map-canvas" aria-label="2D world map of conference talk locations"></div>
+    <div class="lc-talk-map-card lc-talk-map-card-premium">
+      <div class="lc-talk-map-toolbar">
+        <div class="lc-talk-map-toolbar__left">
+          <span class="lc-talk-map-badge">Global activity</span>
+          <span class="lc-talk-map-toolbar__text">Hover a node to inspect the presentation details.</span>
+        </div>
+        <button id="lc-talk-map-reset" class="lc-talk-map-reset" type="button">Reset view</button>
+      </div>
+
+      <div class="lc-talk-map-stage">
+        <div id="lc-talk-map" class="lc-talk-map-canvas" aria-label="2D world map of conference talk locations"></div>
+        <div id="lc-talk-map-hovercard" class="lc-talk-map-hovercard" aria-hidden="true"></div>
+      </div>
+
       <div class="lc-talk-map-caption">
         <span class="lc-talk-map-dot"></span>
-        <span>Each point marks a conference venue or city where a first-author presentation was delivered.</span>
+        <span>Circle size reflects the number of presentations associated with each visited venue or city.</span>
       </div>
     </div>
   </section>
@@ -85,10 +97,12 @@ classes: wide lc-interior-shell
     "title": {{ talk.title | jsonify }},
     "date": {{ talk.date | jsonify }},
     "conference": {{ talk.conference | jsonify }},
+    "venue_name": {{ talk.venue_name | default: talk.location | jsonify }},
     "location": {{ talk.location | jsonify }},
     "latitude": {{ talk.latitude | jsonify }},
     "longitude": {{ talk.longitude | jsonify }},
-    "permalink": {{ talk.permalink | jsonify }}
+    "permalink": {{ talk.permalink | jsonify }},
+    "award": {{ talk.award | default: '' | jsonify }}
   }{% unless forloop.last %},{% endunless %}
 {% endfor %}
 ]
@@ -101,6 +115,8 @@ classes: wide lc-interior-shell
 (function () {
   const dataEl = document.getElementById('lc-talk-map-data');
   const mapEl = document.getElementById('lc-talk-map');
+  const hoverEl = document.getElementById('lc-talk-map-hovercard');
+  const resetBtn = document.getElementById('lc-talk-map-reset');
   if (!dataEl || !mapEl || typeof L === 'undefined') return;
 
   const rawData = JSON.parse(dataEl.textContent || '[]');
@@ -113,15 +129,21 @@ classes: wide lc-interior-shell
       uniqueLocationsMap.set(key, {
         key,
         location: talk.location,
+        venue_name: talk.venue_name,
         latitude: Number(talk.latitude),
         longitude: Number(talk.longitude),
-        talks: 0
+        talks: []
       });
     }
-    uniqueLocationsMap.get(key).talks += 1;
+    uniqueLocationsMap.get(key).talks.push(talk);
   });
 
-  const locations = Array.from(uniqueLocationsMap.values());
+  const locations = Array.from(uniqueLocationsMap.values()).map((item) => ({
+    ...item,
+    talks: item.talks.sort((a, b) => new Date(a.date) - new Date(b.date)),
+    count: item.talks.length
+  }));
+
   const countries = new Set(
     locations.map((item) => {
       const chunks = (item.location || '').split(',');
@@ -133,20 +155,32 @@ classes: wide lc-interior-shell
   document.getElementById('lc-talk-metric-cities').textContent = String(locations.length);
   document.getElementById('lc-talk-metric-countries').textContent = String(countries.size);
 
-  const isDark = () => document.documentElement.getAttribute('data-theme') === 'dark';
+  const htmlRoot = document.documentElement;
+  const isDark = () => htmlRoot.getAttribute('data-theme') === 'dark';
+  const colors = () => ({
+    stroke: isDark() ? '#d6ddff' : '#0000CD',
+    fill: isDark() ? 'rgba(184,199,255,0.22)' : 'rgba(0,0,205,0.14)',
+    halo: isDark() ? 'rgba(184,199,255,0.14)' : 'rgba(0,0,205,0.10)'
+  });
 
   const tileLight = 'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png';
   const tileDark = 'https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png';
-  const attr = '&copy; OpenStreetMap contributors &copy; CARTO';
 
   const map = L.map(mapEl, {
     zoomControl: false,
-    scrollWheelZoom: false,
+    scrollWheelZoom: true,
     dragging: true,
     tap: false,
     worldCopyJump: false,
-    attributionControl: false
+    doubleClickZoom: true,
+    boxZoom: false,
+    attributionControl: false,
+    minZoom: 1,
+    maxZoom: 6,
+    zoomSnap: 0.25
   });
+
+  L.control.zoom({ position: 'topright' }).addTo(map);
 
   let baseLayer = null;
   function applyBaseLayer() {
@@ -156,61 +190,120 @@ classes: wide lc-interior-shell
       maxZoom: 6,
       minZoom: 1,
       noWrap: true,
-      attribution: attr
+      opacity: isDark() ? 0.95 : 0.98
     }).addTo(map);
   }
-
   applyBaseLayer();
 
+  const allBounds = L.latLngBounds(locations.map((item) => [item.latitude, item.longitude]));
+
   const markerGroup = L.layerGroup().addTo(map);
-  function markerColor() {
-    return isDark() ? '#d6ddff' : '#0000CD';
-  }
-  function markerFill() {
-    return isDark() ? 'rgba(184,199,255,0.28)' : 'rgba(0,0,205,0.16)';
+  function buildHoverHTML(item) {
+    const first = item.talks[0];
+    const last = item.talks[item.talks.length - 1];
+    const range = first && last
+      ? (first.date === last.date ? first.date : `${first.date} → ${last.date}`)
+      : '';
+
+    const talkLines = item.talks.slice(0, 3).map((talk) => {
+      const award = talk.award ? `<span class="lc-talk-hover-award">${talk.award}</span>` : '';
+      return `<li><strong>${talk.conference}</strong><span>${talk.title}</span>${award}</li>`;
+    }).join('');
+
+    const extraCount = item.talks.length > 3 ? `<div class="lc-talk-hover-more">+ ${item.talks.length - 3} more presentation${item.talks.length - 3 > 1 ? 's' : ''}</div>` : '';
+
+    return `
+      <div class="lc-talk-hover-eyebrow">${item.count} presentation${item.count > 1 ? 's' : ''}</div>
+      <h3>${item.location}</h3>
+      <p>${item.venue_name || 'Conference location'}</p>
+      <div class="lc-talk-hover-range">${range}</div>
+      <ul>${talkLines}</ul>
+      ${extraCount}
+    `;
   }
 
-  locations.forEach((item) => {
-    const radius = 5 + Math.min(item.talks, 4) * 2;
-    L.circleMarker([item.latitude, item.longitude], {
-      radius,
-      stroke: true,
-      weight: 1.6,
-      color: markerColor(),
-      fillColor: markerFill(),
-      fillOpacity: 0.95,
-      opacity: 1,
-      interactive: false
-    }).addTo(markerGroup);
-  });
-
-  const bounds = L.latLngBounds(locations.map((item) => [item.latitude, item.longitude]));
-  map.fitBounds(bounds.pad(0.25));
-  if (map.getZoom() > 2) map.setZoom(2);
-
-  function resizeMap() {
-    map.invalidateSize();
+  function positionHover(point) {
+    if (!hoverEl || !point) return;
+    const stageRect = mapEl.getBoundingClientRect();
+    const x = Math.min(Math.max(point.x + 18, 16), stageRect.width - 300);
+    const y = Math.min(Math.max(point.y - 24, 16), stageRect.height - 190);
+    hoverEl.style.transform = `translate(${x}px, ${y}px)`;
   }
+
+  function showHover(item, e) {
+    if (!hoverEl) return;
+    hoverEl.innerHTML = buildHoverHTML(item);
+    hoverEl.classList.add('is-visible');
+    hoverEl.setAttribute('aria-hidden', 'false');
+    positionHover(e.containerPoint);
+  }
+
+  function hideHover() {
+    if (!hoverEl) return;
+    hoverEl.classList.remove('is-visible');
+    hoverEl.setAttribute('aria-hidden', 'true');
+  }
+
+  function drawMarkers() {
+    markerGroup.clearLayers();
+    const c = colors();
+    locations.forEach((item) => {
+      const haloRadius = 10 + Math.min(item.count, 5) * 4;
+      const coreRadius = 5 + Math.min(item.count, 5) * 2;
+
+      const halo = L.circleMarker([item.latitude, item.longitude], {
+        radius: haloRadius,
+        stroke: false,
+        fillColor: c.halo,
+        fillOpacity: 0.8,
+        interactive: false,
+        pane: 'shadowPane'
+      }).addTo(markerGroup);
+
+      const marker = L.circleMarker([item.latitude, item.longitude], {
+        radius: coreRadius,
+        stroke: true,
+        weight: 2,
+        color: c.stroke,
+        fillColor: c.fill,
+        fillOpacity: 0.98,
+        opacity: 1
+      }).addTo(markerGroup);
+
+      marker.on('mouseover', (e) => {
+        marker.setStyle({ radius: coreRadius + 1.5, weight: 2.3, fillOpacity: 1 });
+        showHover(item, e);
+      });
+      marker.on('mousemove', (e) => positionHover(e.containerPoint));
+      marker.on('mouseout', () => {
+        marker.setStyle({ radius: coreRadius, weight: 2, fillOpacity: 0.98 });
+        hideHover();
+      });
+      marker.on('click', () => {
+        map.flyTo([item.latitude, item.longitude], Math.max(map.getZoom(), 2.5), { duration: 0.55 });
+      });
+    });
+  }
+
+  drawMarkers();
+
+  function fitAll() {
+    map.fitBounds(allBounds.pad(0.34), { animate: false });
+    if (map.getZoom() > 2) map.setZoom(2);
+  }
+  fitAll();
+
+  if (resetBtn) resetBtn.addEventListener('click', fitAll);
+  map.on('zoomstart movestart', hideHover);
+
+  function resizeMap() { map.invalidateSize(); }
   setTimeout(resizeMap, 80);
   window.addEventListener('resize', resizeMap);
 
   const observer = new MutationObserver(() => {
     applyBaseLayer();
-    markerGroup.clearLayers();
-    locations.forEach((item) => {
-      const radius = 5 + Math.min(item.talks, 4) * 2;
-      L.circleMarker([item.latitude, item.longitude], {
-        radius,
-        stroke: true,
-        weight: 1.6,
-        color: markerColor(),
-        fillColor: markerFill(),
-        fillOpacity: 0.95,
-        opacity: 1,
-        interactive: false
-      }).addTo(markerGroup);
-    });
+    drawMarkers();
   });
-  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  observer.observe(htmlRoot, { attributes: true, attributeFilter: ['data-theme'] });
 })();
 </script>
