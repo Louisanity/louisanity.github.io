@@ -8,28 +8,123 @@ redirect_from:
 ---
 
 <style>
+:root {
+  --lc-accent: #0000CD;
+  --lc-accent-strong: #0000CD;
+  --lc-accent-soft: rgba(0, 0, 205, 0.08);
+  --lc-card-bg: #ffffff;
+  --lc-card-bg-soft: #f7f9ff;
+  --lc-border: #dfe4f2;
+  --lc-text: var(--global-text-color);
+  --lc-muted: var(--global-text-color-light);
+  --lc-pill-bg: #ffffff;
+  --lc-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+html[data-theme="dark"] {
+  --lc-accent: #aebcff;
+  --lc-accent-strong: #c9d3ff;
+  --lc-accent-soft: rgba(174, 188, 255, 0.14);
+  --lc-card-bg: #505050;
+  --lc-card-bg-soft: #4b4b4b;
+  --lc-border: #747b86;
+  --lc-text: var(--global-text-color);
+  --lc-muted: #d2d6dc;
+  --lc-pill-bg: #4b4b4b;
+  --lc-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
 .home-hero {
-  border: 1px solid #e6e8ef;
+  border: 1px solid var(--lc-border);
   border-radius: 18px;
   padding: 1.2rem 1.4rem;
-  background: linear-gradient(135deg, #f8fbff 0%, #ffffff 64%);
+  background: linear-gradient(135deg, var(--lc-accent-soft) 0%, var(--lc-card-bg) 72%);
+  color: var(--lc-text);
+  box-shadow: var(--lc-shadow);
   margin-bottom: 1.25rem;
 }
-.home-hero h2 { margin-top: 0; }
-.home-tagline { font-size: 1.05rem; line-height: 1.55; color: #24324b; }
-.pill-row { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .75rem; }
-.pill { border: 1px solid #cfd8ea; border-radius: 999px; padding: .22rem .62rem; font-size: .82rem; background: #fff; color: #274060; }
-.news-list { border-left: 3px solid #1f4e79; padding-left: .9rem; }
-.news-item { margin-bottom: .72rem; }
-.news-date { font-weight: 700; color: #1f4e79; }
-.grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(225px, 1fr)); gap: .75rem; margin: 1rem 0; }
-.card { border: 1px solid #e6e8ef; border-radius: 14px; padding: .85rem .95rem; background: #fff; }
-.card h3 { margin-top: 0; font-size: 1rem; }
-.card p { margin-bottom: 0; font-size: .92rem; line-height: 1.45; }
-.metric-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .65rem; margin: 1rem 0; }
-.metric { border: 1px solid #e6e8ef; border-radius: 14px; padding: .75rem .85rem; background: #fbfcff; }
-.metric strong { display: block; font-size: 1.1rem; color: #1f4e79; }
-.small-note { color: #6b7280; font-size: .88rem; }
+.home-hero h2 {
+  margin-top: 0;
+  color: var(--lc-accent-strong);
+}
+.home-tagline {
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--lc-text);
+}
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+  margin-top: .75rem;
+}
+.pill {
+  border: 1px solid var(--lc-border);
+  border-radius: 999px;
+  padding: .22rem .62rem;
+  font-size: .82rem;
+  background: var(--lc-pill-bg);
+  color: var(--lc-accent-strong);
+}
+.news-list {
+  border-left: 3px solid var(--lc-accent-strong);
+  padding-left: .9rem;
+}
+.news-item {
+  margin-bottom: .72rem;
+  color: var(--lc-text);
+}
+.news-date {
+  font-weight: 700;
+  color: var(--lc-accent-strong);
+}
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+  gap: .75rem;
+  margin: 1rem 0;
+}
+.card {
+  border: 1px solid var(--lc-border);
+  border-radius: 14px;
+  padding: .85rem .95rem;
+  background: var(--lc-card-bg);
+  color: var(--lc-text);
+  box-shadow: var(--lc-shadow);
+}
+.card h3 {
+  margin-top: 0;
+  font-size: 1rem;
+  color: var(--lc-accent-strong);
+}
+.card p {
+  margin-bottom: 0;
+  font-size: .92rem;
+  line-height: 1.45;
+  color: var(--lc-text);
+}
+.metric-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: .65rem;
+  margin: 1rem 0;
+}
+.metric {
+  border: 1px solid var(--lc-border);
+  border-radius: 14px;
+  padding: .75rem .85rem;
+  background: var(--lc-card-bg-soft);
+  color: var(--lc-text);
+}
+.metric strong {
+  display: block;
+  font-size: 1.1rem;
+  color: var(--lc-accent-strong);
+}
+.small-note {
+  color: var(--lc-muted);
+  font-size: .88rem;
+}
 </style>
 
 <div class="home-hero">
@@ -43,7 +138,7 @@ redirect_from:
     <span class="pill">Quantum–HPC</span>
     <span class="pill">Photonic quantum computing</span>
     <span class="pill">Quantum benchmarking</span>
-    <span class="pill">Room-temperature quantum devices</span>
+    <span class="pill">Practical quantum sensing technologies</span>
   </div>
 </div>
 
@@ -76,8 +171,8 @@ My research sits at the interface of quantum information science, theoretical co
     <p>Tensor-network simulation, large-qubit QML validation, compiler-aware metrics, application-driven benchmarks, and performance evaluation across quantum and classical resources.</p>
   </div>
   <div class="card">
-    <h3>Quantum devices and interfaces</h3>
-    <p>Room-temperature molecular spin systems, microwave readout, spin–acoustic resonance, and hybrid spin–photon–phonon platforms for quantum sensing and information processing.</p>
+    <h3>Practical quantum sensing technologies</h3>
+    <p>Molecular spin systems, microwave readout, optically detected spin–acoustic resonance, and hybrid spin–photon–phonon interfaces for deployable sensing-oriented quantum technologies.</p>
   </div>
 </div>
 
@@ -101,7 +196,7 @@ My research sits at the interface of quantum information science, theoretical co
 
 See the full [publications list](/publications/) and [CV](/cv/).
 
-## Contact
+## Contact {#contact}
 
 **Dr Kuan-Cheng (Louis) Chen**  
 Department of Electrical and Electronic Engineering, Imperial College London  
