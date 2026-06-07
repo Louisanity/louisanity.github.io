@@ -2,11 +2,65 @@
 layout: archive
 title: "Teaching"
 permalink: /teaching/
-author_profile: true
+author_profile: false
+classes: wide
 ---
 
 {% include base_path %}
 
-{% for post in site.teaching reversed %}
-  {% include archive-single.html %}
-{% endfor %}
+<div class="lc-modern-page lc-teaching-page">
+  <section class="lc-page-hero" aria-label="Teaching introduction">
+    <div class="lc-page-hero-copy">
+      <div class="lc-eyebrow"><span class="lc-status-dot"></span> Teaching · mentorship · supervision</div>
+      <h1>Teaching</h1>
+      <p>
+        Teaching and mentoring activities in quantum engineering, quantum information, quantum algorithms, quantum machine learning, and research software development, with an emphasis on translating advanced theory into practical computational workflows.
+      </p>
+      <div class="lc-cta-row">
+        <a class="lc-button" href="{{ '/cv/' | relative_url }}">View CV</a>
+        <a class="lc-button-secondary" href="{{ '/talks/' | relative_url }}">Talks</a>
+        <a class="lc-button-secondary" href="{{ '/#contact' | relative_url }}">Contact</a>
+      </div>
+    </div>
+    <div class="lc-page-hero-panel" aria-label="Teaching focus">
+      <div class="lc-panel-stat"><strong>Quantum</strong><span>algorithms and information</span></div>
+      <div class="lc-panel-stat"><strong>QML</strong><span>learning models and kernels</span></div>
+      <div class="lc-panel-stat"><strong>Software</strong><span>research code and workflows</span></div>
+    </div>
+  </section>
+
+  <section class="lc-section">
+    <span class="lc-section-kicker">Teaching profile</span>
+    <h2>Focus areas</h2>
+    <div class="lc-feature-grid">
+      <article class="lc-info-card">
+        <h3>Quantum engineering and algorithms</h3>
+        <p>Graduate-level and research-oriented material spanning quantum information, circuit models, compilation, distributed quantum systems, and early fault-tolerant workflows.</p>
+      </article>
+      <article class="lc-info-card">
+        <h3>Quantum machine learning and quantum-HPC</h3>
+        <p>Hands-on teaching and mentoring around quantum kernels, quantum neural networks, tensor-network simulation, benchmarking, and reproducible research software.</p>
+      </article>
+      <article class="lc-info-card">
+        <h3>Research mentorship</h3>
+        <p>Mentorship for students and early-career researchers developing projects at the interface of quantum computing, high-performance computing, and applied AI.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="lc-section">
+    <div class="lc-section-head">
+      <div>
+        <span class="lc-section-kicker">Archive</span>
+        <h2>Teaching activities</h2>
+      </div>
+      <p class="lc-section-note">Automatically rendered from the Jekyll teaching collection.</p>
+    </div>
+
+    <div class="lc-archive-list lc-teaching-list">
+      {% for post in site.teaching reversed %}
+        {% include archive-single.html %}
+      {% endfor %}
+    </div>
+  </section>
+</div>
