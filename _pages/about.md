@@ -10,19 +10,55 @@ redirect_from:
 ---
 
 <style>
-  /* Homepage copy and profile-card refinement. */
+  /* Homepage profile-card refinement. */
   .lc-home-refined .lc-display-title + .lc-lede {
     margin-top: clamp(1.45rem, 2.4vw, 2.05rem);
   }
 
+  /* Hide the old pseudo-element badge to avoid CSS escape rendering issues. */
   .lc-home-refined .lc-identity-card::before {
-    content: "Global R\0026D \2022  Policy-Making" !important;
+    content: none !important;
+    display: none !important;
+  }
+
+  .lc-home-refined .lc-portrait-wrap {
+    position: relative;
+  }
+
+  .lc-home-refined .lc-photo-badge {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+    border: 1px solid rgba(255,255,255,0.56);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.84);
+    color: #111827;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    padding: 0.42rem 0.68rem;
+    font-size: 0.70rem;
+    font-weight: 950;
+    letter-spacing: 0.055em;
+    line-height: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  html[data-theme="dark"] .lc-home-refined .lc-photo-badge {
+    background: rgba(25,27,32,0.78);
+    color: var(--lc-heading);
+    border-color: rgba(184,199,255,0.25);
   }
 
   .lc-home-refined .lc-identity-title {
     display: inline-flex;
     width: fit-content;
-    margin: 0.62rem 0 0.58rem;
+    margin: 0.62rem 0 0.38rem;
     border: 1px solid var(--lc-border);
     border-radius: 999px;
     background: var(--lc-blue-soft);
@@ -35,19 +71,43 @@ redirect_from:
     text-transform: uppercase;
   }
 
-  .lc-home-refined .lc-identity-role,
-  .lc-home-refined .lc-identity-affiliation {
-    margin-top: 0.38rem;
-  }
-
-  .lc-home-refined .lc-identity-role {
+  .lc-home-refined .lc-identity-subrole {
+    margin: 0.1rem 0 0.78rem;
     color: var(--lc-heading);
     font-weight: 850;
+    line-height: 1.35;
   }
 
-  .lc-home-refined .lc-identity-affiliation {
+  .lc-home-refined .lc-affiliation-stack {
+    display: grid;
+    gap: 0.48rem;
+    margin: 0.2rem 0 1rem;
+  }
+
+  .lc-home-refined .lc-affiliation-item {
+    display: flex;
+    align-items: center;
+    gap: 0.58rem;
     color: var(--lc-muted);
-    font-weight: 760;
+    font-weight: 820;
+    line-height: 1.25;
+  }
+
+  .lc-home-refined .lc-affiliation-flag {
+    display: inline-grid;
+    place-items: center;
+    width: 1.72rem;
+    height: 1.72rem;
+    border-radius: 999px;
+    border: 1px solid var(--lc-border);
+    background: var(--lc-surface);
+    box-shadow: 0 8px 22px rgba(15,23,42,0.045);
+    font-size: 0.95rem;
+    flex: 0 0 auto;
+  }
+
+  html[data-theme="dark"] .lc-home-refined .lc-affiliation-flag {
+    box-shadow: 0 8px 22px rgba(0,0,0,0.20);
   }
 
   .lc-home-refined .lc-mini-card span {
@@ -62,6 +122,14 @@ redirect_from:
   @media (max-width: 520px) {
     .lc-home-refined .lc-display-title + .lc-lede {
       margin-top: 1.15rem;
+    }
+
+    .lc-home-refined .lc-photo-badge {
+      left: 0.75rem;
+      top: 0.75rem;
+      max-width: calc(100% - 1.5rem);
+      font-size: 0.62rem;
+      padding: 0.36rem 0.55rem;
     }
   }
 </style>
@@ -84,6 +152,7 @@ redirect_from:
 
       <aside class="lc-identity-card" aria-label="Researcher profile">
         <div class="lc-portrait-wrap">
+          <div class="lc-photo-badge">Global R&amp;D · Policy-Making</div>
           <picture>
             <source srcset="{{ '/images/louis-profile-gtc.webp' | relative_url }}" type="image/webp">
             <img class="lc-portrait" src="{{ '/images/louis-profile-gtc.jpg' | relative_url }}" alt="Portrait of Dr Kuan-Cheng Louis Chen at NVIDIA GTC">
@@ -92,8 +161,13 @@ redirect_from:
 
         <h2 class="lc-identity-name">Dr Kuan-Cheng (Louis) Chen</h2>
         <div class="lc-identity-title">Quantum AI Scientist</div>
-        <p class="lc-identity-role">Research Associate · Guest Lecturer · Global R&amp;D Manager</p>
-        <p class="lc-identity-affiliation">Imperial QuEST · Electrical and Electronic Engineering · JIJ Europe</p>
+        <p class="lc-identity-subrole">Guest Lecturer</p>
+
+        <div class="lc-affiliation-stack" aria-label="Affiliations">
+          <div class="lc-affiliation-item"><span class="lc-affiliation-flag">🇯🇵</span><span>JIJ Europe</span></div>
+          <div class="lc-affiliation-item"><span class="lc-affiliation-flag">🇶🇦</span><span>HBKU QC2</span></div>
+          <div class="lc-affiliation-item"><span class="lc-affiliation-flag">🇬🇧</span><span>Imperial QuEST</span></div>
+        </div>
 
         <div class="lc-identity-links">
           <a href="mailto:kuan-cheng.chen17@imperial.ac.uk">Email</a>
