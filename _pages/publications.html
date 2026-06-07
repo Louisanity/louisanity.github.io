@@ -10,17 +10,17 @@ classes: wide lc-interior-shell
 {% assign scholar = site.data.scholar %}
 {% assign scholar_profile = scholar.profile_url | default: "https://scholar.google.com/citations?user=KoUPm0MAAAAJ&hl=en" %}
 
-{% assign total_cites = scholar.metrics.citations.all | default: 793 %}
-{% assign since_cites = scholar.metrics.citations.since_2021 | default: 791 %}
-{% assign h_index = scholar.metrics.h_index.all | default: 18 %}
-{% assign i10_index = scholar.metrics.i10_index.all | default: 25 %}
+{% assign total_cites = scholar.metrics.citations.all | default: 793 | plus: 0 %}
+{% assign since_cites = scholar.metrics.citations.since_2021 | default: 791 | plus: 0 %}
+{% assign h_index = scholar.metrics.h_index.all | default: 18 | plus: 0 %}
+{% assign i10_index = scholar.metrics.i10_index.all | default: 25 | plus: 0 %}
 {% assign last_updated = scholar.last_updated | default: "2026-06-07" %}
 
-{% assign y2022 = 0 | plus: 0 %}
-{% assign y2023 = 0 | plus: 0 %}
-{% assign y2024 = 0 | plus: 0 %}
-{% assign y2025 = 0 | plus: 0 %}
-{% assign y2026 = 0 | plus: 0 %}
+{% assign y2022 = 0 %}
+{% assign y2023 = 0 %}
+{% assign y2024 = 0 %}
+{% assign y2025 = 0 %}
+{% assign y2026 = 0 %}
 
 {% if scholar.yearly_citations %}
   {% assign y2022 = scholar.yearly_citations["2022"] | default: 0 | plus: 0 %}
