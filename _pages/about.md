@@ -55,10 +55,19 @@ redirect_from:
     border-color: rgba(184,199,255,0.25);
   }
 
-  .lc-home-refined .lc-identity-title {
+  .lc-home-refined .lc-identity-role-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.48rem;
+    margin: 0.62rem 0 0.88rem;
+  }
+
+  .lc-home-refined .lc-identity-title,
+  .lc-home-refined .lc-identity-title-secondary {
     display: inline-flex;
     width: fit-content;
-    margin: 0.62rem 0 0.38rem;
+    align-items: center;
+    justify-content: center;
     border: 1px solid var(--lc-border);
     border-radius: 999px;
     background: var(--lc-blue-soft);
@@ -71,11 +80,8 @@ redirect_from:
     text-transform: uppercase;
   }
 
-  .lc-home-refined .lc-identity-subrole {
-    margin: 0.1rem 0 0.78rem;
-    color: var(--lc-heading);
-    font-weight: 850;
-    line-height: 1.35;
+  .lc-home-refined .lc-identity-title-secondary {
+    background: var(--lc-surface);
   }
 
   .lc-home-refined .lc-affiliation-stack {
@@ -160,8 +166,11 @@ redirect_from:
         </div>
 
         <h2 class="lc-identity-name">Dr Kuan-Cheng (Louis) Chen</h2>
-        <div class="lc-identity-title">Quantum AI Scientist</div>
-        <p class="lc-identity-subrole">Guest Lecturer</p>
+
+        <div class="lc-identity-role-pills" aria-label="Professional identity">
+          <div class="lc-identity-title">Quantum AI Scientist</div>
+          <div class="lc-identity-title-secondary">Guest Lecturer</div>
+        </div>
 
         <div class="lc-affiliation-stack" aria-label="Affiliations">
           <div class="lc-affiliation-item"><span class="lc-affiliation-flag">🇯🇵</span><span>JIJ Europe</span></div>
