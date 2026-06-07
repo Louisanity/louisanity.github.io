@@ -8,65 +8,169 @@ classes: wide lc-interior-shell
 
 {% include base_path %}
 {% assign scholar = site.data.scholar %}
+{% assign scholar_profile = scholar.profile_url | default: "https://scholar.google.com/citations?user=KoUPm0MAAAAJ&hl=en" %}
+
+{% assign total_cites = scholar.metrics.citations.all | default: 793 %}
+{% assign since_cites = scholar.metrics.citations.since_2021 | default: 791 %}
+{% assign h_index = scholar.metrics.h_index.all | default: 18 %}
+{% assign i10_index = scholar.metrics.i10_index.all | default: 25 %}
+{% assign last_updated = scholar.last_updated | default: "2026-06-07" %}
+
+{% assign y2022 = 0 | plus: 0 %}
+{% assign y2023 = 0 | plus: 0 %}
+{% assign y2024 = 0 | plus: 0 %}
+{% assign y2025 = 0 | plus: 0 %}
+{% assign y2026 = 0 | plus: 0 %}
+
+{% if scholar.yearly_citations %}
+  {% assign y2022 = scholar.yearly_citations["2022"] | default: 0 | plus: 0 %}
+  {% assign y2023 = scholar.yearly_citations["2023"] | default: 0 | plus: 0 %}
+  {% assign y2024 = scholar.yearly_citations["2024"] | default: 0 | plus: 0 %}
+  {% assign y2025 = scholar.yearly_citations["2025"] | default: 0 | plus: 0 %}
+  {% assign y2026 = scholar.yearly_citations["2026"] | default: 0 | plus: 0 %}
+{% elsif scholar.yearly %}
+  {% for point in scholar.yearly %}
+    {% assign point_year = point.year | append: "" %}
+    {% assign point_cites = point.citations | default: 0 | plus: 0 %}
+
+    {% if point_year == "2022" %}
+      {% assign y2022 = point_cites %}
+    {% elsif point_year == "2023" %}
+      {% assign y2023 = point_cites %}
+    {% elsif point_year == "2024" %}
+      {% assign y2024 = point_cites %}
+    {% elsif point_year == "2025" %}
+      {% assign y2025 = point_cites %}
+    {% elsif point_year == "2026" %}
+      {% assign y2026 = point_cites %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% assign max_cites = y2022 %}
+{% if y2023 > max_cites %}{% assign max_cites = y2023 %}{% endif %}
+{% if y2024 > max_cites %}{% assign max_cites = y2024 %}{% endif %}
+{% if y2025 > max_cites %}{% assign max_cites = y2025 %}{% endif %}
+{% if y2026 > max_cites %}{% assign max_cites = y2026 %}{% endif %}
+{% if max_cites == 0 %}{% assign max_cites = 1 %}{% endif %}
+
+{% assign h2022 = y2022 | times: 100.0 | divided_by: max_cites %}
+{% assign h2023 = y2023 | times: 100.0 | divided_by: max_cites %}
+{% assign h2024 = y2024 | times: 100.0 | divided_by: max_cites %}
+{% assign h2025 = y2025 | times: 100.0 | divided_by: max_cites %}
+{% assign h2026 = y2026 | times: 100.0 | divided_by: max_cites %}
+
+{% if y2022 > 0 and h2022 < 3 %}{% assign h2022 = 3 %}{% endif %}
+{% if y2023 > 0 and h2023 < 3 %}{% assign h2023 = 3 %}{% endif %}
+{% if y2024 > 0 and h2024 < 3 %}{% assign h2024 = 3 %}{% endif %}
+{% if y2025 > 0 and h2025 < 3 %}{% assign h2025 = 3 %}{% endif %}
+{% if y2026 > 0 and h2026 < 3 %}{% assign h2026 = 3 %}{% endif %}
 
 <style>
-  .page__title, .archive__subtitle { display: none !important; }
+  .page__title,
+  .archive__subtitle {
+    display: none !important;
+  }
 </style>
 
 <div class="lc-modern-page lc-publications-page lc-interior-page">
   <section class="lc-page-hero lc-page-hero-compact lc-scholar-hero" aria-label="Publications introduction">
     <div class="lc-page-hero-copy">
-      <div class="lc-eyebrow"><span class="lc-status-dot"></span> Research outputs</div>
+      <div class="lc-eyebrow">
+        <span class="lc-status-dot"></span>
+        Research outputs
+      </div>
+
       <h1>Publications &amp; selected outputs</h1>
+
       <p>
-        Journal articles, conference papers, preprints, and applied research outputs spanning distributed quantum computing, quantum machine learning, photonic quantum computing, quantum-HPC benchmarking, and practical quantum sensing technologies.
+        Journal articles, conference papers, preprints, and applied research outputs spanning distributed quantum computing,
+        quantum machine learning, photonic quantum computing, quantum-HPC benchmarking, and practical quantum sensing technologies.
       </p>
+
       <div class="lc-cta-row lc-cta-row-compact">
-        <a class="lc-button" href="{{ scholar.profile_url | default: site.author.googlescholar }}">Google Scholar</a>
+        <a class="lc-button" href="{{ scholar_profile }}" target="_blank" rel="noopener">Google Scholar</a>
         <a class="lc-button-secondary" href="{{ '/research/' | relative_url }}">Research themes</a>
         <a class="lc-button-secondary" href="{{ '/cv/' | relative_url }}">CV</a>
       </div>
     </div>
 
-    <aside class="lc-scholar-panel" aria-label="Google Scholar citation metrics">
+    <aside class="lc-scholar-panel lc-scholar-panel-charted" aria-label="Google Scholar citation metrics">
       <div class="lc-scholar-panel-head">
-        <span>Google Scholar</span>
-        <a href="{{ scholar.profile_url }}">Live profile</a>
-      </div>
-
-      <div class="lc-scholar-primary">
-        <strong>{{ scholar.metrics.citations.all }}</strong>
-        <span>Citations</span>
-      </div>
-
-      <div class="lc-scholar-stat-row">
         <div>
-          <strong>{{ scholar.metrics.h_index.all }}</strong>
+          <span class="lc-scholar-kicker">Google Scholar</span>
+          <h2>Citation metrics</h2>
+        </div>
+        <a href="{{ scholar_profile }}" target="_blank" rel="noopener">Live profile</a>
+      </div>
+
+      <div class="lc-scholar-metrics-grid">
+        <div class="lc-scholar-metric lc-scholar-metric-primary">
+          <strong>{{ total_cites }}</strong>
+          <span>Citations</span>
+        </div>
+
+        <div class="lc-scholar-metric">
+          <strong>{{ h_index }}</strong>
           <span>h-index</span>
         </div>
-        <div>
-          <strong>{{ scholar.metrics.i10_index.all }}</strong>
+
+        <div class="lc-scholar-metric">
+          <strong>{{ i10_index }}</strong>
           <span>i10-index</span>
         </div>
       </div>
 
-      {% assign max_cites = scholar.chart_max | default: 500 %}
-      <div class="lc-scholar-chart" role="img" aria-label="Google Scholar citations by year">
-        {% for point in scholar.yearly %}
-          {% assign bar_height = point.citations | times: 100 | divided_by: max_cites %}
-          {% if point.citations > 0 and bar_height < 3 %}
-            {% assign bar_height = 3 %}
-          {% endif %}
-          <div class="lc-scholar-bar-wrap">
-            <div class="lc-scholar-bar" style="height: {{ bar_height }}%;" title="{{ point.year }}: {{ point.citations }} citations"></div>
-            <span>{{ point.year }}</span>
+      <div class="lc-scholar-chart-head">
+        <span>Citations by year</span>
+        <small>2022–2026</small>
+      </div>
+
+      <div class="lc-scholar-chart" role="img" aria-label="Google Scholar citations by year from 2022 to 2026">
+        <div class="lc-scholar-bar-wrap">
+          <span class="lc-scholar-bar-value">{{ y2022 }}</span>
+          <div class="lc-scholar-bar-track">
+            <div class="lc-scholar-bar" style="height: {{ h2022 }}%;" title="2022: {{ y2022 }} citations"></div>
           </div>
-        {% endfor %}
+          <span class="lc-scholar-bar-year">2022</span>
+        </div>
+
+        <div class="lc-scholar-bar-wrap">
+          <span class="lc-scholar-bar-value">{{ y2023 }}</span>
+          <div class="lc-scholar-bar-track">
+            <div class="lc-scholar-bar" style="height: {{ h2023 }}%;" title="2023: {{ y2023 }} citations"></div>
+          </div>
+          <span class="lc-scholar-bar-year">2023</span>
+        </div>
+
+        <div class="lc-scholar-bar-wrap">
+          <span class="lc-scholar-bar-value">{{ y2024 }}</span>
+          <div class="lc-scholar-bar-track">
+            <div class="lc-scholar-bar" style="height: {{ h2024 }}%;" title="2024: {{ y2024 }} citations"></div>
+          </div>
+          <span class="lc-scholar-bar-year">2024</span>
+        </div>
+
+        <div class="lc-scholar-bar-wrap">
+          <span class="lc-scholar-bar-value">{{ y2025 }}</span>
+          <div class="lc-scholar-bar-track">
+            <div class="lc-scholar-bar" style="height: {{ h2025 }}%;" title="2025: {{ y2025 }} citations"></div>
+          </div>
+          <span class="lc-scholar-bar-year">2025</span>
+        </div>
+
+        <div class="lc-scholar-bar-wrap">
+          <span class="lc-scholar-bar-value">{{ y2026 }}</span>
+          <div class="lc-scholar-bar-track">
+            <div class="lc-scholar-bar" style="height: {{ h2026 }}%;" title="2026: {{ y2026 }} citations"></div>
+          </div>
+          <span class="lc-scholar-bar-year">2026</span>
+        </div>
       </div>
 
       <div class="lc-scholar-foot">
-        <span>Since 2021: {{ scholar.metrics.citations.since_2021 }} citations</span>
-        <span>Updated {{ scholar.last_updated }}</span>
+        <span>Since 2021: {{ since_cites }} citations</span>
+        <span>Updated {{ last_updated }}</span>
       </div>
     </aside>
   </section>
@@ -83,16 +187,19 @@ classes: wide lc-interior-shell
       {% if site.publication_category %}
         {% for category in site.publication_category %}
           {% assign title_shown = false %}
+
           {% for post in site.publications reversed %}
             {% if post.category != category[0] %}
               {% continue %}
             {% endif %}
+
             {% unless title_shown %}
               <div class="lc-archive-group-title">
                 <h3>{{ category[1].title }}</h3>
               </div>
               {% assign title_shown = true %}
             {% endunless %}
+
             {% include archive-single.html %}
           {% endfor %}
         {% endfor %}
