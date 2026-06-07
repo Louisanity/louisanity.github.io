@@ -1,0 +1,148 @@
+/* Header transparency hotfix.
+   Removes rectangular boxes from AcademicPages / Minimal Mistakes navigation
+   while preserving the modern glass header style. */
+
+.masthead {
+  background: rgba(255, 255, 255, 0.72) !important;
+  border-bottom: 1px solid rgba(17, 24, 39, 0.08) !important;
+  box-shadow: 0 10px 36px rgba(15, 23, 42, 0.045) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+  backdrop-filter: blur(18px) saturate(1.15);
+}
+
+html[data-theme="dark"] .masthead,
+html.dark .masthead,
+body.dark .masthead {
+  background: rgba(31, 33, 37, 0.72) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.26) !important;
+}
+
+.masthead__inner-wrap,
+.greedy-nav,
+.greedy-nav .visible-links,
+.greedy-nav .hidden-links,
+.greedy-nav ul,
+.greedy-nav li {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+/* Remove the block/rectangle look from normal nav items. */
+.greedy-nav .site-title,
+.greedy-nav .visible-links a,
+.greedy-nav .hidden-links a,
+.masthead a,
+.masthead .site-title {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  outline: 0 !important;
+}
+
+/* Keep the nav clean by default; use only a subtle hover pill. */
+.greedy-nav .visible-links a,
+.greedy-nav .hidden-links a {
+  border-radius: 999px !important;
+  color: var(--lc-text, var(--global-text-color, #333942)) !important;
+  font-weight: 820 !important;
+  text-decoration: none !important;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.greedy-nav .site-title {
+  color: var(--lc-heading, var(--global-text-color, #333942)) !important;
+  font-weight: 900 !important;
+}
+
+.greedy-nav .visible-links a:hover,
+.greedy-nav .hidden-links a:hover {
+  background: var(--lc-blue-soft, rgba(0, 0, 205, 0.09)) !important;
+  color: var(--lc-blue, #0000CD) !important;
+  transform: translateY(-1px);
+}
+
+/* Prevent active/current page states from becoming dark rectangular blocks. */
+.greedy-nav .visible-links .active a,
+.greedy-nav .visible-links a.active,
+.greedy-nav .visible-links li.active,
+.greedy-nav .current,
+.greedy-nav .current-menu-item,
+.greedy-nav .active {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+.greedy-nav .visible-links .active a,
+.greedy-nav .visible-links a.active,
+.greedy-nav .current a,
+.greedy-nav .current-menu-item a {
+  color: var(--lc-blue, #0000CD) !important;
+}
+
+/* Keep icon buttons as circular controls rather than rectangular tabs. */
+.greedy-nav button,
+.greedy-nav .greedy-nav__toggle,
+.greedy-nav .search__toggle,
+.greedy-nav .theme-toggle,
+.masthead button {
+  border-radius: 999px !important;
+  border: 1px solid var(--lc-border, rgba(0, 0, 205, 0.14)) !important;
+  background: rgba(255, 255, 255, 0.52) !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] .greedy-nav button,
+html[data-theme="dark"] .greedy-nav .greedy-nav__toggle,
+html[data-theme="dark"] .greedy-nav .search__toggle,
+html[data-theme="dark"] .greedy-nav .theme-toggle,
+html[data-theme="dark"] .masthead button,
+html.dark .greedy-nav button,
+html.dark .greedy-nav .theme-toggle,
+body.dark .greedy-nav button,
+body.dark .greedy-nav .theme-toggle {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(184, 199, 255, 0.20) !important;
+  color: var(--lc-heading, #f5f7fb) !important;
+}
+
+.greedy-nav button:hover,
+.greedy-nav .theme-toggle:hover,
+.masthead button:hover {
+  background: var(--lc-blue-soft, rgba(0, 0, 205, 0.09)) !important;
+  color: var(--lc-blue, #0000CD) !important;
+}
+
+/* Remove Minimal Mistakes underline pseudo-elements if they appear. */
+.greedy-nav a::before,
+.greedy-nav a::after,
+.masthead a::before,
+.masthead a::after {
+  display: none !important;
+}
+
+/* Mobile dropdown should remain readable but not blocky. */
+.greedy-nav .hidden-links {
+  border: 1px solid var(--lc-border, rgba(0, 0, 205, 0.14)) !important;
+  border-radius: 18px !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.12) !important;
+  overflow: hidden;
+}
+
+html[data-theme="dark"] .greedy-nav .hidden-links,
+html.dark .greedy-nav .hidden-links,
+body.dark .greedy-nav .hidden-links {
+  background: rgba(31, 33, 37, 0.96) !important;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.30) !important;
+}
+
+.greedy-nav .hidden-links li,
+.greedy-nav .hidden-links a {
+  background: transparent !important;
+}
