@@ -3,37 +3,476 @@ layout: archive
 title: "Research"
 permalink: /research/
 author_profile: false
-classes: wide
+classes: wide lc-interior-shell
 redirect_from:
   - /Research/
 ---
 
 {% include base_path %}
 
-<div class="lc-modern-page">
-  <section class="lc-research-hero">
-    <span class="lc-section-kicker">Research portfolio</span>
-    <h1>Research</h1>
-    <p>
-      My work develops quantum algorithms, distributed quantum-computing systems, quantum machine learning workflows, quantum-HPC benchmarking methods, and practical quantum sensing technologies. The common objective is to move quantum technologies from isolated proof-of-principle demonstrations toward scalable, benchmarked, and deployable computational systems.
+<style>
+  .page__title,
+  .archive__subtitle {
+    display: none !important;
+  }
+
+  /* Research page visual theme cards.
+     This page expects the six banner figures below to exist in /images/.
+     dqc-research.png, qml-research.png, qhpc-research.png,
+     pqc-research.png, qalgo-research.png, qsense-research.png */
+  .lc-research-visual-page {
+    width: min(1120px, calc(100vw - 2rem));
+    margin-inline: auto;
+  }
+
+  .lc-research-visual-page .lc-page-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 0.30fr);
+  }
+
+  .lc-research-overview-metrics {
+    display: grid;
+    gap: 0.58rem;
+    align-content: center;
+  }
+
+  .lc-research-overview-metrics > div {
+    border: 1px solid var(--lc-border);
+    border-radius: 18px;
+    background: rgba(255,255,255,0.56);
+    padding: 0.78rem 0.82rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  html[data-theme="dark"] .lc-research-overview-metrics > div {
+    background: rgba(255,255,255,0.035);
+  }
+
+  .lc-research-overview-metrics strong {
+    display: block;
+    color: var(--lc-blue);
+    font-size: clamp(1.1rem, 1.7vw, 1.35rem);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    font-weight: 950;
+  }
+
+  .lc-research-overview-metrics span {
+    display: block;
+    color: var(--lc-muted);
+    font-size: 0.78rem;
+    line-height: 1.35;
+    font-weight: 760;
+    margin-top: 0.28rem;
+  }
+
+  .lc-research-visual-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(0.9rem, 2vw, 1.15rem);
+  }
+
+  .lc-research-visual-card {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    border: 1px solid var(--lc-border);
+    border-radius: 28px;
+    background:
+      radial-gradient(circle at 12% 10%, var(--lc-blue-soft), transparent 32%),
+      linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.96));
+    box-shadow: var(--lc-shadow-card);
+    text-decoration: none !important;
+    color: inherit !important;
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      background-color 180ms ease;
+  }
+
+  html[data-theme="dark"] .lc-research-visual-card {
+    background:
+      radial-gradient(circle at 12% 10%, rgba(184,199,255,0.13), transparent 32%),
+      linear-gradient(180deg, rgba(31,33,37,0.78), rgba(31,33,37,0.96));
+  }
+
+  .lc-research-visual-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(var(--lc-border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--lc-border) 1px, transparent 1px);
+    background-size: 46px 46px;
+    -webkit-mask-image: radial-gradient(circle at 86% 0%, black, transparent 62%);
+    mask-image: radial-gradient(circle at 86% 0%, black, transparent 62%);
+    opacity: 0.16;
+  }
+
+  .lc-research-visual-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--lc-border-strong);
+    box-shadow: var(--lc-shadow-soft);
+  }
+
+  .lc-research-visual-card:hover .lc-research-card-image img {
+    transform: scale(1.025);
+  }
+
+  .lc-research-card-image {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3 / 1;
+    margin: 0.8rem 0.8rem 0;
+    border: 1px solid var(--lc-border);
+    border-radius: 20px;
+    background:
+      linear-gradient(135deg, var(--lc-blue-soft), transparent 46%),
+      var(--lc-surface-2);
+  }
+
+  .lc-research-card-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 260ms ease;
+  }
+
+  .lc-research-card-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(0,0,205,0.12), transparent 45%),
+      linear-gradient(180deg, transparent 52%, rgba(0,0,0,0.12));
+    opacity: 0.72;
+  }
+
+  html[data-theme="dark"] .lc-research-card-image::after {
+    background:
+      linear-gradient(90deg, rgba(184,199,255,0.13), transparent 45%),
+      linear-gradient(180deg, transparent 52%, rgba(0,0,0,0.28));
+  }
+
+  .lc-research-card-index {
+    position: absolute;
+    left: 0.85rem;
+    top: 0.85rem;
+    z-index: 2;
+    display: inline-grid;
+    place-items: center;
+    width: 2.28rem;
+    height: 2.28rem;
+    border-radius: 0.9rem;
+    background: var(--lc-blue);
+    color: #fff;
+    font-size: 0.76rem;
+    font-weight: 950;
+    line-height: 1;
+    box-shadow: 0 14px 30px rgba(0, 0, 205, 0.22);
+  }
+
+  html[data-theme="dark"] .lc-research-card-index {
+    color: #111827;
+    box-shadow: 0 14px 30px rgba(184, 199, 255, 0.14);
+  }
+
+  .lc-research-card-body {
+    position: relative;
+    z-index: 1;
+    padding: 1rem 1.05rem 1.08rem;
+  }
+
+  .lc-research-card-body h3 {
+    margin: 0;
+    color: var(--lc-heading);
+    font-size: clamp(1.05rem, 1.45vw, 1.24rem);
+    line-height: 1.16;
+    letter-spacing: -0.035em;
+    font-weight: 950;
+  }
+
+  .lc-research-card-body p {
+    margin: 0.56rem 0 0;
+    color: var(--lc-muted);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    font-weight: 620;
+  }
+
+  .lc-research-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 0.82rem;
+  }
+
+  .lc-research-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.38rem;
+  }
+
+  .lc-research-card-tags span {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--lc-border);
+    border-radius: 999px;
+    background: var(--lc-surface);
+    color: var(--lc-blue);
+    padding: 0.25rem 0.46rem;
+    font-size: 0.68rem;
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: 0.02em;
+  }
+
+  .lc-research-card-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.05rem;
+    height: 2.05rem;
+    border-radius: 999px;
+    border: 1px solid var(--lc-border-strong);
+    background: var(--lc-surface);
+    color: var(--lc-blue);
+    font-weight: 950;
+    flex: 0 0 auto;
+    transition: transform 180ms ease, background-color 180ms ease;
+  }
+
+  .lc-research-visual-card:hover .lc-research-card-arrow {
+    transform: translateX(2px);
+    background: var(--lc-blue-soft);
+  }
+
+  .lc-research-note {
+    margin-top: 1rem;
+    border: 1px solid var(--lc-border);
+    border-radius: 22px;
+    background: rgba(255,255,255,0.52);
+    color: var(--lc-muted);
+    padding: 0.9rem 1rem;
+    line-height: 1.55;
+    font-size: 0.92rem;
+    font-weight: 660;
+  }
+
+  html[data-theme="dark"] .lc-research-note {
+    background: rgba(255,255,255,0.035);
+  }
+
+  @media (max-width: 980px) {
+    .lc-research-visual-page .lc-page-hero {
+      grid-template-columns: 1fr;
+    }
+
+    .lc-research-overview-metrics {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .lc-research-visual-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .lc-research-visual-page {
+      width: min(100%, calc(100vw - 1rem));
+    }
+
+    .lc-research-overview-metrics {
+      grid-template-columns: 1fr;
+    }
+
+    .lc-research-visual-card {
+      border-radius: 22px;
+    }
+
+    .lc-research-card-image {
+      margin: 0.65rem 0.65rem 0;
+      border-radius: 16px;
+    }
+
+    .lc-research-card-body {
+      padding: 0.9rem 0.86rem 0.95rem;
+    }
+
+    .lc-research-card-footer {
+      align-items: flex-start;
+    }
+  }
+</style>
+
+<div class="lc-modern-page lc-interior-page lc-research-visual-page">
+  <section class="lc-page-hero lc-page-hero-compact" aria-label="Research overview">
+    <div class="lc-page-hero-copy">
+      <div class="lc-eyebrow"><span class="lc-status-dot"></span> Research portfolio</div>
+      <h1>Research</h1>
+      <p>
+        My work develops quantum algorithms, distributed quantum-computing systems, quantum machine learning workflows,
+        quantum-HPC benchmarking methods, photonic quantum technologies, and practical quantum sensing techniques.
+        The common objective is to move quantum technologies from isolated proof-of-principle demonstrations toward
+        scalable, benchmarked, and deployable computational systems.
+      </p>
+      <div class="lc-cta-row lc-cta-row-compact">
+        <a class="lc-button" href="{{ '/publications/' | relative_url }}">View publications</a>
+        <a class="lc-button-secondary" href="{{ '/talks/' | relative_url }}">Talks</a>
+        <a class="lc-button-secondary" href="{{ '/cv/' | relative_url }}">CV</a>
+      </div>
+    </div>
+
+    <div class="lc-research-overview-metrics" aria-label="Research summary">
+      <div>
+        <strong>6</strong>
+        <span>research themes</span>
+      </div>
+      <div>
+        <strong>Quantum AI</strong>
+        <span>learning, kernels, and scientific AI</span>
+      </div>
+      <div>
+        <strong>DQC</strong>
+        <span>networked quantum architectures</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="lc-section" aria-labelledby="research-themes">
+    <div class="lc-section-head lc-section-head-compact">
+      <div>
+        <span class="lc-section-kicker">Themes</span>
+        <h2 id="research-themes">Six research directions</h2>
+      </div>
+    </div>
+
+    <div class="lc-research-visual-grid">
+      <a class="lc-research-visual-card" href="{{ '/research/distributed-quantum-computing/' | relative_url }}">
+        <figure class="lc-research-card-image">
+          <span class="lc-research-card-index">01</span>
+          <img src="{{ '/images/dqc-research.png' | relative_url }}" alt="Conceptual banner for distributed quantum computing">
+        </figure>
+        <div class="lc-research-card-body">
+          <h3>Distributed quantum computing</h3>
+          <p>Network-aware compilation, circuit partitioning, entanglement scheduling, and resource orchestration for modular quantum processors.</p>
+          <div class="lc-research-card-footer">
+            <div class="lc-research-card-tags">
+              <span>DQC</span>
+              <span>Networks</span>
+              <span>Compilation</span>
+            </div>
+            <span class="lc-research-card-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="lc-research-visual-card" href="{{ '/research/quantum-machine-learning/' | relative_url }}">
+        <figure class="lc-research-card-image">
+          <span class="lc-research-card-index">02</span>
+          <img src="{{ '/images/qml-research.png' | relative_url }}" alt="Conceptual banner for quantum machine learning">
+        </figure>
+        <div class="lc-research-card-body">
+          <h3>Quantum machine learning</h3>
+          <p>Quantum kernels, quantum neural networks, parameter-efficient learning, quantum knowledge distillation, and robust learning pipelines.</p>
+          <div class="lc-research-card-footer">
+            <div class="lc-research-card-tags">
+              <span>QML</span>
+              <span>Quantum AI</span>
+              <span>Kernels</span>
+            </div>
+            <span class="lc-research-card-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="lc-research-visual-card" href="{{ '/research/quantum-compilation-benchmarking/' | relative_url }}">
+        <figure class="lc-research-card-image">
+          <span class="lc-research-card-index">03</span>
+          <img src="{{ '/images/qhpc-research.png' | relative_url }}" alt="Conceptual banner for quantum-HPC and benchmarking">
+        </figure>
+        <div class="lc-research-card-body">
+          <h3>Quantum-HPC and benchmarking</h3>
+          <p>Tensor-network simulation, GPU-accelerated workflows, application-driven benchmarks, and system-level performance metrics.</p>
+          <div class="lc-research-card-footer">
+            <div class="lc-research-card-tags">
+              <span>Q-HPC</span>
+              <span>Simulation</span>
+              <span>Benchmarks</span>
+            </div>
+            <span class="lc-research-card-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="lc-research-visual-card" href="{{ '/research/photonic-quantum-computing/' | relative_url }}">
+        <figure class="lc-research-card-image">
+          <span class="lc-research-card-index">04</span>
+          <img src="{{ '/images/pqc-research.png' | relative_url }}" alt="Conceptual banner for photonic quantum computing">
+        </figure>
+        <div class="lc-research-card-body">
+          <h3>Photonic quantum computing</h3>
+          <p>Photonic processors, distributed photonic learning, optical neural-network models, and nonlinear photonic resources.</p>
+          <div class="lc-research-card-footer">
+            <div class="lc-research-card-tags">
+              <span>PQC</span>
+              <span>Photonics</span>
+              <span>QNNs</span>
+            </div>
+            <span class="lc-research-card-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="lc-research-visual-card" href="{{ '/research/quantum-algorithms-optimization/' | relative_url }}">
+        <figure class="lc-research-card-image">
+          <span class="lc-research-card-index">05</span>
+          <img src="{{ '/images/qalgo-research.png' | relative_url }}" alt="Conceptual banner for quantum algorithms and optimisation">
+        </figure>
+        <div class="lc-research-card-body">
+          <h3>Quantum algorithms for optimisation</h3>
+          <p>Hybrid quantum-classical optimisation for finance, power systems, wireless networks, and industrial decision problems.</p>
+          <div class="lc-research-card-footer">
+            <div class="lc-research-card-tags">
+              <span>Algorithms</span>
+              <span>Optimisation</span>
+              <span>Finance</span>
+            </div>
+            <span class="lc-research-card-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="lc-research-visual-card" href="{{ '/research/practical-quantum-sensing-technologies/' | relative_url }}">
+        <figure class="lc-research-card-image">
+          <span class="lc-research-card-index">06</span>
+          <img src="{{ '/images/qsense-research.png' | relative_url }}" alt="Conceptual banner for practical quantum sensing technologies">
+        </figure>
+        <div class="lc-research-card-body">
+          <h3>Practical quantum sensing technologies</h3>
+          <p>Spin-based sensing, optically detected resonance, microwave measurement, acoustic interfaces, and room-temperature molecular platforms.</p>
+          <div class="lc-research-card-footer">
+            <div class="lc-research-card-tags">
+              <span>Sensing</span>
+              <span>Spin</span>
+              <span>Acoustic</span>
+            </div>
+            <span class="lc-research-card-arrow">→</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <p class="lc-research-note">
+      Place the six 1:3 banner figures in <code>/images/</code> using the filenames
+      <code>dqc-research.png</code>, <code>qml-research.png</code>, <code>qhpc-research.png</code>,
+      <code>pqc-research.png</code>, <code>qalgo-research.png</code>, and <code>qsense-research.png</code>.
     </p>
   </section>
-
-  <div class="lc-research-grid">
-    <article class="lc-research-card"><span class="lc-index">01</span><h3>Distributed quantum computing</h3><p>Network-aware compilation, circuit partitioning, entanglement scheduling, and resource orchestration for modular quantum processors.</p></article>
-    <article class="lc-research-card"><span class="lc-index">02</span><h3>Quantum machine learning</h3><p>Quantum kernels, quantum neural networks, parameter-efficient learning, quantum knowledge distillation, and robust learning pipelines.</p></article>
-    <article class="lc-research-card"><span class="lc-index">03</span><h3>Quantum-HPC and benchmarking</h3><p>Tensor-network simulation, GPU-accelerated workflows, application-driven benchmarks, and system-level performance metrics.</p></article>
-    <article class="lc-research-card"><span class="lc-index">04</span><h3>Photonic quantum computing</h3><p>Photonic processors, distributed photonic learning, optical neural-network models, and nonlinear photonic resources.</p></article>
-    <article class="lc-research-card"><span class="lc-index">05</span><h3>Quantum algorithms for optimisation</h3><p>Hybrid quantum-classical optimisation for finance, power systems, wireless networks, and industrial decision problems.</p></article>
-    <article class="lc-research-card"><span class="lc-index">06</span><h3>Practical quantum sensing technologies</h3><p>Spin-based sensing, optically detected resonance, microwave measurement, acoustic interfaces, and room-temperature molecular platforms.</p></article>
-  </div>
-
-  <section class="lc-section">
-    <span class="lc-section-kicker">Archive</span>
-    <h2>Detailed project pages</h2>
-  </section>
 </div>
-
-{% for post in site.Research %}
-  {% include archive-single.html %}
-{% endfor %}
