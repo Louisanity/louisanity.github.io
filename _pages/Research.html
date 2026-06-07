@@ -9,19 +9,31 @@ redirect_from:
 ---
 
 {% include base_path %}
+
 <div class="lc-modern-page">
-  <section class="lc-research-hero" aria-label="Research overview">
-    <span class="lc-section-kicker">Research</span>
-    <h1>Hardware-aware quantum algorithms for networked and heterogeneous systems.</h1>
+  <section class="lc-research-hero">
+    <span class="lc-section-kicker">Research portfolio</span>
+    <h1>Research</h1>
     <p>
-      My research develops scalable methods for quantum computation beyond isolated devices. The central theme is <strong>hardware-aware quantum algorithms for networked quantum systems</strong>: distributed quantum computing, photonic quantum machine learning, quantum–HPC benchmarking, compiler/runtime co-design, and practical quantum sensing technologies with spin–acoustic interfaces.
-    </p>
-    <p>
-      The areas below connect algorithmic design with implementation constraints such as connectivity, noise, entanglement generation, qumode/qubit capacity, classical orchestration overhead, and benchmark reproducibility.
+      My work develops quantum algorithms, distributed quantum-computing systems, quantum machine learning workflows, quantum-HPC benchmarking methods, and practical quantum sensing technologies. The common objective is to move quantum technologies from isolated proof-of-principle demonstrations toward scalable, benchmarked, and deployable computational systems.
     </p>
   </section>
 
-  {% for post in site.Research %}
-    {% include archive-single.html %}
-  {% endfor %}
+  <div class="lc-research-grid">
+    <article class="lc-research-card"><span class="lc-index">01</span><h3>Distributed quantum computing</h3><p>Network-aware compilation, circuit partitioning, entanglement scheduling, and resource orchestration for modular quantum processors.</p></article>
+    <article class="lc-research-card"><span class="lc-index">02</span><h3>Quantum machine learning</h3><p>Quantum kernels, quantum neural networks, parameter-efficient learning, quantum knowledge distillation, and robust learning pipelines.</p></article>
+    <article class="lc-research-card"><span class="lc-index">03</span><h3>Quantum-HPC and benchmarking</h3><p>Tensor-network simulation, GPU-accelerated workflows, application-driven benchmarks, and system-level performance metrics.</p></article>
+    <article class="lc-research-card"><span class="lc-index">04</span><h3>Photonic quantum computing</h3><p>Photonic processors, distributed photonic learning, optical neural-network models, and nonlinear photonic resources.</p></article>
+    <article class="lc-research-card"><span class="lc-index">05</span><h3>Quantum algorithms for optimisation</h3><p>Hybrid quantum-classical optimisation for finance, power systems, wireless networks, and industrial decision problems.</p></article>
+    <article class="lc-research-card"><span class="lc-index">06</span><h3>Practical quantum sensing technologies</h3><p>Spin-based sensing, optically detected resonance, microwave measurement, acoustic interfaces, and room-temperature molecular platforms.</p></article>
+  </div>
+
+  <section class="lc-section">
+    <span class="lc-section-kicker">Archive</span>
+    <h2>Detailed project pages</h2>
+  </section>
 </div>
+
+{% for post in site.Research %}
+  {% include archive-single.html %}
+{% endfor %}
