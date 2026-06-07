@@ -1257,14 +1257,10 @@ html[data-theme="dark"] .lc-page-metrics > div {
 }
 
 /* -------------------------------------------------------------------------
-   Talks page: refined filtered 2D map.
+   Talks page: hovercard hotfix and layout refinement.
 ------------------------------------------------------------------------- */
 .lc-talks-page-premium {
   width: min(1080px, calc(100vw - 2rem));
-}
-
-.lc-page-metrics-talks > div strong {
-  font-size: clamp(1.08rem, 1.65vw, 1.38rem);
 }
 
 .lc-talk-map-card-filtered {
@@ -1366,16 +1362,6 @@ html[data-theme="dark"] .lc-talk-map-card-filtered {
 
 html[data-theme="dark"] .lc-talk-map-reset {
   background: rgba(31,33,37,0.74);
-}
-
-.lc-talk-map-reset:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
-  background: var(--lc-surface-2);
-}
-
-html[data-theme="dark"] .lc-talk-map-reset:hover {
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.20);
 }
 
 .lc-talk-filter-panel {
@@ -1520,59 +1506,75 @@ html[data-theme="dark"] .lc-talk-map-canvas {
   flex: 0 0 auto;
 }
 
+/* Hover card refinement */
 .lc-talk-map-hovercard {
   position: absolute;
   top: 0;
   left: 0;
   z-index: 800;
-  width: min(280px, calc(100% - 24px));
+  width: min(340px, calc(100% - 24px));
+  max-height: min(330px, calc(100% - 24px));
   pointer-events: none;
   opacity: 0;
   transition: opacity 140ms ease, transform 140ms ease;
   border: 1px solid var(--lc-border);
-  border-radius: 20px;
-  background: rgba(255,255,255,0.90);
-  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.14);
+  border-radius: 22px;
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.16);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  padding: 0.88rem 0.92rem;
+  overflow: hidden;
 }
 
 html[data-theme="dark"] .lc-talk-map-hovercard {
-  background: rgba(30,33,40,0.88);
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+  background: rgba(30,33,40,0.90);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.30);
 }
 
 .lc-talk-map-hovercard.is-visible { opacity: 1; }
 
+.lc-talk-hovercard-inner {
+  max-height: min(330px, calc(100vh - 220px));
+  overflow: auto;
+  padding: 1rem 1rem 0.95rem;
+}
+
+.lc-talk-hover-head {
+  padding-bottom: 0.72rem;
+  border-bottom: 1px solid var(--lc-border);
+}
+
 .lc-talk-hover-eyebrow {
   color: var(--lc-blue);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 950;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.36rem;
 }
 
 .lc-talk-map-hovercard h3 {
   margin: 0;
   color: var(--lc-heading);
-  font-size: 1rem;
-  line-height: 1.18;
+  font-size: 1.02rem;
+  line-height: 1.2;
   letter-spacing: -0.025em;
 }
 
 .lc-talk-map-hovercard p {
-  margin: 0.32rem 0 0;
+  margin: 0.35rem 0 0;
   color: var(--lc-muted);
-  font-size: 0.84rem;
+  font-size: 0.82rem;
   line-height: 1.4;
 }
 
-.lc-talk-hover-range {
-  margin-top: 0.54rem;
+.lc-talk-hover-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.72rem;
   color: var(--lc-muted);
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   line-height: 1.35;
   font-weight: 850;
 }
@@ -1582,44 +1584,64 @@ html[data-theme="dark"] .lc-talk-map-hovercard {
   margin: 0.72rem 0 0;
   padding: 0;
   display: grid;
-  gap: 0.46rem;
+  gap: 0.54rem;
 }
 
 .lc-talk-map-hovercard li {
   display: grid;
-  gap: 0.12rem;
-  padding-top: 0.46rem;
-  border-top: 1px solid var(--lc-border);
+  gap: 0.26rem;
+  padding: 0.72rem 0.78rem;
+  border: 1px solid var(--lc-border);
+  border-radius: 16px;
+  background: rgba(255,255,255,0.56);
 }
 
-.lc-talk-map-hovercard li:first-child {
-  padding-top: 0;
-  border-top: 0;
+html[data-theme="dark"] .lc-talk-map-hovercard li {
+  background: rgba(255,255,255,0.03);
 }
 
-.lc-talk-map-hovercard li strong {
+.lc-talk-hover-talkhead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.65rem;
+}
+
+.lc-talk-hover-talkhead strong {
   color: var(--lc-heading);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   line-height: 1.25;
   font-weight: 900;
 }
 
-.lc-talk-map-hovercard li span {
+.lc-talk-hover-talkhead time {
   color: var(--lc-muted);
-  font-size: 0.76rem;
-  line-height: 1.35;
+  font-size: 0.7rem;
+  line-height: 1.25;
+  font-weight: 820;
+  white-space: nowrap;
+}
+
+.lc-talk-hover-title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  color: var(--lc-muted);
+  font-size: 0.77rem;
+  line-height: 1.38;
 }
 
 .lc-talk-hover-award {
   display: inline-flex;
   align-items: center;
   width: fit-content;
-  margin-top: 0.16rem;
+  margin-top: 0.1rem;
   border-radius: 999px;
   background: rgba(182,123,0,0.10);
   color: #8a6200 !important;
   padding: 0.22rem 0.42rem;
-  font-size: 0.64rem !important;
+  font-size: 0.62rem !important;
   font-weight: 950 !important;
   line-height: 1 !important;
   text-transform: uppercase;
@@ -1632,11 +1654,11 @@ html[data-theme="dark"] .lc-talk-hover-award {
 }
 
 .lc-talk-hover-more {
-  margin-top: 0.6rem;
+  margin-top: 0.65rem;
   color: var(--lc-muted);
-  font-size: 0.74rem;
+  font-size: 0.73rem;
   line-height: 1.35;
-  font-weight: 760;
+  font-weight: 800;
 }
 
 .lc-talks-page-premium .leaflet-container {
@@ -1727,8 +1749,13 @@ html[data-theme="dark"] .lc-talks-page-premium .leaflet-tile-pane {
   }
 
   .lc-talk-map-hovercard {
-    width: min(250px, calc(100% - 18px));
-    padding: 0.76rem 0.8rem;
+    width: min(280px, calc(100% - 18px));
+    max-height: min(280px, calc(100% - 18px));
+  }
+
+  .lc-talk-hovercard-inner {
+    max-height: 280px;
+    padding: 0.85rem 0.88rem 0.82rem;
   }
 
   .lc-talk-map-caption {
