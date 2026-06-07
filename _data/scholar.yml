@@ -1,6 +1,4 @@
-# Google Scholar metrics displayed on /publications/.
-# Initial values are taken from the user's Google Scholar screenshot on 2026-06-07.
-# For automatic refresh, add a SERPAPI_KEY GitHub Actions secret and keep the workflow in .github/workflows/update-scholar.yml.
+# Auto-generated Google Scholar metrics. Edit manually only if the updater is disabled.
 profile_url: "https://scholar.google.com/citations?user=KoUPm0MAAAAJ&hl=en"
 author_id: "KoUPm0MAAAAJ"
 last_updated: "2026-06-07"
@@ -17,10 +15,10 @@ metrics:
 chart_max: 500
 yearly:
   - year: 2023
-    citations: 4
+    citations: 5
   - year: 2024
     citations: 67
   - year: 2025
-    citations: 475
+    citations: 471
   - year: 2026
-    citations: 247
+    citations: 243
