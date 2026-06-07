@@ -1,14 +1,18 @@
 ---
 layout: archive
 title: "Research"
-permalink: /Research/
+permalink: /research/
 author_profile: true
+redirect_from:
+  - /Research/
 ---
 
 {% include base_path %}
 
+My research develops scalable methods for quantum computation beyond isolated devices. The central theme is <strong>hardware-aware quantum algorithms for networked and heterogeneous quantum systems</strong>: distributed quantum computing, photonic quantum machine learning, quantum–HPC benchmarking, compiler/runtime co-design, and room-temperature quantum device interfaces.
+
+The areas below summarise the main research directions. Each topic connects algorithmic design with implementation constraints such as connectivity, noise, entanglement generation, qumode/qubit capacity, classical orchestration overhead, and benchmark reproducibility.
 
 {% for post in site.Research %}
   {% include archive-single.html %}
 {% endfor %}
-
