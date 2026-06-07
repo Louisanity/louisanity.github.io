@@ -1,7 +1,7 @@
 ---
 layout: archive
-title: "Teaching"
-permalink: /teaching/
+title: "Talks"
+permalink: /talks/
 author_profile: false
 classes: wide lc-interior-shell
 ---
@@ -12,47 +12,26 @@ classes: wide lc-interior-shell
   .page__title, .archive__subtitle { display: none !important; }
 </style>
 
-<div class="lc-modern-page lc-teaching-page lc-interior-page">
-  <section class="lc-page-hero lc-page-hero-compact" aria-label="Teaching introduction">
+<div class="lc-modern-page lc-talks-page lc-interior-page">
+  <section class="lc-page-hero lc-page-hero-compact" aria-label="Talks introduction">
     <div class="lc-page-hero-copy">
-      <div class="lc-eyebrow"><span class="lc-status-dot"></span> Teaching · mentorship · supervision</div>
-      <h1>Teaching &amp; mentorship</h1>
+      <div class="lc-eyebrow"><span class="lc-status-dot"></span> Invited talks · seminars · workshops</div>
+      <h1>Talks &amp; presentations</h1>
       <p>
-        Teaching and mentoring activities in quantum engineering, quantum information, quantum algorithms, quantum machine learning, and research software development, with an emphasis on translating advanced theory into practical computational workflows.
+        Selected research talks, invited seminars, conference presentations, and community events on quantum algorithms, distributed quantum computing, quantum machine learning, photonic quantum technologies, and quantum-HPC benchmarking.
       </p>
       <div class="lc-cta-row lc-cta-row-compact">
-        <a class="lc-button" href="{{ '/cv/' | relative_url }}">View CV</a>
-        <a class="lc-button-secondary" href="{{ '/talks/' | relative_url }}">Talks</a>
-        <a class="lc-button-secondary" href="{{ '/#contact' | relative_url }}">Contact</a>
+        <a class="lc-button" href="{{ '/research/' | relative_url }}">Research themes</a>
+        <a class="lc-button-secondary" href="{{ '/publications/' | relative_url }}">Publications</a>
+        {% if site.talkmap_link == true %}
+          <a class="lc-button-secondary" href="{{ '/talkmap.html' | relative_url }}">Talk map</a>
+        {% endif %}
       </div>
     </div>
-    <div class="lc-page-metrics" aria-label="Teaching focus">
-      <div><strong>Quantum</strong><span>Algorithms and information</span></div>
-      <div><strong>QML</strong><span>Learning models and kernels</span></div>
-      <div><strong>Software</strong><span>Research code and workflows</span></div>
-    </div>
-  </section>
-
-  <section class="lc-section">
-    <div class="lc-section-head lc-section-head-compact">
-      <div>
-        <span class="lc-section-kicker">Teaching profile</span>
-        <h2>Focus areas</h2>
-      </div>
-    </div>
-    <div class="lc-feature-grid lc-feature-grid-compact">
-      <article class="lc-info-card">
-        <h3>Quantum engineering and algorithms</h3>
-        <p>Graduate-level and research-oriented material spanning quantum information, circuit models, compilation, distributed quantum systems, and early fault-tolerant workflows.</p>
-      </article>
-      <article class="lc-info-card">
-        <h3>Quantum machine learning and quantum-HPC</h3>
-        <p>Hands-on teaching and mentoring around quantum kernels, quantum neural networks, tensor-network simulation, benchmarking, and reproducible research software.</p>
-      </article>
-      <article class="lc-info-card">
-        <h3>Research mentorship</h3>
-        <p>Mentorship for students and early-career researchers developing projects at the interface of quantum computing, high-performance computing, and applied AI.</p>
-      </article>
+    <div class="lc-page-metrics" aria-label="Talk themes">
+      <div><strong>Quantum</strong><span>Algorithms and software</span></div>
+      <div><strong>Q-HPC</strong><span>Benchmarks and simulation</span></div>
+      <div><strong>Policy</strong><span>Regulation and community building</span></div>
     </div>
   </section>
 
@@ -60,13 +39,13 @@ classes: wide lc-interior-shell
     <div class="lc-section-head lc-section-head-compact">
       <div>
         <span class="lc-section-kicker">Archive</span>
-        <h2>Teaching activities</h2>
+        <h2>Selected presentations</h2>
       </div>
     </div>
 
-    <div class="lc-archive-list lc-teaching-list">
-      {% for post in site.teaching reversed %}
-        {% include archive-single.html %}
+    <div class="lc-archive-list lc-talk-list">
+      {% for post in site.talks reversed %}
+        {% include archive-single-talk.html %}
       {% endfor %}
     </div>
   </section>
