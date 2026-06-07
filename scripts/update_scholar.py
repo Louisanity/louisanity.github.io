@@ -4,8 +4,7 @@
 Required environment variable:
   SERPAPI_KEY
 
-This avoids client-side scraping from GitHub Pages. The website stays static and
-only _data/scholar.yml is refreshed by GitHub Actions.
+The website remains static; GitHub Actions refreshes _data/scholar.yml.
 """
 from __future__ import annotations
 
@@ -77,15 +76,17 @@ def _write_yaml(data: dict) -> None:
     h_since_key = _second_key(h_index)
     i10_since_key = _second_key(i10_index)
 
-    yearly = []
+    current_year = _dt.date.today().year
+    years = [str(year) for year in range(current_year - 4, current_year + 1)]
+    yearly_citations = {year: 0 for year in years}
+
     for item in graph:
-        year = _as_int(item.get("year"))
+        year = str(_as_int(item.get("year")))
         cites = _as_int(item.get("citations"))
-        if year and cites >= 0:
-            yearly.append((year, cites))
-    yearly = yearly[-8:] if yearly else []
-    chart_max = max([c for _, c in yearly] + [1])
-    # Round the chart max upward for nicer bar scaling.
+        if year in yearly_citations:
+            yearly_citations[year] = cites
+
+    chart_max = max(list(yearly_citations.values()) + [1])
     chart_max = int(((chart_max + 49) // 50) * 50)
 
     today = _dt.date.today().isoformat()
@@ -105,10 +106,16 @@ def _write_yaml(data: dict) -> None:
         f"    all: {_as_int(i10_index.get('all'))}",
         f"    since_2021: {_as_int(i10_index.get(i10_since_key))}",
         f"chart_max: {chart_max}",
-        "yearly:",
+        "yearly_citations:",
     ]
-    for year, cites in yearly:
-        lines.extend([f"  - year: {year}", f"    citations: {cites}"])
+
+    for year in years:
+        lines.append(f'  "{year}": {yearly_citations[year]}')
+
+    lines.append("yearly:")
+    for year in years:
+        lines.extend([f"  - year: {year}", f"    citations: {yearly_citations[year]}"])
+
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
