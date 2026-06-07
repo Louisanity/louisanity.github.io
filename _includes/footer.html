@@ -1,280 +1,313 @@
 {% include base_path %}
 
-{% assign talk_count = site.data.talk_locations | size %}
-{% capture location_blob %}{% for talk in site.data.talk_locations %}{{ talk.location | strip }}{% unless forloop.last %}||{% endunless %}{% endfor %}{% endcapture %}
-{% assign unique_locations = location_blob | split: "||" | uniq %}
-{% capture country_blob %}{% for talk in site.data.talk_locations %}{{ talk.location | split: "," | last | strip }}{% unless forloop.last %}||{% endunless %}{% endfor %}{% endcapture %}
-{% assign unique_countries = country_blob | split: "||" | uniq %}
+{% assign talk_total = site.data.talk_locations | size %}
+{% assign location_keys = "" %}
+{% assign location_total = 0 %}
+{% assign country_keys = "" %}
+{% assign country_total = 0 %}
 
-<style>
-  /* Modern site footer override */
-  .lc-site-footer {
-    margin-top: clamp(2.5rem, 5vw, 4rem);
-    border-top: 1px solid var(--lc-border, rgba(0,0,205,0.14));
-    background:
-      radial-gradient(circle at 12% 16%, var(--lc-blue-soft, rgba(0,0,205,0.08)), transparent 30%),
-      radial-gradient(circle at 86% 100%, var(--lc-blue-softer, rgba(0,0,205,0.045)), transparent 28%),
-      linear-gradient(180deg, rgba(255,255,255,0.72), rgba(247,249,255,0.92));
-    color: var(--lc-text, #333942);
-  }
+{% for talk in site.data.talk_locations %}
+  {% assign location_key = talk.location | append: "|" %}
+  {% unless location_keys contains location_key %}
+    {% assign location_keys = location_keys | append: location_key %}
+    {% assign location_total = location_total | plus: 1 %}
+  {% endunless %}
 
-  html[data-theme="dark"] .lc-site-footer {
-    background:
-      radial-gradient(circle at 12% 16%, rgba(184,199,255,0.12), transparent 30%),
-      radial-gradient(circle at 86% 100%, rgba(184,199,255,0.06), transparent 28%),
-      linear-gradient(180deg, rgba(31,33,37,0.82), rgba(31,33,37,0.96));
-  }
+  {% assign location_parts = talk.location | split: "," %}
+  {% assign country = location_parts | last | strip %}
+  {% assign country_key = country | append: "|" %}
+  {% unless country_keys contains country_key %}
+    {% assign country_keys = country_keys | append: country_key %}
+    {% assign country_total = country_total | plus: 1 %}
+  {% endunless %}
+{% endfor %}
 
-  .lc-footer-shell {
-    width: min(1180px, calc(100vw - 2rem));
-    margin-inline: auto;
-    padding: clamp(1.5rem, 3.5vw, 2.4rem) 0 1.2rem;
-  }
-
-  .lc-footer-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.1fr) minmax(230px, 0.72fr) minmax(260px, 0.72fr);
-    gap: clamp(1rem, 3vw, 1.6rem);
-    align-items: stretch;
-  }
-
-  .lc-footer-brand,
-  .lc-footer-links,
-  .lc-footer-footprint {
-    position: relative;
-    overflow: hidden;
-    border: 1px solid var(--lc-border, rgba(0,0,205,0.14));
-    border-radius: 26px;
-    background: rgba(255,255,255,0.62);
-    box-shadow: 0 16px 44px rgba(15,23,42,0.055);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding: 1.05rem 1.1rem;
-  }
-
-  html[data-theme="dark"] .lc-footer-brand,
-  html[data-theme="dark"] .lc-footer-links,
-  html[data-theme="dark"] .lc-footer-footprint {
-    background: rgba(255,255,255,0.035);
-    box-shadow: 0 16px 44px rgba(0,0,0,0.20);
-  }
-
-  .lc-footer-kicker {
-    display: inline-flex;
-    align-items: center;
-    width: fit-content;
-    border: 1px solid var(--lc-border, rgba(0,0,205,0.14));
-    border-radius: 999px;
-    background: var(--lc-blue-soft, rgba(0,0,205,0.09));
-    color: var(--lc-blue, #0000CD);
-    padding: 0.3rem 0.52rem;
-    font-size: 0.68rem;
-    line-height: 1;
-    font-weight: 950;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 0.72rem;
-  }
-
-  .lc-footer-brand h2,
-  .lc-footer-links h2,
-  .lc-footer-footprint h2 {
-    margin: 0;
-    color: var(--lc-heading, #242a32);
-    font-size: clamp(1.08rem, 1.6vw, 1.32rem);
-    line-height: 1.15;
-    letter-spacing: -0.035em;
-    font-weight: 950;
-  }
-
-  .lc-footer-brand p,
-  .lc-footer-footprint p {
-    margin: 0.62rem 0 0;
-    color: var(--lc-muted, #667085);
-    font-size: 0.9rem;
-    line-height: 1.58;
-    font-weight: 650;
-  }
-
-  .lc-footer-link-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 0.78rem;
-  }
-
-  .lc-footer-link-grid a,
-  .lc-footer-social a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--lc-border, rgba(0,0,205,0.14));
-    border-radius: 999px;
-    background: var(--lc-surface, #fff);
-    color: var(--lc-blue, #0000CD) !important;
-    padding: 0.48rem 0.7rem;
-    font-size: 0.84rem;
-    line-height: 1;
-    font-weight: 900;
-    text-decoration: none !important;
-    transition: transform 150ms ease, background-color 150ms ease, border-color 150ms ease;
-  }
-
-  .lc-footer-link-grid a:hover,
-  .lc-footer-social a:hover {
-    transform: translateY(-1px);
-    background: var(--lc-blue-soft, rgba(0,0,205,0.09));
-    border-color: var(--lc-border-strong, rgba(0,0,205,0.24));
-  }
-
-  .lc-footer-stats {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.55rem;
-    margin-top: 0.85rem;
-  }
-
-  .lc-footer-stat {
-    border: 1px solid var(--lc-border, rgba(0,0,205,0.14));
-    border-radius: 18px;
-    background: rgba(255,255,255,0.58);
-    padding: 0.72rem 0.68rem;
-  }
-
-  html[data-theme="dark"] .lc-footer-stat {
-    background: rgba(255,255,255,0.035);
-  }
-
-  .lc-footer-stat strong {
-    display: block;
-    color: var(--lc-blue, #0000CD);
-    font-size: clamp(1.04rem, 1.4vw, 1.24rem);
-    line-height: 1;
-    font-weight: 950;
-    letter-spacing: -0.035em;
-  }
-
-  .lc-footer-stat span {
-    display: block;
-    margin-top: 0.34rem;
-    color: var(--lc-muted, #667085);
-    font-size: 0.70rem;
-    line-height: 1.25;
-    font-weight: 820;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-
-  .lc-footer-bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--lc-border, rgba(0,0,205,0.14));
-    color: var(--lc-muted, #667085);
-    font-size: 0.82rem;
-    line-height: 1.5;
-    font-weight: 650;
-  }
-
-  .lc-footer-social {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-    justify-content: flex-end;
-  }
-
-  @media (max-width: 980px) {
-    .lc-footer-grid {
-      grid-template-columns: 1fr;
+<footer class="lc-site-footer" role="contentinfo">
+  <style>
+    .lc-site-footer {
+      margin-top: clamp(2.5rem, 5vw, 4rem);
+      border-top: 1px solid var(--lc-border, rgba(0, 0, 205, 0.14));
+      background:
+        radial-gradient(circle at 16% 10%, var(--lc-blue-soft, rgba(0, 0, 205, 0.08)), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,0.72), rgba(247,249,255,0.92));
+      color: var(--lc-text, #333942);
     }
 
-    .lc-footer-bottom {
-      align-items: flex-start;
-      flex-direction: column;
+    html[data-theme="dark"] .lc-site-footer {
+      background:
+        radial-gradient(circle at 16% 10%, rgba(184,199,255,0.10), transparent 28%),
+        linear-gradient(180deg, rgba(31,33,37,0.82), rgba(31,33,37,0.96));
     }
 
-    .lc-footer-social {
-      justify-content: flex-start;
-    }
-  }
-
-  @media (max-width: 560px) {
-    .lc-footer-shell {
-      width: min(100%, calc(100vw - 1rem));
+    .lc-site-footer__inner {
+      width: min(1120px, calc(100vw - 2rem));
+      margin-inline: auto;
+      padding: clamp(1.4rem, 3vw, 2.2rem) 0;
     }
 
-    .lc-footer-brand,
-    .lc-footer-links,
+    .lc-site-footer__grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(220px, 0.62fr) minmax(300px, 0.78fr);
+      gap: clamp(1rem, 2.5vw, 1.6rem);
+      align-items: stretch;
+    }
+
+    .lc-footer-panel {
+      border: 1px solid var(--lc-border, rgba(0,0,205,0.14));
+      border-radius: 26px;
+      background: rgba(255,255,255,0.62);
+      box-shadow: 0 14px 38px rgba(15,23,42,0.06);
+      padding: 1rem 1.05rem;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    html[data-theme="dark"] .lc-footer-panel {
+      background: rgba(255,255,255,0.035);
+      box-shadow: 0 14px 38px rgba(0,0,0,0.22);
+    }
+
+    .lc-footer-kicker {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      border: 1px solid var(--lc-border, rgba(0,0,205,0.14));
+      border-radius: 999px;
+      background: var(--lc-blue-soft, rgba(0,0,205,0.08));
+      color: var(--lc-blue, #0000CD);
+      padding: 0.34rem 0.58rem;
+      font-size: 0.68rem;
+      line-height: 1;
+      font-weight: 950;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      margin-bottom: 0.7rem;
+    }
+
+    .lc-site-footer h2,
+    .lc-site-footer h3 {
+      margin: 0;
+      color: var(--lc-heading, #242a32);
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+    }
+
+    .lc-site-footer h2 {
+      font-size: clamp(1.35rem, 2.2vw, 2rem);
+    }
+
+    .lc-site-footer h3 {
+      font-size: clamp(1.05rem, 1.4vw, 1.22rem);
+    }
+
+    .lc-site-footer p {
+      margin: 0.62rem 0 0;
+      color: var(--lc-muted, #667085);
+      font-size: 0.88rem;
+      line-height: 1.55;
+      font-weight: 640;
+    }
+
+    .lc-footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.48rem;
+      margin-top: 0.82rem;
+    }
+
+    .lc-footer-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--lc-border, rgba(0,0,205,0.14));
+      border-radius: 999px;
+      background: rgba(255,255,255,0.72);
+      color: var(--lc-blue, #0000CD) !important;
+      padding: 0.42rem 0.62rem;
+      font-size: 0.78rem;
+      line-height: 1;
+      font-weight: 900;
+      text-decoration: none !important;
+      transition: transform 150ms ease, background-color 150ms ease, border-color 150ms ease;
+    }
+
+    html[data-theme="dark"] .lc-footer-links a {
+      background: rgba(255,255,255,0.035);
+    }
+
+    .lc-footer-links a:hover {
+      transform: translateY(-1px);
+      background: var(--lc-blue-soft, rgba(0,0,205,0.08));
+      border-color: var(--lc-border-strong, rgba(0,0,205,0.24));
+    }
+
+    .lc-footer-nav {
+      display: grid;
+      gap: 0.42rem;
+      margin-top: 0.82rem;
+    }
+
+    .lc-footer-nav a {
+      color: var(--lc-muted, #667085) !important;
+      font-size: 0.88rem;
+      font-weight: 760;
+      text-decoration: none !important;
+      transition: color 150ms ease, transform 150ms ease;
+    }
+
+    .lc-footer-nav a:hover {
+      color: var(--lc-blue, #0000CD) !important;
+      transform: translateX(2px);
+    }
+
     .lc-footer-footprint {
-      border-radius: 22px;
-      padding: 0.95rem;
+      padding: 1rem;
     }
 
-    .lc-footer-stats {
-      grid-template-columns: 1fr;
+    .lc-footer-footprint__stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.55rem;
+      margin-top: 0.9rem;
     }
-  }
-</style>
 
-<footer class="lc-site-footer" role="contentinfo" aria-label="Site footer">
-  <div class="lc-footer-shell">
-    <div class="lc-footer-grid">
-      <section class="lc-footer-brand" aria-label="Researcher summary">
-        <span class="lc-footer-kicker">Quantum AI Scientist</span>
+    .lc-footer-footprint__stat {
+      min-width: 0;
+      border: 1px solid var(--lc-border, rgba(0,0,205,0.14));
+      border-radius: 18px;
+      background: rgba(255,255,255,0.58);
+      padding: 0.66rem 0.42rem;
+      text-align: center;
+    }
+
+    html[data-theme="dark"] .lc-footer-footprint__stat {
+      background: rgba(255,255,255,0.035);
+    }
+
+    .lc-footer-footprint__stat strong {
+      display: block;
+      color: var(--lc-blue, #0000CD);
+      font-size: clamp(1.35rem, 2.1vw, 1.75rem);
+      line-height: 1;
+      font-weight: 950;
+      letter-spacing: -0.045em;
+      margin-bottom: 0.26rem;
+    }
+
+    .lc-footer-footprint__stat span {
+      display: block;
+      color: var(--lc-muted, #667085);
+      font-size: clamp(0.54rem, 0.68vw, 0.64rem);
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: 0.045em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .lc-site-footer__bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 1rem;
+      padding-top: 0.9rem;
+      border-top: 1px solid var(--lc-border, rgba(0,0,205,0.14));
+      color: var(--lc-muted, #667085);
+      font-size: 0.78rem;
+      line-height: 1.4;
+      font-weight: 650;
+    }
+
+    .lc-site-footer__bottom a {
+      color: var(--lc-blue, #0000CD) !important;
+      text-decoration: none !important;
+      font-weight: 850;
+    }
+
+    @media (max-width: 980px) {
+      .lc-site-footer__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .lc-footer-footprint__stats {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .lc-site-footer__inner {
+        width: min(100%, calc(100vw - 1rem));
+      }
+
+      .lc-footer-panel {
+        border-radius: 22px;
+      }
+
+      .lc-footer-footprint__stats {
+        grid-template-columns: 1fr;
+      }
+
+      .lc-footer-footprint__stat span {
+        font-size: 0.68rem;
+      }
+
+      .lc-site-footer__bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+
+  <div class="lc-site-footer__inner">
+    <div class="lc-site-footer__grid">
+      <section class="lc-footer-panel" aria-label="Footer summary">
+        <span class="lc-footer-kicker">Research profile</span>
         <h2>Dr Kuan-Cheng (Louis) Chen</h2>
-        <p>
-          Quantum algorithms, distributed quantum computing, quantum-HPC benchmarking,
-          photonic quantum computing, and practical quantum sensing technologies.
-        </p>
+        <p>Quantum AI Scientist working across distributed quantum computing, quantum machine learning, photonic quantum technologies, quantum-HPC benchmarking, and practical quantum sensing.</p>
+        <div class="lc-footer-links">
+          <a href="mailto:kuan-cheng.chen17@imperial.ac.uk">Email</a>
+          <a href="{{ '/cv/' | relative_url }}">CV</a>
+          <a href="https://scholar.google.com/citations?user=KoUPm0MAAAAJ&amp;hl=en">Scholar</a>
+          <a href="https://github.com/Louisanity">GitHub</a>
+        </div>
       </section>
 
-      <nav class="lc-footer-links" aria-label="Footer navigation">
+      <nav class="lc-footer-panel" aria-label="Footer navigation">
         <span class="lc-footer-kicker">Navigate</span>
-        <h2>Explore the site</h2>
-        <div class="lc-footer-link-grid">
+        <h3>Explore</h3>
+        <div class="lc-footer-nav">
           <a href="{{ '/research/' | relative_url }}">Research</a>
           <a href="{{ '/publications/' | relative_url }}">Publications</a>
           <a href="{{ '/talks/' | relative_url }}">Talks</a>
           <a href="{{ '/teaching/' | relative_url }}">Teaching</a>
           <a href="{{ '/cv/' | relative_url }}">CV</a>
-          <a href="{{ '/#contact' | relative_url }}">Contact</a>
         </div>
       </nav>
 
-      <section class="lc-footer-footprint" aria-label="Global research footprint">
+      <section class="lc-footer-panel lc-footer-footprint" aria-label="Global presentation footprint">
         <span class="lc-footer-kicker">Global footprint</span>
-        <h2>Talks and presentations</h2>
-        <div class="lc-footer-stats">
-          <div class="lc-footer-stat">
-            <strong>{% if talk_count and talk_count > 0 %}{{ talk_count }}{% else %}15{% endif %}</strong>
+        <h3>Talks and presentations</h3>
+        <div class="lc-footer-footprint__stats">
+          <div class="lc-footer-footprint__stat">
+            <strong>{{ talk_total }}</strong>
             <span>Talks</span>
           </div>
-          <div class="lc-footer-stat">
-            <strong>{% if unique_locations and unique_locations.size > 0 %}{{ unique_locations.size }}{% else %}13{% endif %}</strong>
+          <div class="lc-footer-footprint__stat">
+            <strong>{{ location_total }}</strong>
             <span>Locations</span>
           </div>
-          <div class="lc-footer-stat">
-            <strong>{% if unique_countries and unique_countries.size > 0 %}{{ unique_countries.size }}{% else %}10{% endif %}</strong>
+          <div class="lc-footer-footprint__stat">
+            <strong>{{ country_total }}</strong>
             <span>Countries</span>
           </div>
         </div>
-        <p>Geographic footprint is generated from the talk-location dataset.</p>
       </section>
     </div>
 
-    <div class="lc-footer-bottom">
-      <div>
-        © {{ site.time | date: '%Y' }} {{ site.name | default: site.title }} · Last updated {{ "now" | date: '%Y-%m-%d' }}
-      </div>
-      <div class="lc-footer-social" aria-label="External links">
-        <a href="mailto:kuan-cheng.chen17@imperial.ac.uk">Email</a>
-        <a href="https://scholar.google.com/citations?user=KoUPm0MAAAAJ&amp;hl=en">Scholar</a>
-        <a href="https://github.com/Louisanity">GitHub</a>
-        <a href="https://www.linkedin.com/in/louis-chen">LinkedIn</a>
-      </div>
+    <div class="lc-site-footer__bottom">
+      <span>© {{ site.time | date: '%Y' }} Dr Louis Chen. Built for research communication.</span>
+      <span><a href="{{ '/' | relative_url }}">Home</a></span>
     </div>
   </div>
 </footer>
