@@ -7,31 +7,58 @@ classes: wide lc-interior-shell
 ---
 
 {% include base_path %}
+{% assign talk_points = site.data.talk_locations | sort: 'date' %}
 
 <style>
   .page__title, .archive__subtitle { display: none !important; }
 </style>
 
-<div class="lc-modern-page lc-talks-page lc-interior-page">
+<div class="lc-modern-page lc-interior-page lc-talks-page">
   <section class="lc-page-hero lc-page-hero-compact" aria-label="Talks introduction">
     <div class="lc-page-hero-copy">
-      <div class="lc-eyebrow"><span class="lc-status-dot"></span> Invited talks · seminars · workshops</div>
-      <h1>Talks &amp; presentations</h1>
+      <div class="lc-eyebrow"><span class="lc-status-dot"></span> Speaking & presentations</div>
+      <h1>Talks &amp; conference presentations</h1>
       <p>
-        Selected research talks, invited seminars, conference presentations, and community events on quantum algorithms, distributed quantum computing, quantum machine learning, photonic quantum technologies, and quantum-HPC benchmarking.
+        A selected record of first-author conference presentations and research talks spanning distributed quantum computing,
+        quantum machine learning, quantum-HPC systems, photonic quantum computing, and practical quantum sensing technologies.
       </p>
       <div class="lc-cta-row lc-cta-row-compact">
-        <a class="lc-button" href="{{ '/research/' | relative_url }}">Research themes</a>
-        <a class="lc-button-secondary" href="{{ '/publications/' | relative_url }}">Publications</a>
-        {% if site.talkmap_link == true %}
-          <a class="lc-button-secondary" href="{{ '/talkmap.html' | relative_url }}">Talk map</a>
-        {% endif %}
+        <a class="lc-button" href="{{ '/publications/' | relative_url }}">Publications</a>
+        <a class="lc-button-secondary" href="{{ '/research/' | relative_url }}">Research themes</a>
+        <a class="lc-button-secondary" href="{{ '/cv/' | relative_url }}">CV</a>
       </div>
     </div>
-    <div class="lc-page-metrics" aria-label="Talk themes">
-      <div><strong>Quantum</strong><span>Algorithms and software</span></div>
-      <div><strong>Q-HPC</strong><span>Benchmarks and simulation</span></div>
-      <div><strong>Policy</strong><span>Regulation and community building</span></div>
+
+    <div class="lc-page-metrics lc-page-metrics-talks">
+      <div>
+        <strong id="lc-talk-metric-total">{{ talk_points | size }}</strong>
+        <span>Presentations mapped</span>
+      </div>
+      <div>
+        <strong id="lc-talk-metric-cities">—</strong>
+        <span>Visited locations</span>
+      </div>
+      <div>
+        <strong id="lc-talk-metric-countries">—</strong>
+        <span>Countries / regions</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="lc-section lc-talk-map-section">
+    <div class="lc-section-head lc-section-head-compact">
+      <div>
+        <span class="lc-section-kicker">Geographic footprint</span>
+        <h2>Presentation map</h2>
+      </div>
+    </div>
+
+    <div class="lc-talk-map-card">
+      <div id="lc-talk-map" class="lc-talk-map-canvas" aria-label="2D world map of conference talk locations"></div>
+      <div class="lc-talk-map-caption">
+        <span class="lc-talk-map-dot"></span>
+        <span>Each point marks a conference venue or city where a first-author presentation was delivered.</span>
+      </div>
     </div>
   </section>
 
@@ -39,14 +66,151 @@ classes: wide lc-interior-shell
     <div class="lc-section-head lc-section-head-compact">
       <div>
         <span class="lc-section-kicker">Archive</span>
-        <h2>Selected presentations</h2>
+        <h2>Talk record</h2>
       </div>
     </div>
 
     <div class="lc-archive-list lc-talk-list">
       {% for post in site.talks reversed %}
-        {% include archive-single-talk.html %}
+        {% include archive-single.html %}
       {% endfor %}
     </div>
   </section>
 </div>
+
+<script id="lc-talk-map-data" type="application/json">
+[
+{% for talk in talk_points %}
+  {
+    "title": {{ talk.title | jsonify }},
+    "date": {{ talk.date | jsonify }},
+    "conference": {{ talk.conference | jsonify }},
+    "location": {{ talk.location | jsonify }},
+    "latitude": {{ talk.latitude | jsonify }},
+    "longitude": {{ talk.longitude | jsonify }},
+    "permalink": {{ talk.permalink | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+{% endfor %}
+]
+</script>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<script>
+(function () {
+  const dataEl = document.getElementById('lc-talk-map-data');
+  const mapEl = document.getElementById('lc-talk-map');
+  if (!dataEl || !mapEl || typeof L === 'undefined') return;
+
+  const rawData = JSON.parse(dataEl.textContent || '[]');
+  if (!Array.isArray(rawData) || rawData.length === 0) return;
+
+  const uniqueLocationsMap = new Map();
+  rawData.forEach((talk) => {
+    const key = `${talk.location}__${talk.latitude}__${talk.longitude}`;
+    if (!uniqueLocationsMap.has(key)) {
+      uniqueLocationsMap.set(key, {
+        key,
+        location: talk.location,
+        latitude: Number(talk.latitude),
+        longitude: Number(talk.longitude),
+        talks: 0
+      });
+    }
+    uniqueLocationsMap.get(key).talks += 1;
+  });
+
+  const locations = Array.from(uniqueLocationsMap.values());
+  const countries = new Set(
+    locations.map((item) => {
+      const chunks = (item.location || '').split(',');
+      return chunks[chunks.length - 1].trim();
+    }).filter(Boolean)
+  );
+
+  document.getElementById('lc-talk-metric-total').textContent = String(rawData.length);
+  document.getElementById('lc-talk-metric-cities').textContent = String(locations.length);
+  document.getElementById('lc-talk-metric-countries').textContent = String(countries.size);
+
+  const isDark = () => document.documentElement.getAttribute('data-theme') === 'dark';
+
+  const tileLight = 'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png';
+  const tileDark = 'https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png';
+  const attr = '&copy; OpenStreetMap contributors &copy; CARTO';
+
+  const map = L.map(mapEl, {
+    zoomControl: false,
+    scrollWheelZoom: false,
+    dragging: true,
+    tap: false,
+    worldCopyJump: false,
+    attributionControl: false
+  });
+
+  let baseLayer = null;
+  function applyBaseLayer() {
+    if (baseLayer) map.removeLayer(baseLayer);
+    baseLayer = L.tileLayer(isDark() ? tileDark : tileLight, {
+      subdomains: 'abcd',
+      maxZoom: 6,
+      minZoom: 1,
+      noWrap: true,
+      attribution: attr
+    }).addTo(map);
+  }
+
+  applyBaseLayer();
+
+  const markerGroup = L.layerGroup().addTo(map);
+  function markerColor() {
+    return isDark() ? '#d6ddff' : '#0000CD';
+  }
+  function markerFill() {
+    return isDark() ? 'rgba(184,199,255,0.28)' : 'rgba(0,0,205,0.16)';
+  }
+
+  locations.forEach((item) => {
+    const radius = 5 + Math.min(item.talks, 4) * 2;
+    L.circleMarker([item.latitude, item.longitude], {
+      radius,
+      stroke: true,
+      weight: 1.6,
+      color: markerColor(),
+      fillColor: markerFill(),
+      fillOpacity: 0.95,
+      opacity: 1,
+      interactive: false
+    }).addTo(markerGroup);
+  });
+
+  const bounds = L.latLngBounds(locations.map((item) => [item.latitude, item.longitude]));
+  map.fitBounds(bounds.pad(0.25));
+  if (map.getZoom() > 2) map.setZoom(2);
+
+  function resizeMap() {
+    map.invalidateSize();
+  }
+  setTimeout(resizeMap, 80);
+  window.addEventListener('resize', resizeMap);
+
+  const observer = new MutationObserver(() => {
+    applyBaseLayer();
+    markerGroup.clearLayers();
+    locations.forEach((item) => {
+      const radius = 5 + Math.min(item.talks, 4) * 2;
+      L.circleMarker([item.latitude, item.longitude], {
+        radius,
+        stroke: true,
+        weight: 1.6,
+        color: markerColor(),
+        fillColor: markerFill(),
+        fillOpacity: 0.95,
+        opacity: 1,
+        interactive: false
+      }).addTo(markerGroup);
+    });
+  });
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+})();
+</script>
