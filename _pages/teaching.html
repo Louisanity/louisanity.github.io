@@ -3,36 +3,44 @@ layout: archive
 title: "Teaching"
 permalink: /teaching/
 author_profile: false
-classes: wide
+classes: wide lc-interior-shell
 ---
 
 {% include base_path %}
 
-<div class="lc-modern-page lc-teaching-page">
-  <section class="lc-page-hero" aria-label="Teaching introduction">
+<style>
+  .page__title, .archive__subtitle { display: none !important; }
+</style>
+
+<div class="lc-modern-page lc-teaching-page lc-interior-page">
+  <section class="lc-page-hero lc-page-hero-compact" aria-label="Teaching introduction">
     <div class="lc-page-hero-copy">
       <div class="lc-eyebrow"><span class="lc-status-dot"></span> Teaching · mentorship · supervision</div>
-      <h1>Teaching</h1>
+      <h1>Teaching &amp; mentorship</h1>
       <p>
         Teaching and mentoring activities in quantum engineering, quantum information, quantum algorithms, quantum machine learning, and research software development, with an emphasis on translating advanced theory into practical computational workflows.
       </p>
-      <div class="lc-cta-row">
+      <div class="lc-cta-row lc-cta-row-compact">
         <a class="lc-button" href="{{ '/cv/' | relative_url }}">View CV</a>
         <a class="lc-button-secondary" href="{{ '/talks/' | relative_url }}">Talks</a>
         <a class="lc-button-secondary" href="{{ '/#contact' | relative_url }}">Contact</a>
       </div>
     </div>
-    <div class="lc-page-hero-panel" aria-label="Teaching focus">
-      <div class="lc-panel-stat"><strong>Quantum</strong><span>algorithms and information</span></div>
-      <div class="lc-panel-stat"><strong>QML</strong><span>learning models and kernels</span></div>
-      <div class="lc-panel-stat"><strong>Software</strong><span>research code and workflows</span></div>
+    <div class="lc-page-metrics" aria-label="Teaching focus">
+      <div><strong>Quantum</strong><span>Algorithms and information</span></div>
+      <div><strong>QML</strong><span>Learning models and kernels</span></div>
+      <div><strong>Software</strong><span>Research code and workflows</span></div>
     </div>
   </section>
 
   <section class="lc-section">
-    <span class="lc-section-kicker">Teaching profile</span>
-    <h2>Focus areas</h2>
-    <div class="lc-feature-grid">
+    <div class="lc-section-head lc-section-head-compact">
+      <div>
+        <span class="lc-section-kicker">Teaching profile</span>
+        <h2>Focus areas</h2>
+      </div>
+    </div>
+    <div class="lc-feature-grid lc-feature-grid-compact">
       <article class="lc-info-card">
         <h3>Quantum engineering and algorithms</h3>
         <p>Graduate-level and research-oriented material spanning quantum information, circuit models, compilation, distributed quantum systems, and early fault-tolerant workflows.</p>
@@ -48,13 +56,12 @@ classes: wide
     </div>
   </section>
 
-  <section class="lc-section">
-    <div class="lc-section-head">
+  <section class="lc-section lc-archive-section">
+    <div class="lc-section-head lc-section-head-compact">
       <div>
         <span class="lc-section-kicker">Archive</span>
         <h2>Teaching activities</h2>
       </div>
-      <p class="lc-section-note">Automatically rendered from the Jekyll teaching collection.</p>
     </div>
 
     <div class="lc-archive-list lc-teaching-list">
