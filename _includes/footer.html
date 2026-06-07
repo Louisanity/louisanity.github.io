@@ -92,13 +92,8 @@
       line-height: 1.08;
     }
 
-    .lc-site-footer h2 {
-      font-size: clamp(1.35rem, 2.2vw, 2rem);
-    }
-
-    .lc-site-footer h3 {
-      font-size: clamp(1.05rem, 1.4vw, 1.22rem);
-    }
+    .lc-site-footer h2 { font-size: clamp(1.35rem, 2.2vw, 2rem); }
+    .lc-site-footer h3 { font-size: clamp(1.05rem, 1.4vw, 1.22rem); }
 
     .lc-site-footer p {
       margin: 0.62rem 0 0;
@@ -206,17 +201,40 @@
     }
 
     .lc-site-footer__bottom {
-      display: flex;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
       align-items: center;
-      justify-content: space-between;
       gap: 1rem;
       margin-top: 1rem;
       padding-top: 0.9rem;
       border-top: 1px solid var(--lc-border, rgba(0,0,205,0.14));
       color: var(--lc-muted, #667085);
       font-size: 0.78rem;
-      line-height: 1.4;
+      line-height: 1.45;
       font-weight: 650;
+    }
+
+    .lc-site-footer__ip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 0.6rem;
+      align-items: center;
+    }
+
+    .lc-ip-pill {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      border: 1px solid var(--lc-border, rgba(0,0,205,0.14));
+      border-radius: 999px;
+      background: var(--lc-blue-soft, rgba(0,0,205,0.08));
+      color: var(--lc-blue, #0000CD);
+      padding: 0.28rem 0.5rem;
+      font-size: 0.68rem;
+      line-height: 1;
+      font-weight: 950;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
 
     .lc-site-footer__bottom a {
@@ -226,34 +244,17 @@
     }
 
     @media (max-width: 980px) {
-      .lc-site-footer__grid {
-        grid-template-columns: 1fr;
-      }
-
-      .lc-footer-footprint__stats {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
+      .lc-site-footer__grid { grid-template-columns: 1fr; }
+      .lc-footer-footprint__stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
 
-    @media (max-width: 560px) {
-      .lc-site-footer__inner {
-        width: min(100%, calc(100vw - 1rem));
-      }
-
-      .lc-footer-panel {
-        border-radius: 22px;
-      }
-
-      .lc-footer-footprint__stats {
-        grid-template-columns: 1fr;
-      }
-
-      .lc-footer-footprint__stat span {
-        font-size: 0.68rem;
-      }
-
+    @media (max-width: 640px) {
+      .lc-site-footer__inner { width: min(100%, calc(100vw - 1rem)); }
+      .lc-footer-panel { border-radius: 22px; }
+      .lc-footer-footprint__stats { grid-template-columns: 1fr; }
+      .lc-footer-footprint__stat span { font-size: 0.68rem; }
       .lc-site-footer__bottom {
-        flex-direction: column;
+        grid-template-columns: 1fr;
         align-items: flex-start;
       }
     }
@@ -306,8 +307,11 @@
     </div>
 
     <div class="lc-site-footer__bottom">
-      <span>© {{ site.time | date: '%Y' }} Dr Louis Chen. Built for research communication.</span>
-      <span><a href="{{ '/' | relative_url }}">Home</a></span>
+      <div class="lc-site-footer__ip">
+        <span class="lc-ip-pill">Original content protected</span>
+        <span>© {{ site.time | date: '%Y' }} Kuan-Cheng (Louis) Chen. Original research content, graphics, and custom visual design are reserved; reuse requires permission.</span>
+      </div>
+      <span><a href="{{ '/NOTICE/' | relative_url }}">Notice</a></span>
     </div>
   </div>
 </footer>
