@@ -176,6 +176,7 @@ redirect_from:
           <div class="lc-affiliation-item"><span class="lc-affiliation-flag">🇯🇵</span><span>JIJ Europe</span></div>
           <div class="lc-affiliation-item"><span class="lc-affiliation-flag">🇶🇦</span><span>HBKU QC2</span></div>
           <div class="lc-affiliation-item"><span class="lc-affiliation-flag">🇬🇧</span><span>Imperial QuEST</span></div>
+          <div class="lc-affiliation-item"><span class="lc-affiliation-flag">🇹🇼</span><span>TSMC</span></div>
         </div>
 
         <div class="lc-identity-links">
@@ -189,7 +190,7 @@ redirect_from:
 
     <div class="lc-mini-grid" aria-label="Research summary">
       <div class="lc-mini-card"><span>Quantum AI</span><small>quantum learning, kernels, and scientific AI workflows</small></div>
-      <div class="lc-mini-card"><span>Distributed QC</span><small>networked architectures, compilation, and orchestration</small></div>
+      <div class="lc-mini-card"><span>DQC</span><small>networked architectures, compilation, and orchestration</small></div>
       <div class="lc-mini-card"><span>Q-HPC</span><small>benchmarking, simulation, and resource analysis</small></div>
       <div class="lc-mini-card"><span>Photonic QC</span><small>photonic learning and nonlinear quantum resources</small></div>
     </div>
