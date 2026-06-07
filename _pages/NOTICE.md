@@ -6,8 +6,6 @@ author_profile: false
 classes: wide lc-interior-shell
 ---
 
-## Intellectual Property Notice
-
 This website is maintained by **Dr Kuan-Cheng (Louis) Chen**.
 
 Unless otherwise stated, the original research descriptions, text, figures, diagrams, visual identity, custom layout decisions, and custom website design elements are © Kuan-Cheng (Louis) Chen. Reuse, redistribution, republication, or derivative use of these original materials requires prior written permission.
