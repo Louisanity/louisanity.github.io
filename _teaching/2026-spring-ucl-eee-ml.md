@@ -11,7 +11,6 @@ location: "London, United Kingdom"
 
 
 ## Teaching Overview
-
 I delivered a guest lecture for the MSc course **Emerging Topics in Integrated Machine Learning Systems** within the **Integrated Machine Learning Systems MSc** at UCL’s Department of Electronic and Electrical Engineering. My lecture, titled **“Quantum Artificial Intelligence: From Optimisation and Machine Learning to Solving Real-World Problems,”** introduced students to the emerging field of Quantum Artificial Intelligence (QAI) and its relevance to next-generation machine learning systems.
 
 The lecture was designed for MSc students with backgrounds in machine learning, electronic and electrical engineering, data systems, and applied computing. It provided an accessible but technically grounded overview of how quantum computing may contribute to optimisation, machine learning, sampling, and decision-making workflows in realistic scientific and industrial settings.
