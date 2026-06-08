@@ -2,7 +2,7 @@
 title: "Emerging Topics in Integrated Machine Learning Systems"
 collection: teaching
 type: "MSc guest lecture"
-code: "Integrated Machine Learning Systems MSc"
+code: "ELEC0139"
 permalink: /teaching/2026-ucl-emerging-topics-integrated-ml-systems
 venue: "UCL, Department of Electronic and Electrical Engineering"
 date: 2026-01-01
