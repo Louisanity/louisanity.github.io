@@ -1,0 +1,170 @@
+---
+title: "Quantum Computing"
+collection: teaching
+type: "MSc invited lecture"
+code: "70021"
+permalink: /teaching/2026-imperial-doc-quantum-computing-superconducting-qubits
+venue: "Imperial College London, Department of Computing"
+date: 2026-01-01
+location: "London, United Kingdom"
+---
+
+
+## Teaching Overview
+
+I delivered an invited lecture for the MSc Advanced Computing course **Quantum Computing** in the Department of Computing. The lecture introduced students to superconducting qubits as one of the leading hardware platforms for gate-based quantum computing, connecting the physical principles of qubit implementation with practical execution on real quantum processors.
+
+The lecture was designed for MSc students studying quantum computing from a computer science and advanced computing perspective. It provided a structured roadmap from foundational theory to hardware-aware algorithm execution, with emphasis on how superconducting quantum devices are programmed, benchmarked, and evaluated in practice.
+
+The session bridged theoretical quantum computing concepts with realistic hardware constraints, helping students understand how circuit-level algorithms are mapped onto physical superconducting processors and why noise, connectivity, calibration, and measurement play central roles in near-term quantum computing.
+
+## Lecture Presented
+
+**Superconducting Qubits: From Physical Principles and Hardware Execution to Applications and Open Challenges**
+
+## Lecture Abstract
+
+Superconducting qubits are among the most mature and widely used platforms for building programmable quantum computers. This invited lecture provided a practical and conceptually grounded overview of superconducting quantum computing, beginning with the physical intuition behind superconducting circuits and extending to gate operations, hardware execution, real-world use cases, and current technical challenges.
+
+The lecture introduced a roadmap for understanding superconducting qubits from both a theoretical and systems perspective. Topics included qubit energy levels, control pulses, single- and two-qubit gates, circuit compilation, hardware topology, noise mechanisms, error mitigation, and execution workflows on cloud-accessible quantum devices. The session also discussed use cases in quantum simulation, optimisation, machine learning, cryptography-related primitives, and quantum algorithm benchmarking.
+
+The lecture emphasised a realistic view of superconducting quantum computing: while the platform has enabled rapid experimental progress, practical advantage requires careful consideration of hardware noise, limited coherence, qubit connectivity, calibration drift, readout error, and scalable error correction.
+
+## Teaching Contributions
+
+As the invited lecturer, I designed and delivered a structured lecture covering the following topics:
+
+### 1. Roadmap: From Abstract Qubits to Physical Quantum Processors
+
+Introduced the conceptual bridge between textbook qubits and physical superconducting devices. The lecture explained how abstract quantum states, gates, and circuits are realised through engineered microwave-controlled superconducting circuits.
+
+The roadmap covered:
+
+- the role of superconducting qubits in the quantum computing landscape;
+- the relationship between quantum circuits and physical hardware;
+- how quantum programs are compiled, scheduled, executed, and measured;
+- why hardware-aware design is essential for near-term quantum computing.
+
+### 2. General Theory Framework
+
+Presented the theoretical framework underlying superconducting qubit operation. The lecture reviewed the notion of a two-level quantum system, state preparation, unitary evolution, measurement, decoherence, and the circuit model of quantum computation.
+
+Key concepts included:
+
+- qubit states and Bloch-sphere representation;
+- single-qubit rotations and universal gate sets;
+- entanglement and two-qubit gate operations;
+- circuit depth, gate fidelity, and measurement statistics;
+- the distinction between ideal quantum circuits and noisy physical execution.
+
+### 3. Superconducting Qubit Hardware Principles
+
+Introduced the physical basis of superconducting qubits, focusing on how nonlinear superconducting circuits can behave as controllable artificial atoms. The lecture explained the role of Josephson junctions, anharmonic energy levels, microwave control, and resonator-based readout.
+
+Topics included:
+
+- superconducting circuits as engineered quantum systems;
+- transmon-style qubit intuition;
+- energy-level structure and anharmonicity;
+- microwave pulse control for gate operations;
+- resonator coupling and dispersive readout;
+- cryogenic operation and hardware environment.
+
+### 4. Gate Operations and Hardware Execution
+
+Explained how quantum circuits are executed on superconducting quantum processors. The lecture connected high-level quantum programming with low-level hardware execution, including transpilation, qubit mapping, native gate decomposition, pulse-level control, and measurement.
+
+The lecture covered:
+
+- mapping logical qubits to physical qubits;
+- hardware connectivity constraints;
+- single-qubit and two-qubit gate implementation;
+- circuit transpilation and optimisation;
+- shot-based execution and measurement outcomes;
+- interpreting experimental results from noisy quantum devices.
+
+### 5. Running Quantum Circuits on Real Hardware
+
+Presented the practical workflow for executing circuits on cloud-accessible superconducting quantum hardware. The session discussed how students and researchers can move from an abstract algorithm to an executable circuit and how to evaluate the resulting output.
+
+Topics included:
+
+- circuit construction using quantum software frameworks;
+- backend selection and hardware topology inspection;
+- transpilation and scheduling;
+- job submission and shot-based sampling;
+- result visualisation and statistical interpretation;
+- comparison between simulator and hardware outputs.
+
+### 6. Use Cases of Superconducting Quantum Computing
+
+Discussed representative use cases where superconducting quantum processors are actively explored. The lecture highlighted both near-term experimental demonstrations and longer-term fault-tolerant ambitions.
+
+Application areas included:
+
+- quantum simulation of physical and chemical systems;
+- variational quantum eigensolvers and quantum optimisation;
+- quantum approximate optimisation algorithms;
+- quantum machine learning and quantum kernels;
+- benchmarking, random circuits, and quantum volume-style metrics;
+- prototyping algorithms for future fault-tolerant quantum computers.
+
+### 7. Noise, Error Mitigation, and Hardware Limitations
+
+Provided a realistic discussion of the main challenges facing superconducting quantum computing. The lecture emphasised that hardware execution is fundamentally shaped by noise, calibration, and device constraints.
+
+The lecture discussed:
+
+- decoherence and relaxation;
+- dephasing and control errors;
+- crosstalk and leakage;
+- readout error;
+- calibration drift;
+- limited connectivity;
+- finite circuit depth;
+- error mitigation versus quantum error correction.
+
+### 8. Challenges Toward Scalable Quantum Computing
+
+Concluded with a discussion of the major open challenges for scaling superconducting quantum processors. The lecture connected near-term hardware limitations with the long-term requirements for fault-tolerant quantum computing.
+
+Key challenges included:
+
+- increasing qubit number while maintaining fidelity;
+- improving two-qubit gate performance;
+- scalable control and cryogenic engineering;
+- logical qubit construction through quantum error correction;
+- reducing overhead for fault-tolerant computation;
+- developing meaningful benchmarks for practical quantum advantage.
+
+## Learning Outcomes
+
+By the end of the lecture, students were expected to be able to:
+
+- explain how superconducting qubits realise abstract quantum-computing concepts in physical hardware;
+- describe the basic operating principles of superconducting qubits and microwave control;
+- understand the workflow for executing quantum circuits on real superconducting quantum processors;
+- distinguish between ideal circuit models and hardware-constrained execution;
+- identify common noise sources and limitations in superconducting quantum devices;
+- evaluate use cases of superconducting quantum computing with realistic awareness of current hardware constraints;
+- connect superconducting qubit technology to broader topics in quantum algorithms, compilation, benchmarking, and fault-tolerant quantum computing.
+
+## Teaching Approach
+
+The lecture combined conceptual explanation, hardware intuition, and practical systems-level discussion. Rather than treating superconducting qubits purely as a physics topic, the session framed the platform as a complete computational stack: from physical qubits and control electronics to circuit compilation, cloud execution, measurement, and algorithmic use cases.
+
+The teaching style was designed for MSc Advanced Computing students, with emphasis on clarity, computational relevance, and the connection between quantum theory and executable quantum programs.
+
+## Relevance to MSc Advanced Computing
+
+This invited lecture connected superconducting quantum computing to the broader goals of advanced computing education. In particular, it linked quantum hardware to:
+
+- computational models of quantum information processing;
+- hardware-aware software design;
+- quantum algorithm implementation;
+- cloud-based quantum computing workflows;
+- benchmarking and performance evaluation;
+- scalable computing architectures;
+- emerging paradigms beyond classical high-performance computing.
+
+The lecture demonstrated my commitment to teaching quantum computing as an integrated discipline spanning theory, hardware, software, and real-world computational applications.
