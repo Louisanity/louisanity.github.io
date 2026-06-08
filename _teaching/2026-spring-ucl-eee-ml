@@ -9,9 +9,6 @@ date: 2026-01-01
 location: "London, United Kingdom"
 ---
 
-## Lecture Presented
-
-**Quantum Artificial Intelligence: From Optimisation and Machine Learning to Solving Real-World Problems**
 
 ## Teaching Overview
 
@@ -20,6 +17,10 @@ I delivered a guest lecture for the MSc course **Emerging Topics in Integrated M
 The lecture was designed for MSc students with backgrounds in machine learning, electronic and electrical engineering, data systems, and applied computing. It provided an accessible but technically grounded overview of how quantum computing may contribute to optimisation, machine learning, sampling, and decision-making workflows in realistic scientific and industrial settings.
 
 The session connected Quantum Artificial Intelligence to the broader theme of integrated machine learning systems, including hardware/software co-design, hybrid computational workflows, scalable AI infrastructure, and emerging computing paradigms.
+
+## Lecture Presented
+
+**Quantum Artificial Intelligence: From Optimisation and Machine Learning to Solving Real-World Problems**
 
 ## Lecture Abstract
 
