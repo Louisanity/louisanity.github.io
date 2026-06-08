@@ -11,7 +11,6 @@ location: "London, United Kingdom"
 
 
 ## Teaching Overview
-
 I delivered an invited lecture for the MSc Advanced Computing course **Quantum Computing** in the Department of Computing. The lecture introduced students to superconducting qubits as one of the leading hardware platforms for gate-based quantum computing, connecting the physical principles of qubit implementation with practical execution on real quantum processors.
 
 The lecture was designed for MSc students studying quantum computing from a computer science and advanced computing perspective. It provided a structured roadmap from foundational theory to hardware-aware algorithm execution, with emphasis on how superconducting quantum devices are programmed, benchmarked, and evaluated in practice.
