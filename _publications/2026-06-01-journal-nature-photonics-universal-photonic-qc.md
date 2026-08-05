@@ -1,5 +1,4 @@
 ---
-
 title: "Extensible Universal Photonic Quantum Computing with Nonlinearity"
 collection: publications
 category: manuscripts
