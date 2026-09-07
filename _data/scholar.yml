@@ -1,11 +1,11 @@
 # Auto-generated Google Scholar metrics. Edit manually only if the updater is disabled.
 profile_url: "https://scholar.google.com/citations?user=KoUPm0MAAAAJ&hl=en"
 author_id: "KoUPm0MAAAAJ"
-last_updated: "2026-08-31"
+last_updated: "2026-09-07"
 metrics:
   citations:
-    all: 970
-    since_2021: 968
+    all: 978
+    since_2021: 976
   h_index:
     all: 21
     since_2021: 21
@@ -17,8 +17,8 @@ yearly_citations:
   "2022": 0
   "2023": 6
   "2024": 68
-  "2025": 494
-  "2026": 391
+  "2025": 495
+  "2026": 397
 yearly:
   - year: 2022
     citations: 0
@@ -27,6 +27,6 @@ yearly:
   - year: 2024
     citations: 68
   - year: 2025
-    citations: 494
+    citations: 495
   - year: 2026
-    citations: 391
+    citations: 397
